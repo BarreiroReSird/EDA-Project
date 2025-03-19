@@ -1,10 +1,10 @@
 // File: aerial.h
 // Desc:
-// Auth: Carlos Barreiro (a20360)
+// Auth: Carlos Barreiro
+// Mail: a20360@alunos.ipca.pt
 // Date: 2025/03
 
 #ifndef AERIAL_H
-
 #define AERIAL_H
 
 // Estrutura de dados ED, representa as antenas
