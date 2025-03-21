@@ -19,6 +19,9 @@ typedef struct ED
 // Função para inserir uma antena no fim da lista
 void insertAerialEnd(ED **list, char resonanceFrequencyTmp, int coordinateXTmp, int coordinateYTmp);
 
+// Função para saber o tamanho do grid
+void getGridSize(ED *list, int *xMax, int *yMax);
+
 // Função para imprimir a lista de antenas
 void showAerialList(ED *ED);
 
