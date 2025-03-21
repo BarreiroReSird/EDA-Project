@@ -16,9 +16,10 @@ typedef struct ED
     struct ED *next;         // Ponteiro para a próxima antena na lista
 } ED;
 
-// Declarações das funções:
+// Função para inserir uma antena no fim da lista
+void insertAerialEnd(ED **list, char resonanceFrequencyTmp, int coordinateXTmp, int coordinateYTmp);
 
-// Cria uma nova antena
-ED *createAerial(char resonanceFrequency, int coordinateX, int coordinateY);
+// Função para imprimir a lista de antenas
+void showAerialList(ED *ED);
 
 #endif // AERIAL_H
