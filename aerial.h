@@ -25,4 +25,7 @@ void getGridSize(ED *list, int *xMax, int *yMax);
 // Função para imprimir a lista de antenas
 void showAerialList(ED *ED);
 
+// Função para carregar as antenas de um ficheiro
+void loadAerialsFromFile(ED **list, const char *filename);
+
 #endif // AERIAL_H

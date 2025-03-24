@@ -25,7 +25,24 @@ int main()
 
     int choice, coordinateX, coordinateY;
     char resonanceFrequency;
+    char loadChoice;
     ED *list = NULL;
+
+    // Carregar de ficheiro ou não
+    printf("Carregar a posição das antenas de um ficheiro? (s/n): ");
+    scanf(" %c", &loadChoice);
+
+    if (loadChoice == 's' || loadChoice == 'S')
+    {
+        char filename[100];
+        printf("Qual o nome do ficheiro: ");
+        scanf("%s", filename);
+        loadAerialsFromFile(&list, filename);
+    }
+    else
+    {
+        printf("A criar uma nova lista vazia...\n");
+    }
 
     do
     {
