@@ -145,3 +145,45 @@ void loadAerialsFromFile(ED **list, const char *filename)
     fclose(file); // Fecha o ficheiro
     printf("Dados carregados do ficheiro %s com sucesso!\n", filename);
 }
+
+// Função para remover uma antena da lista
+void removeAerial(ED **list, int coordinateX, int coordinateY)
+{
+    if (*list == NULL) // Verifica se a lista está vazia
+    {
+        printf("Lista de antenas vazia. Nada para remover.\n");
+        return;
+    }
+
+    ED *current = *list; // Variável auxiliar para percorrer a lista
+    ED *previous = NULL; // Variável auxiliar para guardar o registo anterior
+
+    // Percorre a lista à procura da antena
+    while (current != NULL)
+    {
+        if (current->coordinateX == coordinateX && current->coordinateY == coordinateY) // Verifica se a antena foi encontrada
+        {
+            // Remove a antena da lista
+            if (previous == NULL)
+            {
+                // Se for o primeiro elemento
+                *list = current->next;
+            }
+            else
+            {
+                // Se for um elemento do meio ou fim
+                previous->next = current->next;
+            }
+
+            free(current); // Liberta a memória alocada para a antena
+            printf("Antena na posição (%d, %d) removida com sucesso.\n", coordinateX, coordinateY);
+            return;
+        }
+
+        previous = current;      // Guarda o registo anterior
+        current = current->next; // Avança para o próximo registo
+    }
+
+    // A antena não foi encontrada
+    printf("Antena na posição (%d, %d) não encontrada.\n", coordinateX, coordinateY);
+}

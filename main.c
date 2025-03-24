@@ -14,6 +14,10 @@
 //      c. Dedução automática das localizações com efeito nefasto e respetiva representação sob a forma de uma lista ligada;
 //      d. Listagem de forma tabular na consola das antenas e localizações com efeito nefasto.
 
+// Erros a corrigir mais tarde:
+//      - 1. O ficheiro esta a ser carregado com algum erro pois mostra um grid maior do que o txt.
+//      - 2. Quando o ficheiro a ser carregado não existe, ou não é possível abrir, o programa não deixa tentar novamente nem termina a execução.
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <windows.h> // Biblioteca para manipular a codificação no Windows
@@ -46,7 +50,7 @@ int main()
 
     do
     {
-        printf("\n\t0 - Sair\n\t1 - Inserir na lista\n\t2 - Mostrar a lista\n");
+        printf("\n\t0 - Sair\n\t1 - Inserir na lista\n\t2 - Mostrar a lista\n\t3 - Remover da lista\n");
         scanf("%d", &choice);
 
         switch (choice)
@@ -62,6 +66,13 @@ int main()
             break;
         case 2:
             showAerialList(list);
+            break;
+        case 3:
+            printf("Insira a coordenada X da antena a remover: ");
+            scanf("%d", &coordinateX);
+            printf("Insira a coordenada Y da antena a remover: ");
+            scanf("%d", &coordinateY);
+            removeAerial(&list, coordinateX, coordinateY);
             break;
         default:
             break;
