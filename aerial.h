@@ -28,4 +28,7 @@ void showAerialList(ED *ED);
 // Função para carregar as antenas de um ficheiro
 void loadAerialsFromFile(ED **list, const char *filename);
 
+// Função para remover uma antena da lista
+void removeAerial(ED **list, int coordinateX, int coordinateY);
+
 #endif // AERIAL_H
