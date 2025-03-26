@@ -15,8 +15,7 @@
 //      d. Listagem de forma tabular na consola das antenas e localizações com efeito nefasto.
 
 // Erros a corrigir mais tarde:
-//      - 1. O ficheiro esta a ser carregado com algum erro pois mostra um grid maior do que o txt.
-//      - 2. Quando o ficheiro a ser carregado não existe, ou não é possível abrir, o programa não deixa tentar novamente nem termina a execução.
+//      - 1. Quando o ficheiro a ser carregado não existe, ou não é possível abrir, o programa não deixa tentar novamente nem termina a execução.
 
 #include <stdio.h>
 #include <stdlib.h>

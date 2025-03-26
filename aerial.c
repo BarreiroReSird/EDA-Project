@@ -110,7 +110,7 @@ void loadAerialsFromFile(ED **list, const char *filename)
     int y = 1;       // Para iniciar a coordenada Y
     char line[1000]; // Linha do ficheiro
 
-    FILE *file = fopen(filename, "r"); // Abre o ficheiro para leitura
+    FILE *file = fopen(filename, "r");
     if (file == NULL)
     {
         printf("Erro ao abrir o ficheiro %s\n", filename);
@@ -122,27 +122,22 @@ void loadAerialsFromFile(ED **list, const char *filename)
     {
         int x = 1; // Para iniciar a coordenada X
         // Percorre a linha
-        for (int i = 0; line[i] != '\0'; i++)
+        for (int i = 0; line[i] != '\0' && line[i] != '\n'; i++) // Parar também no \n
         {
-            // Verifica o conteúdo da linha
-            if (line[i] == ' ')
+            if (line[i] != ' ' && line[i] != '.') // Ignora espaços e pontos
             {
-                x++; // Incrementa a coordenada X
+                insertAerialEnd(list, line[i], x, y);
             }
-            else if (line[i] != '.' && line[i] != '\n') // Se o conteúdo da linha for diferente de '.' e '\n'
+            // Incrementa X apenas para caracteres relevantes
+            if (line[i] != ' ') // Espaços não contam como posições
             {
-                insertAerialEnd(list, line[i], x, y); // Insere a antena na lista
-                x++;                                  // Incrementa a coordenada X
-            }
-            else if (line[i] == '.') // Se o conteúdo da linha for '.'
-            {
-                x++; // Incrementa a coordenada X
+                x++;
             }
         }
         y++; // Incrementa a coordenada Y
     }
 
-    fclose(file); // Fecha o ficheiro
+    fclose(file);
     printf("Dados carregados do ficheiro %s com sucesso!\n", filename);
 }
 
