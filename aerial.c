@@ -107,8 +107,8 @@ void showAerialList(ED *list)
 // Função para carregar as antenas de um ficheiro
 void loadAerialsFromFile(ED **list, const char *filename)
 {
-    int y = 1;       // Para iniciar a coordenada Y
-    char line[1000]; // Linha do ficheiro
+    int y = 1;                  // Para iniciar a coordenada Y
+    char line[MAX_LINE_LENGTH]; // Tamanho máximo da linha do ficheiro
 
     FILE *file = fopen(filename, "r");
     if (file == NULL)
@@ -118,7 +118,7 @@ void loadAerialsFromFile(ED **list, const char *filename)
     }
 
     // Lê o ficheiro linha a linha
-    while (fgets(line, sizeof(line), file) != NULL)
+    while (fgets(line, MAX_LINE_LENGTH, file) != NULL)
     {
         int x = 1; // Para iniciar a coordenada X
         // Percorre a linha

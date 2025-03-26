@@ -7,6 +7,8 @@
 #ifndef AERIAL_H
 #define AERIAL_H
 
+#define MAX_LINE_LENGTH 1000 // Constante para o tamanho máximo da linha do ficheiro
+
 // Estrutura de dados ED, representa as antenas
 typedef struct ED
 {
