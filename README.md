@@ -10,6 +10,6 @@
 ## Execução
 
     Após a compilação bem-sucedida, execute o programa com um dos seguintes comandos:
-    ./main.exe
+    ./projectEDA.exe
     ou
-    mingw32-make.exe; ./main.exe
+    mingw32-make.exe; ./projectEDA.exe
