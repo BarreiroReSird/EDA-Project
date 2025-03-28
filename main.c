@@ -66,7 +66,7 @@ int main()
 
     do
     {
-        printf("\n\t0 - Sair\n\t1 - Inserir na lista\n\t2 - Mostrar a lista\n\t3 - Remover da lista\n");
+        printf("\n\t0 - Sair\n\t1 - Inserir na lista\n\t2 - Mostrar a lista\n\t3 - Remover da lista\n\t4 - Mostrar interferências\n\tEscolha uma opção: ");
         scanf("%d", &choice);
 
         switch (choice)
@@ -89,6 +89,9 @@ int main()
             printf("Insira a coordenada Y da antena a remover: ");
             scanf("%d", &coordinateY);
             removeAerial(&list, coordinateX, coordinateY);
+            break;
+        case 4:
+            interferencesED(list);
             break;
         default:
             break;
