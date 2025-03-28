@@ -38,6 +38,9 @@
 #include <stdlib.h>
 #include <windows.h> // Biblioteca para manipular a codificação no Windows
 #include "aerial.h"
+#include "fileUtils.h"
+#include "gridUtils.h"
+#include "interference.h"
 
 int main()
 {
