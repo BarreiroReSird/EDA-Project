@@ -18,7 +18,6 @@ void loadAerialsFromFile(ED **list, const char *filename)
     FILE *file = fopen(filename, "r");
     if (file == NULL)
     {
-        printf("Erro ao abrir o ficheiro %s\n", filename);
         return;
     }
 

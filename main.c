@@ -25,20 +25,39 @@ int main()
     SetConsoleOutputCP(65001); // Define a codificação do terminal para UTF-8
 
     int choice, coordinateX, coordinateY;
-    char resonanceFrequency;
-    char loadChoice;
+    char resonanceFrequency, loadChoice, retryChoice;
     ED *list = NULL;
 
-    // Carregar de ficheiro ou não
+    // Carregar o ficheiro ou não
     printf("Carregar a posição das antenas de um ficheiro? (s/n): ");
     scanf(" %c", &loadChoice);
 
     if (loadChoice == 's' || loadChoice == 'S')
     {
         char filename[100];
-        printf("Qual o nome do ficheiro: ");
-        scanf("%s", filename);
-        loadAerialsFromFile(&list, filename);
+        do
+        {
+            printf("Qual o nome do ficheiro: ");
+            scanf("%s", filename);
+
+            // Tenta carregar o arquivo diretamente
+            loadAerialsFromFile(&list, filename);
+
+            // Verifica se a lista foi preenchida (arquivo carregado com sucesso)
+            if (list == NULL)
+            {
+                printf("Erro ao abrir o ficheiro %s. Deseja tentar novamente? (s/n): ", filename);
+                scanf(" %c", &retryChoice);
+                if (retryChoice == 'n' || retryChoice == 'N')
+                {
+                    break;
+                }
+            }
+            else
+            {
+                break; // Sai do loop se o arquivo foi carregado com sucesso
+            }
+        } while (1);
     }
     else
     {
