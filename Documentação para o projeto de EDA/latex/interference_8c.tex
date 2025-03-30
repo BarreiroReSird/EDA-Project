@@ -1,0 +1,155 @@
+\doxysection{Referência ao ficheiro EDA-\/\+Project/interference.c}
+\hypertarget{interference_8c}{}\label{interference_8c}\index{EDA-\/Project/interference.c@{EDA-\/Project/interference.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include \"{}interference.\+h\"{}}\newline
+{\ttfamily \#include \"{}aerial.\+h\"{}}\newline
+{\ttfamily \#include \"{}grid\+Utils.\+h\"{}}\newline
+\doxysubsubsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{interference_8c_a33a306520827a930a7d51574f41fbf8b}{interferences\+ED}} (\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}list)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{interference_8c_a33a306520827a930a7d51574f41fbf8b}\label{interference_8c_a33a306520827a930a7d51574f41fbf8b} 
+\index{interference.c@{interference.c}!interferencesED@{interferencesED}}
+\index{interferencesED@{interferencesED}!interference.c@{interference.c}}
+\doxysubsubsection{\texorpdfstring{interferencesED()}{interferencesED()}}
+{\footnotesize\ttfamily void interferences\+ED (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}}]{list }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ Cria\ uma\ lista\ ligada\ interferencesED\ para\ guardar\ as\ interferencias}}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *\mbox{\hyperlink{interference_8c_a33a306520827a930a7d51574f41fbf8b}{interferencesED}}\ =\ NULL;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Verifica\ se\ há\ frequências\ de\ ressonância\ repetidas}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{int}\ hasDuplicates\ =\ 0;}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *current\ =\ list;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *temp\ =\ current-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};\ \textcolor{comment}{//\ Aponta\ para\ o\ próximo\ registo\ da\ lista}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (temp\ !=\ NULL)}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compara\ a\ frequência\ atual\ com\ a\ próxima}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (temp-\/>\mbox{\hyperlink{struct_e_d_ab43fc24c19ee01b5c6c1950aac2ae0fa}{resonanceFrequency}}\ ==\ current-\/>\mbox{\hyperlink{struct_e_d_ab43fc24c19ee01b5c6c1950aac2ae0fa}{resonanceFrequency}})}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Frequência\ repetida\ encontrada}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasDuplicates\ =\ 1;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ temp\ =\ temp-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};\ \textcolor{comment}{//\ Avança\ para\ o\ próximo\ registo\ temp}}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (hasDuplicates)\ \textcolor{comment}{//\ Se\ encontrar\ uma\ frequência\ repetida,\ sai\ do\ loop}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};\ \textcolor{comment}{//\ Avança\ para\ o\ próximo\ registo\ current}}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordflow}{if}\ (!hasDuplicates)\ \textcolor{comment}{//\ Se\ não\ houver\ frequências\ repetidas,\ mostra\ a\ lista\ normal}}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Não\ há\ frequências\ de\ ressonância\ repetidas.\(\backslash\)n"{}});}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{grid_utils_8c_ae41577cef1aeffa8c33665d15a6941e9}{showAerialList}}(list);}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//\ Copia\ toda\ a\ lista\ ligada\ ED\ para\ a\ lista\ ligada\ interferencesED}}
+\DoxyCodeLine{00049\ \ \ \ \ current\ =\ list;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)}
+\DoxyCodeLine{00051\ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Adiciona\ a\ antena\ à\ lista\ de\ interferências}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{aerial_8c_a3d3df9547d7b6a22110a11d9978decb4}{insertAerialEnd}}(\&\mbox{\hyperlink{interference_8c_a33a306520827a930a7d51574f41fbf8b}{interferencesED}},\ current-\/>\mbox{\hyperlink{struct_e_d_ab43fc24c19ee01b5c6c1950aac2ae0fa}{resonanceFrequency}},\ current-\/>\mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}},\ current-\/>\mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}});}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{comment}{//\ Processa\ cada\ frequência}}
+\DoxyCodeLine{00058\ \ \ \ \ current\ =\ list;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *other\ =\ current-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (other\ !=\ NULL)}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verifica\ se\ as\ frequências\ são\ iguais}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{struct_e_d_ab43fc24c19ee01b5c6c1950aac2ae0fa}{resonanceFrequency}}\ ==\ other-\/>\mbox{\hyperlink{struct_e_d_ab43fc24c19ee01b5c6c1950aac2ae0fa}{resonanceFrequency}})}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calcula\ a\ diferença\ nas\ coordenadas}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ diffX\ =\ other-\/>\mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}}\ -\/\ current-\/>\mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ diffY\ =\ other-\/>\mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}}\ -\/\ current-\/>\mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verifica\ se\ a\ diferença\ é\ pelo\ menos\ +2\ ou\ -\/2\ em\ X\ ou\ Y}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (abs(diffX)\ >=\ 2\ ||\ abs(diffY)\ >=\ 2)}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calcula\ a\ primeira\ interferência\ (troca\ sinais\ do\ caminho)}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ interferenceX1\ =\ current-\/>\mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}}\ -\/\ diffX;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ interferenceY1\ =\ current-\/>\mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}}\ -\/\ diffY;}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verifica\ se\ as\ coordenadas\ são\ positivas}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (interferenceX1\ >\ 0\ \&\&\ interferenceY1\ >\ 0)}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verifica\ se\ já\ existe\ uma\ antena\ nesta\ posição}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ isAerial\ =\ 0;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *check\ =\ list;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (check\ !=\ NULL)}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (check-\/>\mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}}\ ==\ interferenceX1\ \&\&\ check-\/>\mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}}\ ==\ interferenceY1)}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isAerial\ =\ 1;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\ =\ check-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isAerial)}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{aerial_8c_a3d3df9547d7b6a22110a11d9978decb4}{insertAerialEnd}}(\&\mbox{\hyperlink{interference_8c_a33a306520827a930a7d51574f41fbf8b}{interferencesED}},\ \textcolor{charliteral}{'\#'},\ interferenceX1,\ interferenceY1);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calcula\ a\ segunda\ interferência\ (troca\ sinais\ do\ caminho)}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ interferenceX2\ =\ other-\/>\mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}}\ +\ diffX;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ interferenceY2\ =\ other-\/>\mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}}\ +\ diffY;}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verifica\ se\ as\ coordenadas\ são\ positivas}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (interferenceX2\ >\ 0\ \&\&\ interferenceY2\ >\ 0)}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verifica\ se\ já\ existe\ uma\ antena\ nesta\ posição}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ isAerial\ =\ 0;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *check\ =\ list;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (check\ !=\ NULL)}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (check-\/>\mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}}\ ==\ interferenceX2\ \&\&\ check-\/>\mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}}\ ==\ interferenceY2)}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isAerial\ =\ 1;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ check\ =\ check-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isAerial)}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{aerial_8c_a3d3df9547d7b6a22110a11d9978decb4}{insertAerialEnd}}(\&\mbox{\hyperlink{interference_8c_a33a306520827a930a7d51574f41fbf8b}{interferencesED}},\ \textcolor{charliteral}{'\#'},\ interferenceX2,\ interferenceY2);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ other\ =\ other-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ Mostra\ o\ grid\ com\ as\ interferências}}
+\DoxyCodeLine{00133\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)nInterferências\ calculadas:\(\backslash\)n"{}});}
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{grid_utils_8c_ae41577cef1aeffa8c33665d15a6941e9}{showAerialList}}(\mbox{\hyperlink{interference_8c_a33a306520827a930a7d51574f41fbf8b}{interferencesED}});}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{comment}{//\ Liberta\ a\ memória\ da\ lista\ de\ interferências}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{interference_8c_a33a306520827a930a7d51574f41fbf8b}{interferencesED}}\ !=\ NULL)}
+\DoxyCodeLine{00138\ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *temp\ =\ \mbox{\hyperlink{interference_8c_a33a306520827a930a7d51574f41fbf8b}{interferencesED}};}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{interference_8c_a33a306520827a930a7d51574f41fbf8b}{interferencesED}}\ =\ \mbox{\hyperlink{interference_8c_a33a306520827a930a7d51574f41fbf8b}{interferencesED}}-\/>next;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ free(temp);}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \}}
+
+\end{DoxyCode}

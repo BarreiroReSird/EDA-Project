@@ -1,0 +1,92 @@
+\doxysection{Referência ao ficheiro EDA-\/\+Project/grid\+Utils.h}
+\hypertarget{grid_utils_8h}{}\label{grid_utils_8h}\index{EDA-\/Project/gridUtils.h@{EDA-\/Project/gridUtils.h}}
+{\ttfamily \#include \"{}aerial.\+h\"{}}\newline
+\doxysubsubsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{grid_utils_8h_a98a216314ca4efce318aeabfb421e611}{get\+Grid\+Size}} (\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}list, int \texorpdfstring{$\ast$}{*}x\+Max, int \texorpdfstring{$\ast$}{*}y\+Max)
+\item 
+void \mbox{\hyperlink{grid_utils_8h_a0e51e4fc3776c6d92c263c1ad7f109da}{show\+Aerial\+List}} (\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{struct_e_d}{ED}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{grid_utils_8h_a98a216314ca4efce318aeabfb421e611}\label{grid_utils_8h_a98a216314ca4efce318aeabfb421e611} 
+\index{gridUtils.h@{gridUtils.h}!getGridSize@{getGridSize}}
+\index{getGridSize@{getGridSize}!gridUtils.h@{gridUtils.h}}
+\doxysubsubsection{\texorpdfstring{getGridSize()}{getGridSize()}}
+{\footnotesize\ttfamily void get\+Grid\+Size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}}]{list,  }\item[{int \texorpdfstring{$\ast$}{*}}]{x\+Max,  }\item[{int \texorpdfstring{$\ast$}{*}}]{y\+Max }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ *xMax\ =\ 0;\ \ \ \ \ \ \textcolor{comment}{//\ Inicia\ o\ maior\ valor\ de\ X}}
+\DoxyCodeLine{00016\ \ \ \ \ *yMax\ =\ 0;\ \ \ \ \ \ \textcolor{comment}{//\ Inicia\ o\ maior\ valor\ de\ Y}}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *aux\ =\ list;\ \textcolor{comment}{//\ Variável\ auxiliar\ para\ percorrer\ a\ lista}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{while}\ (aux\ !=\ NULL)}
+\DoxyCodeLine{00020\ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (aux-\/>\mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}}\ >\ *xMax)}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ *xMax\ =\ aux-\/>\mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}};\ \textcolor{comment}{//\ Atualiza\ o\ maior\ valor\ de\ X}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (aux-\/>\mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}}\ >\ *yMax)}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ *yMax\ =\ aux-\/>\mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}};\ \textcolor{comment}{//\ Atualiza\ o\ maior\ valor\ de\ Y}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ aux\ =\ aux-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};\ \textcolor{comment}{//\ Avança\ para\ o\ próximo\ registo\ da\ lista}}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+\DoxyCodeLine{00031\ \}}
+
+\end{DoxyCode}
+\Hypertarget{grid_utils_8h_a0e51e4fc3776c6d92c263c1ad7f109da}\label{grid_utils_8h_a0e51e4fc3776c6d92c263c1ad7f109da} 
+\index{gridUtils.h@{gridUtils.h}!showAerialList@{showAerialList}}
+\index{showAerialList@{showAerialList}!gridUtils.h@{gridUtils.h}}
+\doxysubsubsection{\texorpdfstring{showAerialList()}{showAerialList()}}
+{\footnotesize\ttfamily void show\+Aerial\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}}]{ED }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Verifica\ o\ tamanho\ do\ grid}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{int}\ xMax,\ yMax;}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{grid_utils_8c_a98a216314ca4efce318aeabfb421e611}{getGridSize}}(list,\ \&xMax,\ \&yMax);\ \textcolor{comment}{//\ Calcula\ o\ tamanho\ do\ grid}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ Cria\ uma\ matriz\ para\ representar\ o\ grid}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{char}\ grid[yMax][xMax];}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ Inicializa\ o\ grid\ com\ pontos:\ '.'}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ y\ =\ 0;\ y\ <\ yMax;\ y++)}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ xMax;\ x++)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ grid[y][x]\ =\ \textcolor{charliteral}{'.'};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ Preenche\ o\ grid\ com\ as\ frequências\ de\ ressonância\ das\ antenas}}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *aux\ =\ list;\ \textcolor{comment}{//\ Variável\ auxiliar\ para\ percorrer\ a\ lista}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{while}\ (aux\ !=\ NULL)}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (aux-\/>\mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}}\ <=\ xMax\ \&\&\ aux-\/>\mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}}\ <=\ yMax\ \&\&\ aux-\/>\mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}}\ >=\ 1\ \&\&\ aux-\/>\mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}}\ >=\ 1)\ \textcolor{comment}{//\ Verifica\ se\ as\ coordenadas\ estão\ dentro\ do\ grid}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ grid[aux-\/>\mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}}\ -\/\ 1][aux-\/>\mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}}\ -\/\ 1]\ =\ aux-\/>\mbox{\hyperlink{struct_e_d_ab43fc24c19ee01b5c6c1950aac2ae0fa}{resonanceFrequency}};\ \textcolor{comment}{//\ Preenche\ o\ grid\ com\ a\ frequência\ de\ ressonância\ da\ antena}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ aux\ =\ aux-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};\ \textcolor{comment}{//\ Avança\ para\ o\ próximo\ registo\ da\ lista}}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ Mostra\ o\ grid}}
+\DoxyCodeLine{00064\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n\(\backslash\)tAntenas:\(\backslash\)n"{}});}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ y\ =\ 0;\ y\ <\ yMax;\ y++)\ \textcolor{comment}{//\ Percorre\ as\ linhas\ do\ grid}}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)t"{}});}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ x\ =\ 0;\ x\ <\ xMax;\ x++)\ \textcolor{comment}{//\ Percorre\ as\ colunas\ do\ grid}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%c\ "{}},\ grid[y][x]);\ \textcolor{comment}{//\ Mostra\ o\ conteúdo\ do\ grid}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00075\ \}}
+
+\end{DoxyCode}

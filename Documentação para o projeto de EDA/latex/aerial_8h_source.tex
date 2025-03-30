@@ -1,0 +1,33 @@
+\doxysection{aerial.\+h}
+\hypertarget{aerial_8h_source}{}\label{aerial_8h_source}\index{EDA-\/Project/aerial.h@{EDA-\/Project/aerial.h}}
+\mbox{\hyperlink{aerial_8h}{Ir para a documentação deste ficheiro.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ File:\ aerial.h}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Desc:\ Este\ ficheiro\ contém\ a\ definição\ da\ estrutura\ de\ dados\ ED\ e\ as\ funções\ para\ inserir\ e\ remover\ antenas\ de\ uma\ lista\ ligada.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Auth:\ Carlos\ Barreiro}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Mail:\ a20360@alunos.ipca.pt}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Date:\ 2025/03}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ AERIAL\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ AERIAL\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ MAX\_LINE\_LENGTH\ 1000\ }\textcolor{comment}{//\ Constante\ para\ o\ tamanho\ máximo\ da\ linha\ do\ ficheiro}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ Estrutura\ de\ dados\ ED,\ representa\ as\ antenas}}
+\DoxyCodeLine{00013\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_e_d}{ED}}}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{struct_e_d_ab43fc24c19ee01b5c6c1950aac2ae0fa}{resonanceFrequency}};\ \textcolor{comment}{//\ Frequência\ de\ ressonância\ da\ antena}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Coordenada\ X\ da\ antena}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Coordenada\ Y\ da\ antena}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_e_d}{ED}}\ *\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ponteiro\ para\ a\ próxima\ antena\ na\ lista}}
+\DoxyCodeLine{00019\ \}\ \mbox{\hyperlink{struct_e_d}{ED}};}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ Função\ para\ adicionar\ uma\ antena\ (fim\ da\ lista)}}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aerial_8h_a3d3df9547d7b6a22110a11d9978decb4}{insertAerialEnd}}(\mbox{\hyperlink{struct_e_d}{ED}}\ **list,\ \textcolor{keywordtype}{char}\ resonanceFrequencyTmp,\ \textcolor{keywordtype}{int}\ coordinateXTmp,\ \textcolor{keywordtype}{int}\ coordinateYTmp);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ Função\ para\ remover\ uma\ antena\ da\ lista}}
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aerial_8h_a3a817e307efda897e560ab98309bfbb6}{removeAerial}}(\mbox{\hyperlink{struct_e_d}{ED}}\ **list,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}});}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ AERIAL\_H}}
+
+\end{DoxyCode}
