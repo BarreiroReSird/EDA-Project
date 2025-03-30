@@ -1,5 +1,5 @@
 // File: gridUtils.c
-// Desc:
+// Desc: Este ficheiro contém funções para calcular o tamanho da matriz, mostrar a lista de antenas e verificar se há interferências entre antenas.
 // Auth: Carlos Barreiro
 // Mail: a20360@alunos.ipca.pt
 // Date: 2025/03

@@ -1,5 +1,5 @@
 // File: fileUtils.c
-// Desc:
+// Desc: Este ficheiro contém funções para carregar e guardar dados de antenas em ficheiros, bem como para mostrar a lista de antenas.
 // Auth: Carlos Barreiro
 // Mail: a20360@alunos.ipca.pt
 // Date: 2025/03

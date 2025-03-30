@@ -1,5 +1,5 @@
 // File: aerial.h
-// Desc:
+// Desc: Este ficheiro contém a definição da estrutura de dados ED e as funções para inserir e remover antenas de uma lista ligada.
 // Auth: Carlos Barreiro
 // Mail: a20360@alunos.ipca.pt
 // Date: 2025/03

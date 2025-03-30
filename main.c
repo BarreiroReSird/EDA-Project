@@ -1,16 +1,8 @@
 // File: main.c
-// Desc:
+// Desc: Este ficheiro contém a função principal do programa, onde são geridas as opções do utilizador e a interação com o utilizador.
 // Auth: Carlos Barreiro
 // Mail: a20360@alunos.ipca.pt
 // Date: 2025/03
-
-// Errors to fix:
-//      - 1. Quando o ficheiro a ser carregado não existe, ou não é possível abrir, o programa não deixa tentar novamente nem termina a execução.
-
-// Otimizations:
-//      - 1. Bloquear a adição de antenas com a frequência de ressonância sejam simbolos, numeros e pontuações. (Aceitar apenas letras)
-//      - 2. Adicionar verificação das coordenadas para não serem negativas ou nulas.
-//      - 3. Libertar a memória alocada em todo o programa, no final do mesmo.
 
 #include <stdio.h>
 #include <stdlib.h>

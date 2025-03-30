@@ -1,5 +1,5 @@
 // File: aerial.c
-// Desc:
+// Desc: Este ficheiro contém funções para inserir e remover antenas de uma lista ligada, bem como para calcular a distância entre antenas.
 // Auth: Carlos Barreiro
 // Mail: a20360@alunos.ipca.pt
 // Date: 2025/03
