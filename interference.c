@@ -16,8 +16,9 @@ void interferencesED(ED *list)
     // Cria uma lista ligada interferencesED para guardar as interferencias
     ED *interferencesED = NULL;
 
-    // Verifica se há frequências de ressonância repetidas
+    // Para verificar se há frequências de ressonância repetidas
     int hasDuplicates = 0;
+
     ED *current = list;
     while (current != NULL)
     {

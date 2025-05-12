@@ -21,7 +21,7 @@ void insertAerialEnd(ED **list, char resonanceFrequencyTmp, int coordinateXTmp, 
     new->resonanceFrequency = resonanceFrequencyTmp; // Atribuição da frequência de ressonância
     new->coordinateX = coordinateXTmp;               // Atribuição da coordenada X
     new->coordinateY = coordinateYTmp;               // Atribuição da coordenada Y
-    new->next = NULL;                                //
+    new->next = NULL;
 
     if (*list == NULL) // Se o conteúdo da lista for nulo, então a nova antena passa a ser a primeira da lista
     {
