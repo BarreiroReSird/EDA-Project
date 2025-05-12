@@ -10,9 +10,9 @@
 #include "aerial.h" // Necessário para a definição de ED
 
 // Função para saber o tamanho do grid (/tabela)
-void getGridSize(ED *list, int *xMax, int *yMax);
+int getGridSize(ED *list, int *xMax, int *yMax);
 
 // Função para imprimir a lista de antenas
-void showAerialList(ED *ED);
+int showAerialList(ED *ED);
 
 #endif // GRID_UTILS_H

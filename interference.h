@@ -10,6 +10,6 @@
 #include "aerial.h" // Necessário para a definição de ED
 
 // Função para calcular e mostrar as interferências
-void interferencesED(ED *list);
+int interferencesED(ED *list);
 
 #endif // INTERFERENCE_H

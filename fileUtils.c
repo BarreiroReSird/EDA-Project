@@ -10,37 +10,35 @@
 #include "aerial.h"
 
 // Função para carregar as antenas de um ficheiro
-void loadAerialsFromFile(ED **list, const char *filename)
+ED *loadAerialsFromFile(ED *list, const char *filename)
 {
-    int y = 1;                  // Para iniciar a coordenada Y
-    char line[MAX_LINE_LENGTH]; // Tamanho máximo da linha do ficheiro
+    int y = 1;
+    char line[MAX_LINE_LENGTH];
 
     FILE *file = fopen(filename, "r");
     if (file == NULL)
     {
-        return;
+        return list;
     }
 
-    // Lê o ficheiro linha a linha
     while (fgets(line, MAX_LINE_LENGTH, file) != NULL)
     {
-        int x = 1; // Para iniciar a coordenada X
-        // Percorre a linha
-        for (int i = 0; line[i] != '\0' && line[i] != '\n'; i++) // Parar também no \n
+        int x = 1;
+        for (int i = 0; line[i] != '\0' && line[i] != '\n'; i++)
         {
-            if (line[i] != ' ' && line[i] != '.') // Ignora espaços e pontos
+            if (line[i] != ' ' && line[i] != '.')
             {
-                insertAerialEnd(list, line[i], x, y);
+                list = insertAerialEnd(list, line[i], x, y);
             }
-            // Incrementa X apenas para caracteres relevantes
-            if (line[i] != ' ') // Espaços não contam como posições
+            if (line[i] != ' ')
             {
                 x++;
             }
         }
-        y++; // Incrementa a coordenada Y
+        y++;
     }
 
     fclose(file);
     printf("Dados carregados do ficheiro %s com sucesso!\n", filename);
+    return list;
 }

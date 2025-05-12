@@ -11,75 +11,61 @@
 #include "aerial.h"
 #include "gridUtils.h"
 
-void interferencesED(ED *list)
+int interferencesED(ED *list)
 {
-    // Cria uma lista ligada interferencesED para guardar as interferencias
     ED *interferencesED = NULL;
-
-    // Para verificar se há frequências de ressonância repetidas
     int hasDuplicates = 0;
 
     ED *current = list;
     while (current != NULL)
     {
-        ED *temp = current->next; // Aponta para o próximo registo da lista
+        ED *temp = current->next;
         while (temp != NULL)
         {
-            // Compara a frequência atual com a próxima
             if (temp->resonanceFrequency == current->resonanceFrequency)
             {
-                // Frequência repetida encontrada
                 hasDuplicates = 1;
                 break;
             }
-            temp = temp->next; // Avança para o próximo registo temp
+            temp = temp->next;
         }
-        if (hasDuplicates) // Se encontrar uma frequência repetida, sai do loop
+        if (hasDuplicates)
             break;
-        current = current->next; // Avança para o próximo registo current
-    }
-
-    if (!hasDuplicates) // Se não houver frequências repetidas, mostra a lista normal
-    {
-        printf("Não há frequências de ressonância repetidas.\n");
-        showAerialList(list);
-        return;
-    }
-
-    // Copia toda a lista ligada ED para a lista ligada interferencesED
-    current = list;
-    while (current != NULL)
-    {
-        // Adiciona a antena à lista de interferências
-        insertAerialEnd(&interferencesED, current->resonanceFrequency, current->coordinateX, current->coordinateY);
         current = current->next;
     }
 
-    // Processa cada frequência
+    if (!hasDuplicates)
+    {
+        printf("Não há frequências de ressonância repetidas.\n");
+        showAerialList(list);
+        return 0;
+    }
+
+    current = list;
+    while (current != NULL)
+    {
+        interferencesED = insertAerialEnd(interferencesED, current->resonanceFrequency, current->coordinateX, current->coordinateY);
+        current = current->next;
+    }
+
     current = list;
     while (current != NULL)
     {
         ED *other = current->next;
         while (other != NULL)
         {
-            // Verifica se as frequências são iguais
             if (current->resonanceFrequency == other->resonanceFrequency)
             {
-                // Calcula a diferença nas coordenadas
                 int diffX = other->coordinateX - current->coordinateX;
                 int diffY = other->coordinateY - current->coordinateY;
 
-                // Verifica se a diferença é pelo menos +2 ou -2 em X ou Y
                 if (abs(diffX) >= 2 || abs(diffY) >= 2)
                 {
-                    // Calcula a primeira interferência (troca sinais do caminho)
                     int interferenceX1 = current->coordinateX - diffX;
                     int interferenceY1 = current->coordinateY - diffY;
 
-                    // Verifica se as coordenadas são positivas
                     if (interferenceX1 > 0 && interferenceY1 > 0)
                     {
-                        // Verifica se já existe uma antena nesta posição
                         int isAerial = 0;
                         ED *check = list;
                         while (check != NULL)
@@ -94,18 +80,15 @@ void interferencesED(ED *list)
 
                         if (!isAerial)
                         {
-                            insertAerialEnd(&interferencesED, '#', interferenceX1, interferenceY1);
+                            interferencesED = insertAerialEnd(interferencesED, '#', interferenceX1, interferenceY1);
                         }
                     }
 
-                    // Calcula a segunda interferência (troca sinais do caminho)
                     int interferenceX2 = other->coordinateX + diffX;
                     int interferenceY2 = other->coordinateY + diffY;
 
-                    // Verifica se as coordenadas são positivas
                     if (interferenceX2 > 0 && interferenceY2 > 0)
                     {
-                        // Verifica se já existe uma antena nesta posição
                         int isAerial = 0;
                         ED *check = list;
                         while (check != NULL)
@@ -120,7 +103,7 @@ void interferencesED(ED *list)
 
                         if (!isAerial)
                         {
-                            insertAerialEnd(&interferencesED, '#', interferenceX2, interferenceY2);
+                            interferencesED = insertAerialEnd(interferencesED, '#', interferenceX2, interferenceY2);
                         }
                     }
                 }
@@ -130,15 +113,14 @@ void interferencesED(ED *list)
         current = current->next;
     }
 
-    // Mostra o grid com as interferências
     printf("\nInterferências calculadas:\n");
     showAerialList(interferencesED);
 
-    // Liberta a memória da lista de interferências
     while (interferencesED != NULL)
     {
         ED *temp = interferencesED;
         interferencesED = interferencesED->next;
         free(temp);
     }
+    return 0;
 }

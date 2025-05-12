@@ -19,9 +19,9 @@ typedef struct ED
 } ED;
 
 // Função para adicionar uma antena (fim da lista)
-void insertAerialEnd(ED **list, char resonanceFrequencyTmp, int coordinateXTmp, int coordinateYTmp);
+ED *insertAerialEnd(ED *list, char resonanceFrequencyTmp, int coordinateXTmp, int coordinateYTmp);
 
 // Função para remover uma antena da lista
-void removeAerial(ED **list, int coordinateX, int coordinateY);
+ED *removeAerial(ED *list, int coordinateX, int coordinateY);
 
 #endif // AERIAL_H

@@ -10,37 +10,35 @@
 #include "aerial.h"
 
 // Função para saber o tamanho do grid
-void getGridSize(ED *list, int *xMax, int *yMax)
+int getGridSize(ED *list, int *xMax, int *yMax)
 {
-    *xMax = 0;      // Inicia o maior valor de X
-    *yMax = 0;      // Inicia o maior valor de Y
-    ED *aux = list; // Variável auxiliar para percorrer a lista
+    *xMax = 0;
+    *yMax = 0;
+    ED *aux = list;
 
     while (aux != NULL)
     {
         if (aux->coordinateX > *xMax)
         {
-            *xMax = aux->coordinateX; // Atualiza o maior valor de X
+            *xMax = aux->coordinateX;
         }
         if (aux->coordinateY > *yMax)
         {
-            *yMax = aux->coordinateY; // Atualiza o maior valor de Y
+            *yMax = aux->coordinateY;
         }
-        aux = aux->next; // Avança para o próximo registo da lista
+        aux = aux->next;
     }
+    return 0;
 }
 
 // Função para mostrar a lista de antenas
-void showAerialList(ED *list)
+int showAerialList(ED *list)
 {
-    // Verifica o tamanho do grid
     int xMax, yMax;
-    getGridSize(list, &xMax, &yMax); // Calcula o tamanho do grid
+    getGridSize(list, &xMax, &yMax);
 
-    // Cria uma matriz para representar o grid
     char grid[yMax][xMax];
 
-    // Inicializa o grid com pontos: '.'
     for (int y = 0; y < yMax; y++)
     {
         for (int x = 0; x < xMax; x++)
@@ -49,27 +47,26 @@ void showAerialList(ED *list)
         }
     }
 
-    // Preenche o grid com as frequências de ressonância das antenas
-    ED *aux = list; // Variável auxiliar para percorrer a lista
+    ED *aux = list;
     while (aux != NULL)
     {
-        if (aux->coordinateX <= xMax && aux->coordinateY <= yMax && aux->coordinateX >= 1 && aux->coordinateY >= 1) // Verifica se as coordenadas estão dentro do grid
+        if (aux->coordinateX <= xMax && aux->coordinateY <= yMax && aux->coordinateX >= 1 && aux->coordinateY >= 1)
         {
-            grid[aux->coordinateY - 1][aux->coordinateX - 1] = aux->resonanceFrequency; // Preenche o grid com a frequência de ressonância da antena
+            grid[aux->coordinateY - 1][aux->coordinateX - 1] = aux->resonanceFrequency;
         }
-        aux = aux->next; // Avança para o próximo registo da lista
+        aux = aux->next;
     }
 
-    // Mostra o grid
     printf("\n\tAntenas:\n");
-    for (int y = 0; y < yMax; y++) // Percorre as linhas do grid
+    for (int y = 0; y < yMax; y++)
     {
         printf("\t");
-        for (int x = 0; x < xMax; x++) // Percorre as colunas do grid
+        for (int x = 0; x < xMax; x++)
         {
-            printf("%c ", grid[y][x]); // Mostra o conteúdo do grid
+            printf("%c ", grid[y][x]);
         }
         printf("\n");
     }
     printf("\n");
+    return 0;
 }

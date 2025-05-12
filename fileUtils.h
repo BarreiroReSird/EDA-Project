@@ -10,6 +10,6 @@
 #include "aerial.h" // Necessário para a definição de ED
 
 // Função para carregar as antenas de um ficheiro
-void loadAerialsFromFile(ED **list, const char *filename);
+ED *loadAerialsFromFile(ED *list, const char *filename);
 
 #endif // FILE_UTILS_H

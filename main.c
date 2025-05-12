@@ -33,7 +33,7 @@ int main()
             scanf("%s", filename);
 
             // Tenta carregar o arquivo diretamente
-            loadAerialsFromFile(&list, filename);
+            list = loadAerialsFromFile(list, filename);
 
             // Verifica se a lista foi preenchida (arquivo carregado com sucesso)
             if (list == NULL)
@@ -70,7 +70,7 @@ int main()
             scanf("%d", &coordinateX);
             printf("Insira a coordenada Y da antena: ");
             scanf("%d", &coordinateY);
-            insertAerialEnd(&list, resonanceFrequency, coordinateX, coordinateY);
+            list = insertAerialEnd(list, resonanceFrequency, coordinateX, coordinateY);
             break;
         case 2:
             showAerialList(list);
@@ -80,7 +80,7 @@ int main()
             scanf("%d", &coordinateX);
             printf("Insira a coordenada Y da antena a remover: ");
             scanf("%d", &coordinateY);
-            removeAerial(&list, coordinateX, coordinateY);
+            list = removeAerial(list, coordinateX, coordinateY);
             break;
         case 4:
             interferencesED(list);
