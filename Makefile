@@ -8,7 +8,7 @@ CC = gcc
 CFLAGS = -Wall -Wextra -lm
 
 # Arquivos fonte
-SOURCE = main.c aerial.c fileUtils.c gridUtils.c interference.c
+SOURCE = main.c aerial.c fileUtils.c gridUtils.c interference.c graph.c
 
 # Regra para construir o executável
 $(EXECUTABLE): $(SOURCE)

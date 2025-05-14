@@ -2,7 +2,7 @@
 // Desc: Este ficheiro contém a função principal do programa, onde são geridas as opções do utilizador e a interação com o utilizador.
 // Auth: Carlos Barreiro
 // Mail: a20360@alunos.ipca.pt
-// Date: 2025/03
+// Date: 2025/05
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -11,6 +11,7 @@
 #include "fileUtils.h"
 #include "gridUtils.h"
 #include "interference.h"
+#include "graph.h"
 
 int main()
 {
@@ -19,6 +20,7 @@ int main()
     int choice, coordinateX, coordinateY;
     char resonanceFrequency, loadChoice, retryChoice;
     ED *list = NULL;
+    GR *resonanceGraph = NULL;
 
     // Carregar o ficheiro ou não
     printf("Carregar a posição das antenas de um ficheiro? (s/n): ");
@@ -32,10 +34,8 @@ int main()
             printf("Qual o nome do ficheiro: ");
             scanf("%s", filename);
 
-            // Tenta carregar o arquivo diretamente
             list = loadAerialsFromFile(list, filename);
 
-            // Verifica se a lista foi preenchida (arquivo carregado com sucesso)
             if (list == NULL)
             {
                 printf("Erro ao abrir o ficheiro %s. Deseja tentar novamente? (s/n): ", filename);
@@ -47,7 +47,7 @@ int main()
             }
             else
             {
-                break; // Sai do loop se o arquivo foi carregado com sucesso
+                break;
             }
         } while (1);
     }
@@ -58,11 +58,14 @@ int main()
 
     do
     {
-        printf("\n\t0 - Sair\n\t1 - Inserir na lista\n\t2 - Mostrar a lista\n\t3 - Remover da lista\n\t4 - Mostrar interferências\n\tEscolha uma opção: ");
+        printf("\n\t0 - Sair\n\t1 - Inserir na lista\n\t2 - Mostrar a lista\n\t3 - Remover da lista\n\t4 - Mostrar interferências\n\t5 - Mostrar grafo de ressonância\n\t6 - Guardar grafo em ficheiro\n\t7 - Carregar grafo de ficheiro\n\tEscolha uma opção: ");
         scanf("%d", &choice);
 
         switch (choice)
         {
+        case 0:
+            printf("\nA encerrar o programa...\n");
+            break;
         case 1:
             printf("Insira a frequência de ressonância da antena: ");
             scanf(" %c", &resonanceFrequency);
@@ -85,10 +88,49 @@ int main()
         case 4:
             interferencesED(list);
             break;
+        case 5:
+        {
+            if (resonanceGraph != NULL)
+            {
+                if (!freeGR(resonanceGraph))
+                {
+                    printf("Erro ao libertar o grafo anterior.\n");
+                }
+                resonanceGraph = NULL;
+            }
+
+            if (list == NULL)
+            {
+                printf("Lista de antenas vazia. Nada para mostrar.\n");
+            }
+            else
+            {
+                resonanceGraph = createGR(list);
+                if (resonanceGraph == NULL)
+                {
+                    printf("Erro ao criar o grafo.\n");
+                    break;
+                }
+                if (!buildResonanceGR(resonanceGraph, list))
+                {
+                    printf("Nenhuma conexão de ressonância encontrada.\n");
+                }
+                int verticesPrinted = printGR(resonanceGraph);
+                printf("Mostradas %d antenas no grafo.\n", verticesPrinted);
+            }
+        }
+        break;
         default:
+            printf("\nOpção inválida!\n");
             break;
         }
     } while (choice != 0);
+
+    // Libertar memória
+    if (resonanceGraph != NULL)
+    {
+        freeGR(resonanceGraph);
+    }
 
     return 0;
 }
