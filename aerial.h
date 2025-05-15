@@ -24,4 +24,7 @@ ED *insertAerialEnd(ED *list, char resonanceFrequencyTmp, int coordinateXTmp, in
 // Função para remover uma antena da lista
 ED *removeAerial(ED *list, int coordinateX, int coordinateY);
 
+// Função para ...
+ED *findAerial(ED *list, int coordinateX, int coordinateY);
+
 #endif // AERIAL_H

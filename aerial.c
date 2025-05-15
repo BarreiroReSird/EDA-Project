@@ -76,3 +76,18 @@ ED *removeAerial(ED *list, int coordinateX, int coordinateY)
     printf("Antena na posição (%d, %d) não encontrada.\n", coordinateX, coordinateY);
     return list;
 }
+
+// Função para ...
+ED *findAerial(ED *list, int coordinateX, int coordinateY)
+{
+    ED *current = list;
+    while (current != NULL)
+    {
+        if (current->coordinateX == coordinateX && current->coordinateY == coordinateY)
+        {
+            return current;
+        }
+        current = current->next;
+    }
+    return NULL;
+}

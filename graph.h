@@ -34,5 +34,6 @@ bool addEdge(GR *graph, ED *src, ED *dst, float weight); // Adiciona uma aresta 
 bool buildResonanceGR(GR *graph, ED *aerialList);        // Constrói o grafo
 int printGR(const GR *graph);                            // Mostra o grafo
 bool freeGR(GR *graph);                                  // Liberta a memória do grafo
+bool dfsFromAerial(GR *graph, ED *startAerial);          // Busca em profundidade a partir de uma antena
 
 #endif // GRAPH_H

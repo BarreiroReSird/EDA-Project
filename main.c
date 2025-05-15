@@ -58,7 +58,7 @@ int main()
 
     do
     {
-        printf("\n\t0 - Sair\n\t1 - Inserir na lista\n\t2 - Mostrar a lista\n\t3 - Remover da lista\n\t4 - Mostrar interferências\n\t5 - Mostrar grafo de ressonância\n\t6 - Guardar grafo em ficheiro\n\t7 - Carregar grafo de ficheiro\n\tEscolha uma opção: ");
+        printf("\n\t0 - Sair\n\t1 - Inserir na lista\n\t2 - Mostrar a lista\n\t3 - Remover da lista\n\t4 - Mostrar interferências\n\t5 - Mostrar grafo de ressonância\n\t6 - DFS\n\t7 - ???\n\tEscolha uma opção: ");
         scanf("%d", &choice);
 
         switch (choice)
@@ -120,6 +120,32 @@ int main()
             }
         }
         break;
+        case 6:
+            if (resonanceGraph == NULL)
+            {
+                printf("Grafo não criado. Crie o grafo primeiro (opção 5).\n");
+            }
+            else
+            {
+                printf("\nInsira a coordenada X da antena inicial: ");
+                scanf("%d", &coordinateX);
+                printf("Insira a coordenada Y da antena inicial: ");
+                scanf("%d", &coordinateY);
+
+                ED *startAerial = findAerial(list, coordinateX, coordinateY);
+                if (startAerial == NULL)
+                {
+                    printf("Antena nas coordenadas (%d, %d) não encontrada.\n", coordinateX, coordinateY);
+                }
+                else
+                {
+                    if (!dfsFromAerial(resonanceGraph, startAerial))
+                    {
+                        printf("Ocorreu um erro durante a execução da DFS.\n");
+                    }
+                }
+            }
+            break;
         default:
             printf("\nOpção inválida!\n");
             break;
