@@ -325,3 +325,73 @@ GR *createResonanceGraph(ED *aerialList)
 
     return graph;
 }
+
+// Função auxiliar para encontrar caminhos entre duas antenas
+void findAllPaths(GR *graph, int currentIndex, int targetIndex, bool *visited, int *path, int pathLength, int *totalPaths)
+{
+    visited[currentIndex] = true;
+    path[pathLength] = currentIndex;
+    pathLength++;
+
+    if (currentIndex == targetIndex)
+    {
+        (*totalPaths)++;
+        printf("Caminho %d: ", *totalPaths);
+        for (int i = 0; i < pathLength; i++)
+        {
+            ED *a = graph->vertexList[path[i]].aerial;
+            printf("(%d, %d)", a->coordinateX, a->coordinateY);
+            if (i < pathLength - 1)
+            {
+                printf(" -> ");
+            }
+        }
+        printf("\n");
+    }
+    else
+    {
+        for (Adjacency *adj = graph->vertexList[currentIndex].adjList; adj != NULL; adj = adj->next)
+        {
+            int neighborIndex = findVertexIndex(graph, adj->dst->coordinateX, adj->dst->coordinateY);
+            if (!visited[neighborIndex])
+            {
+                findAllPaths(graph, neighborIndex, targetIndex, visited, path, pathLength, totalPaths);
+            }
+        }
+    }
+
+    visited[currentIndex] = false;
+    pathLength--;
+}
+
+// Função principal para listar caminhos entre duas antenas
+int listAllPaths(GR *graph, int startX, int startY, int endX, int endY)
+{
+    if (!graph)
+        return 0;
+
+    int startIndex = findVertexIndex(graph, startX, startY);
+    int endIndex = findVertexIndex(graph, endX, endY);
+
+    if (startIndex == -1 || endIndex == -1)
+    {
+        printf("Antena inicial ou final não encontrada.\n");
+        return 0;
+    }
+
+    bool *visited = (bool *)calloc(graph->vertexNum, sizeof(bool));
+    int *path = (int *)malloc(graph->vertexNum * sizeof(int));
+    int totalPaths = 0;
+
+    printf("Caminhos entre (%d, %d) e (%d, %d):\n", startX, startY, endX, endY);
+    findAllPaths(graph, startIndex, endIndex, visited, path, 0, &totalPaths);
+
+    if (totalPaths == 0)
+    {
+        printf("Nenhum caminho encontrado.\n");
+    }
+
+    free(visited);
+    free(path);
+    return totalPaths;
+}

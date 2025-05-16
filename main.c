@@ -17,7 +17,7 @@ int main()
 {
     SetConsoleOutputCP(65001); // Define a codificação do terminal para UTF-8
 
-    int choice, coordinateX, coordinateY;
+    int choice, coordinateX, coordinateY, endX, endY;
     char resonanceFrequency, loadChoice, retryChoice;
     ED *list = NULL;
     GR *resonanceGraph = NULL;
@@ -58,7 +58,7 @@ int main()
 
     do
     {
-        printf("\n\t0 - Sair\n\t1 - Inserir na lista\n\t2 - Mostrar a lista\n\t3 - Remover da lista\n\t4 - Mostrar interferências\n\t5 - Mostrar grafo de ressonância\n\t6 - DFS\n\t7 - BFS\n\tEscolha uma opção: ");
+        printf("\n\t0 - Sair\n\t1 - Inserir na lista\n\t2 - Mostrar a lista\n\t3 - Remover da lista\n\t4 - Mostrar interferências\n\t5 - Mostrar grafo de ressonância\n\t6 - DFS\n\t7 - BFS\n\t8 - Todos os caminhos entre A e B\n\tEscolha uma opção: ");
         scanf("%d", &choice);
 
         switch (choice)
@@ -148,6 +148,31 @@ int main()
             printf("Coordenada Y da antena inicial: ");
             scanf("%d", &coordinateY);
             bfsGR(resonanceGraph, coordinateX, coordinateY);
+            break;
+        case 8:
+            // Libertar o grafo anterior se existir
+            if (resonanceGraph != NULL)
+            {
+                freeGR(resonanceGraph);
+            }
+
+            // Criar um novo grafo de ressonância
+            resonanceGraph = createResonanceGraph(list);
+            if (!resonanceGraph)
+            {
+                printf("Erro ao criar o grafo ou nenhuma conexão encontrada.\n");
+                break;
+            }
+            resonanceGraph = createResonanceGraph(list);
+            printf("Coordenada X da antena inicial: ");
+            scanf("%d", &coordinateX);
+            printf("Coordenada Y da antena inicial: ");
+            scanf("%d", &coordinateY);
+            printf("Coordenada X da antena final: ");
+            scanf("%d", &endX);
+            printf("Coordenada Y da antena final: ");
+            scanf("%d", &endY);
+            listAllPaths(resonanceGraph, coordinateX, coordinateY, endX, endY);
             break;
         default:
             printf("\nOpção inválida!\n");

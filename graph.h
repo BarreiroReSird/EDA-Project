@@ -38,5 +38,6 @@ bool freeGR(GR *graph);                                  // Liberta a memória d
 void dfsGR(GR *graph, int startX, int startY);
 void bfsGR(GR *graph, int startX, int startY);
 GR *createResonanceGraph(ED *aerialList);
+int listAllPaths(GR *graph, int startX, int startY, int endX, int endY);
 
 #endif // GRAPH_H
