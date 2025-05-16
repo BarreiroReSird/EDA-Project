@@ -395,3 +395,115 @@ int listAllPaths(GR *graph, int startX, int startY, int endX, int endY)
     free(path);
     return totalPaths;
 }
+
+#include <stdbool.h>
+
+// Estrutura auxiliar para representar um segmento
+typedef struct
+{
+    int x1, y1;
+    int x2, y2;
+} Segment;
+
+// Verifica se dois segmentos se cruzam (geometria computacional)
+bool segmentsIntersect(Segment a, Segment b)
+{
+    int d1 = (b.x2 - b.x1) * (a.y1 - b.y1) - (b.y2 - b.y1) * (a.x1 - b.x1);
+    int d2 = (b.x2 - b.x1) * (a.y2 - b.y1) - (b.y2 - b.y1) * (a.x2 - b.x1);
+    int d3 = (a.x2 - a.x1) * (b.y1 - a.y1) - (a.y2 - a.y1) * (b.x1 - a.x1);
+    int d4 = (a.x2 - a.x1) * (b.y2 - a.y1) - (a.y2 - a.y1) * (b.x2 - a.x1);
+
+    return ((d1 * d2 < 0) && (d3 * d4 < 0));
+}
+
+void checkSegmentIntersections(ED *list, char f1, char f2)
+{
+    ED *group1[100], *group2[100];
+    int count1 = 0, count2 = 0;
+
+    // Separar as antenas por frequência
+    for (ED *temp = list; temp; temp = temp->next)
+    {
+        if (temp->resonanceFrequency == f1)
+            group1[count1++] = temp;
+        else if (temp->resonanceFrequency == f2)
+            group2[count2++] = temp;
+    }
+
+    if (count1 < 2 || count2 < 2)
+    {
+        printf("Ambas as frequências precisam de pelo menos duas antenas.\n");
+        return;
+    }
+
+    // Construir segmentos consecutivos dentro de cada grupo
+    Segment segs1[100], segs2[100];
+    int s1 = 0, s2 = 0;
+    for (int i = 0; i < count1 - 1; i++)
+    {
+        segs1[s1++] = (Segment){group1[i]->coordinateX, group1[i]->coordinateY,
+                                group1[i + 1]->coordinateX, group1[i + 1]->coordinateY};
+    }
+    for (int i = 0; i < count2 - 1; i++)
+    {
+        segs2[s2++] = (Segment){group2[i]->coordinateX, group2[i]->coordinateY,
+                                group2[i + 1]->coordinateX, group2[i + 1]->coordinateY};
+    }
+
+    // Verificar interseções
+    for (int i = 0; i < s1; i++)
+    {
+        for (int j = 0; j < s2; j++)
+        {
+            Segment a = segs1[i];
+            Segment b = segs2[j];
+            printf("Segmento A(%d,%d -> %d,%d) vs B(%d,%d -> %d,%d): ",
+                   a.x1, a.y1, a.x2, a.y2, b.x1, b.y1, b.x2, b.y2);
+
+            if (segmentsIntersect(a, b))
+                printf("par\n");
+            else
+                printf("ímpar\n");
+        }
+    }
+}
+
+int printGRV2(GR *graph)
+{
+    if (!graph)
+        return 0;
+
+    bool *visited = (bool *)calloc(graph->vertexNum, sizeof(bool));
+    int *path = (int *)malloc(graph->vertexNum * sizeof(int));
+
+    printf("\n--- Caminhos no Grafo (por frequência) ---\n");
+
+    for (int i = 0; i < graph->vertexNum; i++)
+    {
+        if (!visited[i])
+        {
+            ED *origin = graph->vertexList[i].aerial;
+            char freq = origin->resonanceFrequency;
+
+            // Caminhos só entre antenas da mesma frequência
+            printf("Frequência '%c':\n", freq);
+
+            for (int j = 0; j < graph->vertexNum; j++)
+            {
+                if (!visited[j] && graph->vertexList[j].aerial->resonanceFrequency == freq)
+                {
+                    int totalPaths = 0;
+                    bool *localVisited = (bool *)calloc(graph->vertexNum, sizeof(bool));
+                    findAllPaths(graph, j, j, localVisited, path, 0, &totalPaths);
+                    free(localVisited);
+                    visited[j] = true;
+                }
+            }
+            printf("\n");
+        }
+    }
+
+    free(visited);
+    free(path);
+    return 0;
+}

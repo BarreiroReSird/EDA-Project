@@ -39,5 +39,7 @@ void dfsGR(GR *graph, int startX, int startY);
 void bfsGR(GR *graph, int startX, int startY);
 GR *createResonanceGraph(ED *aerialList);
 int listAllPaths(GR *graph, int startX, int startY, int endX, int endY);
+void checkSegmentIntersections(ED *list, char f1, char f2);
+int printGRV2(GR *graph);
 
 #endif // GRAPH_H

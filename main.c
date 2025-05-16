@@ -174,7 +174,23 @@ int main()
             scanf("%d", &endY);
             listAllPaths(resonanceGraph, coordinateX, coordinateY, endX, endY);
             break;
-        default:
+        case 9:
+        {
+            if (!list)
+            {
+                printf("Lista de antenas vazia.\n");
+                break;
+            }
+
+            char freq1, freq2;
+            printf("Introduza a primeira frequência a analisar: ");
+            scanf(" %c", &freq1);
+            printf("Introduza a segunda frequência a analisar: ");
+            scanf(" %c", &freq2);
+
+            checkSegmentIntersections(list, freq1, freq2);
+            break;
+        }
             printf("\nOpção inválida!\n");
             break;
         }
