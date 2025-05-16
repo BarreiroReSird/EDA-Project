@@ -29,11 +29,14 @@ typedef struct GR
     Vertex *vertexList;
 } GR;
 
+// Protótipos das funções
 GR *createGR(ED *aerialList);                            // Cria um grafo a partir da lista de antenas
 bool addEdge(GR *graph, ED *src, ED *dst, float weight); // Adiciona uma aresta ao grafo
 bool buildResonanceGR(GR *graph, ED *aerialList);        // Constrói o grafo
 int printGR(const GR *graph);                            // Mostra o grafo
 bool freeGR(GR *graph);                                  // Liberta a memória do grafo
-bool dfsFromAerial(GR *graph, ED *startAerial);          // Busca em profundidade a partir de uma antena
+void dfsGR(GR *graph, int startX, int startY);
+void bfsGR(GR *graph, int startX, int startY);
+GR *createResonanceGraph(ED *aerialList);
 
 #endif // GRAPH_H

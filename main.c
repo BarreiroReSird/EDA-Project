@@ -58,7 +58,7 @@ int main()
 
     do
     {
-        printf("\n\t0 - Sair\n\t1 - Inserir na lista\n\t2 - Mostrar a lista\n\t3 - Remover da lista\n\t4 - Mostrar interferências\n\t5 - Mostrar grafo de ressonância\n\t6 - DFS\n\t7 - ???\n\tEscolha uma opção: ");
+        printf("\n\t0 - Sair\n\t1 - Inserir na lista\n\t2 - Mostrar a lista\n\t3 - Remover da lista\n\t4 - Mostrar interferências\n\t5 - Mostrar grafo de ressonância\n\t6 - DFS\n\t7 - BFS\n\tEscolha uma opção: ");
         scanf("%d", &choice);
 
         switch (choice)
@@ -92,59 +92,62 @@ int main()
         {
             if (resonanceGraph != NULL)
             {
-                if (!freeGR(resonanceGraph))
-                {
-                    printf("Erro ao libertar o grafo anterior.\n");
-                }
-                resonanceGraph = NULL;
+                freeGR(resonanceGraph);
             }
 
-            if (list == NULL)
+            resonanceGraph = createResonanceGraph(list);
+            if (!resonanceGraph)
             {
-                printf("Lista de antenas vazia. Nada para mostrar.\n");
+                printf("Erro ao criar grafo ou nenhuma conexão encontrada.\n");
+                break;
             }
-            else
-            {
-                resonanceGraph = createGR(list);
-                if (resonanceGraph == NULL)
-                {
-                    printf("Erro ao criar o grafo.\n");
-                    break;
-                }
-                if (!buildResonanceGR(resonanceGraph, list))
-                {
-                    printf("Nenhuma conexão de ressonância encontrada.\n");
-                }
-                int verticesPrinted = printGR(resonanceGraph);
-                printf("Mostradas %d antenas no grafo.\n", verticesPrinted);
-            }
+
+            int verticesPrinted = printGR(resonanceGraph);
+            printf("Mostradas %d conexões no grafo.\n", verticesPrinted);
+            break;
         }
-        break;
         case 6:
-            if (resonanceGraph == NULL)
+            // Libertar o grafo anterior se existir
+            if (resonanceGraph != NULL)
             {
-                printf("Grafo não criado. Crie o grafo primeiro (opção 5).\n");
+                freeGR(resonanceGraph);
             }
-            else
-            {
-                printf("\nInsira a coordenada X da antena inicial: ");
-                scanf("%d", &coordinateX);
-                printf("Insira a coordenada Y da antena inicial: ");
-                scanf("%d", &coordinateY);
 
-                ED *startAerial = findAerial(list, coordinateX, coordinateY);
-                if (startAerial == NULL)
-                {
-                    printf("Antena nas coordenadas (%d, %d) não encontrada.\n", coordinateX, coordinateY);
-                }
-                else
-                {
-                    if (!dfsFromAerial(resonanceGraph, startAerial))
-                    {
-                        printf("Ocorreu um erro durante a execução da DFS.\n");
-                    }
-                }
+            // Criar um novo grafo de ressonância
+            resonanceGraph = createResonanceGraph(list);
+            if (!resonanceGraph)
+            {
+                printf("Erro ao criar o grafo ou nenhuma conexão encontrada.\n");
+                break;
             }
+
+            printf("Coordenada X da antena inicial: ");
+            scanf("%d", &coordinateX);
+            printf("Coordenada Y da antena inicial: ");
+            scanf("%d", &coordinateY);
+            dfsGR(resonanceGraph, coordinateX, coordinateY);
+            break;
+
+        case 7:
+            // Libertar o grafo anterior se existir
+            if (resonanceGraph != NULL)
+            {
+                freeGR(resonanceGraph);
+            }
+
+            // Criar um novo grafo de ressonância
+            resonanceGraph = createResonanceGraph(list);
+            if (!resonanceGraph)
+            {
+                printf("Erro ao criar o grafo ou nenhuma conexão encontrada.\n");
+                break;
+            }
+
+            printf("Coordenada X da antena inicial: ");
+            scanf("%d", &coordinateX);
+            printf("Coordenada Y da antena inicial: ");
+            scanf("%d", &coordinateY);
+            bfsGR(resonanceGraph, coordinateX, coordinateY);
             break;
         default:
             printf("\nOpção inválida!\n");

@@ -1,6 +1,7 @@
 {
   "files.associations": {
-    "aerial.h": "c"
+    "aerial.h": "c",
+    "stdlib.h": "c"
   },
   "makefile.configureOnOpen": false,
   //"editor.inlineSuggest.enabled": false

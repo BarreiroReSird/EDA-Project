@@ -7,6 +7,8 @@
 #include "graph.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
+#include <math.h>
 
 static Adjacency *newAdjacency(ED *dst, float weight)
 {
@@ -85,24 +87,87 @@ bool buildResonanceGR(GR *graph, ED *aerialList)
     if (!graph || !aerialList)
         return false;
 
-    bool hasConnections = false;
-    ED *outer = aerialList;
-    while (outer)
+    // Agrupa antenas por frequência
+    typedef struct FrequencyGroup
     {
-        ED *inner = outer->next;
-        while (inner)
+        char freq;
+        ED *first;
+        ED *last;
+        struct FrequencyGroup *next;
+    } FrequencyGroup;
+
+    FrequencyGroup *groups = NULL;
+
+    // Cria grupos de frequências
+    ED *current = aerialList;
+    while (current)
+    {
+        FrequencyGroup *group = groups;
+        while (group)
         {
-            if (outer->resonanceFrequency == inner->resonanceFrequency)
+            if (group->freq == current->resonanceFrequency)
             {
-                if (addEdge(graph, outer, inner, 1.0f))
+                break;
+            }
+            group = group->next;
+        }
+
+        if (!group)
+        {
+            // Novo grupo
+            group = (FrequencyGroup *)malloc(sizeof(FrequencyGroup));
+            if (!group)
+                return false;
+            group->freq = current->resonanceFrequency;
+            group->first = current;
+            group->last = current;
+            group->next = groups;
+            groups = group;
+        }
+        else
+        {
+            // Adiciona ao grupo existente
+            group->last->next = current; // Temporariamente usa 'next' para ligar
+            group->last = current;
+        }
+        current = current->next;
+    }
+
+    // Constrói o grafo (conecta cada grupo em uma árvore)
+    bool hasConnections = false;
+    FrequencyGroup *group = groups;
+    while (group)
+    {
+        if (group->first != group->last)
+        { // Se houver mais de uma antena no grupo
+            ED *prev = group->first;
+            ED *curr = prev->next; // Usamos o campo 'next' temporário
+
+            while (curr)
+            {
+                if (addEdge(graph, prev, curr, 1.0f))
                 {
                     hasConnections = true;
                 }
+                prev = curr;
+                curr = curr->next;
             }
-            inner = inner->next;
         }
-        outer = outer->next;
+
+        // Limpa o 'next' temporário
+        ED *aerial = group->first;
+        while (aerial && aerial != group->last)
+        {
+            ED *next = aerial->next;
+            aerial->next = next; // Restaura o próximo nó original (se necessário)
+            aerial = next;
+        }
+
+        FrequencyGroup *temp = group;
+        group = group->next;
+        free(temp);
     }
+
     return hasConnections;
 }
 
@@ -111,7 +176,7 @@ int printGR(const GR *graph)
     if (!graph)
         return 0;
 
-    printf("\nGrafo de Ressonância (Antenas conectadas pela mesma frequência):\n");
+    printf("\nGrafo de Ressonância:\n");
     int count = 0;
     for (int i = 0; i < graph->vertexNum; i++)
     {
@@ -152,86 +217,111 @@ bool freeGR(GR *graph)
     return true;
 }
 
-// Função auxiliar para encontrar o índice de uma antena no grafo
-static int findAerialIndex(GR *graph, ED *aerial)
+// Função auxiliar para encontrar índice de uma antena pelas coordenadas
+static int findVertexIndex(GR *graph, int x, int y)
 {
     for (int i = 0; i < graph->vertexNum; i++)
     {
-        if (graph->vertexList[i].aerial == aerial)
-        {
+        if (graph->vertexList[i].aerial->coordinateX == x &&
+            graph->vertexList[i].aerial->coordinateY == y)
             return i;
-        }
     }
     return -1;
 }
 
-// Função recursiva auxiliar para a DFS
-static bool dfsUtil(GR *graph, int vertexIndex, bool visited[])
+static void dfsVisit(GR *graph, int index, bool *visited)
 {
-    // Verifica parâmetros
-    if (graph == NULL || visited == NULL || vertexIndex < 0 || vertexIndex >= graph->vertexNum)
-        return false;
+    visited[index] = true;
+    ED *a = graph->vertexList[index].aerial;
+    printf("(%d, %d)\n", a->coordinateX, a->coordinateY);
 
-    // Marca o vértice atual como visitado e imprime
-    visited[vertexIndex] = true;
-    ED *currentAerial = graph->vertexList[vertexIndex].aerial;
-    printf("\nAntena '%c' nas coordenadas (%d, %d)\n",
-           currentAerial->resonanceFrequency,
-           currentAerial->coordinateX,
-           currentAerial->coordinateY);
-
-    // Percorre todas as adjacências
-    Adjacency *adj = graph->vertexList[vertexIndex].adjList;
-    while (adj != NULL)
+    for (Adjacency *adj = graph->vertexList[index].adjList; adj; adj = adj->next)
     {
-        int adjIndex = findAerialIndex(graph, adj->dst);
-        if (adjIndex != -1 && !visited[adjIndex])
+        int neighborIndex = findVertexIndex(graph, adj->dst->coordinateX, adj->dst->coordinateY);
+        if (neighborIndex != -1 && !visited[neighborIndex])
         {
-            if (!dfsUtil(graph, adjIndex, visited))
-                return false;
+            dfsVisit(graph, neighborIndex, visited);
         }
-        adj = adj->next;
     }
-
-    return true;
 }
 
-// Implementação da DFS a partir de uma antena específica
-bool dfsFromAerial(GR *graph, ED *startAerial)
+void dfsGR(GR *graph, int startX, int startY)
 {
-    // Verificação de parâmetros
-    if (graph == NULL || startAerial == NULL)
-    {
-        printf("Grafo ou antena inválidos.\n");
-        return false;
-    }
+    if (!graph)
+        return;
 
-    // Encontra o índice da antena inicial
-    int startIndex = findAerialIndex(graph, startAerial);
+    int startIndex = findVertexIndex(graph, startX, startY);
     if (startIndex == -1)
     {
-        printf("\nAntena não encontrada no grafo.\n");
-        return false;
+        printf("Antena inicial não encontrada.\n");
+        return;
     }
 
-    // Aloca array de visitados
     bool *visited = (bool *)calloc(graph->vertexNum, sizeof(bool));
-    if (visited == NULL)
+    printf("DFS a partir de (%d, %d):\n", startX, startY);
+    dfsVisit(graph, startIndex, visited);
+    free(visited);
+}
+
+#include <string.h>
+
+void bfsGR(GR *graph, int startX, int startY)
+{
+    if (!graph)
+        return;
+
+    int startIndex = findVertexIndex(graph, startX, startY);
+    if (startIndex == -1)
     {
-        printf("Erro ao alocar memória.\n");
-        return false;
+        printf("Antena inicial não encontrada.\n");
+        return;
     }
 
-    printf("\nBusca em Profundidade (DFS) a partir da antena '%c' (%d, %d):\n",
-           startAerial->resonanceFrequency,
-           startAerial->coordinateX,
-           startAerial->coordinateY);
+    bool *visited = (bool *)calloc(graph->vertexNum, sizeof(bool));
+    int *queue = (int *)malloc(sizeof(int) * graph->vertexNum);
+    int front = 0, rear = 0;
 
-    // Executa DFS
-    bool success = dfsUtil(graph, startIndex, visited);
+    visited[startIndex] = true;
+    queue[rear++] = startIndex;
 
-    // Liberta memória
+    printf("BFS a partir de (%d, %d):\n", startX, startY);
+
+    while (front < rear)
+    {
+        int currentIndex = queue[front++];
+        ED *a = graph->vertexList[currentIndex].aerial;
+        printf("(%d, %d)\n", a->coordinateX, a->coordinateY);
+
+        for (Adjacency *adj = graph->vertexList[currentIndex].adjList; adj; adj = adj->next)
+        {
+            int neighborIndex = findVertexIndex(graph, adj->dst->coordinateX, adj->dst->coordinateY);
+            if (neighborIndex != -1 && !visited[neighborIndex])
+            {
+                visited[neighborIndex] = true;
+                queue[rear++] = neighborIndex;
+            }
+        }
+    }
+
+    free(queue);
     free(visited);
+}
 
-    return success;
+// Função para criar o grafo de ressonância (sem imprimir)
+GR *createResonanceGraph(ED *aerialList)
+{
+    if (!aerialList)
+        return NULL;
+
+    GR *graph = createGR(aerialList);
+    if (!graph)
+        return NULL;
+
+    if (!buildResonanceGR(graph, aerialList))
+    {
+        freeGR(graph);
+        return NULL;
+    }
+
+    return graph;
 }
