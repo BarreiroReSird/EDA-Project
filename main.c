@@ -1,5 +1,5 @@
 // File: main.c
-// Desc: 
+// Desc:
 // Auth: Carlos Barreiro
 // Mail: a20360@alunos.ipca.pt
 // Date: 2025/05
@@ -200,6 +200,17 @@ void runPart2()
         case 7:
             ShowGraphAsGrid(graph);
             break;
+
+        case 8:
+        {
+            char freqA, freqB;
+            printf("Primeira frequência: ");
+            scanf(" %c", &freqA);
+            printf("Segunda frequência: ");
+            scanf(" %c", &freqB);
+            findIntersections(graph, freqA, freqB);
+            break;
+        }
 
         case 0:
             printf("A encerrar...\n");

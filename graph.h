@@ -1,5 +1,5 @@
 // File: graph.h
-// Desc: 
+// Desc:
 // Auth: Carlos Barreiro
 // Mail: a20360@alunos.ipca.pt
 // Date: 2025/05
@@ -44,7 +44,15 @@ typedef struct Queue
     QueueNode *front, *rear;
 } Queue;
 
-// Graph Initialization & Management
+// Lista de caminhos para cada frequência
+typedef struct
+{
+    Vertex *start;
+    Vertex *end;
+    bool processed; // Para evitar duplicados
+} Path;
+
+// Inicialização e gestão de gráficos
 Vertex *InitializeVertexList();
 Vertex *CreateVertex(char resonanceFrequency, float coordinateX, float coordinateY);
 Vertex *InsertVertex(Vertex *newVertex, Vertex *head, int *res);
@@ -54,16 +62,17 @@ Vertex *InsertAdjacency(Vertex *head, Adjacency *newAdj, int originIndex, int de
 bool LoadGraph(char *fileName, Graph *graph);
 void ShowGraph(Graph *graph);
 void ShowGraphAsGrid(Graph *graph);
+void findIntersections(Graph *graph, char freqA, char freqB);
 
-// Search Algorithms
+// Algoritmos de procura
 void DFT_FromCoordinates(float x, float y, Graph *graph);
 void BFT_FromCoordinates(float x, float y, Graph *graph);
 void FindAllPaths(Graph *graph, float startX, float startY, float endX, float endY);
 
-// Utility Functions
+// Funcões auxiliares
 float CalculateDistance(Vertex *a, Vertex *b);
 
-// Queue for BFT
+// BFT
 void Enqueue(Queue *q, int index);
 int Dequeue(Queue *q);
 bool IsQueueEmpty(Queue *q);
