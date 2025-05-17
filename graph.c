@@ -1,5 +1,5 @@
 // File: graph.c
-// Desc:
+// Desc: 
 // Auth: Carlos Barreiro
 // Mail: a20360@alunos.ipca.pt
 // Date: 2025/05
@@ -9,501 +9,531 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <math.h>
+#include <string.h>
+#include <ctype.h>
 
-static Adjacency *newAdjacency(ED *dst, float weight)
+Vertex *CreateVertex(char resonanceFrequency, float coordinateX, float coordinateY)
 {
-    Adjacency *new = (Adjacency *)malloc(sizeof(Adjacency));
-    if (!new)
-        return NULL;
-
-    new->dst = dst;
-    new->weight = weight;
-    new->next = NULL;
-    return new;
+    Vertex *v = (Vertex *)malloc(sizeof(Vertex));
+    if (v)
+    {
+        v->resonanceFrequency = resonanceFrequency;
+        v->coordinateX = coordinateX;
+        v->coordinateY = coordinateY;
+        v->adjacencies = NULL;
+        v->next = NULL;
+    }
+    return v;
 }
 
-GR *createGR(ED *aerialList)
+bool AdjacencyExists(Vertex *origin, int destinationIndex)
 {
-    if (!aerialList)
-        return NULL;
-
-    int count = 0;
-    for (ED *temp = aerialList; temp != NULL; temp = temp->next)
-        count++;
-
-    GR *graph = (GR *)malloc(sizeof(GR));
-    if (!graph)
-        return NULL;
-
-    graph->vertexNum = count;
-    graph->vertexList = (Vertex *)calloc(count, sizeof(Vertex));
-    if (!graph->vertexList)
+    Adjacency *adj = origin->adjacencies;
+    while (adj)
     {
-        free(graph);
-        return NULL;
+        if (adj->destinationVertexIndex == destinationIndex)
+            return true;
+        adj = adj->next;
     }
-
-    ED *current = aerialList;
-    for (int i = 0; i < count && current != NULL; i++)
-    {
-        graph->vertexList[i].aerial = current;
-        graph->vertexList[i].adjList = NULL;
-        current = current->next;
-    }
-
-    return graph;
+    return false;
 }
 
-bool addEdge(GR *graph, ED *src, ED *dst, float weight)
+Adjacency *CreateAdjacency(float distance, int resonanceFrequency, int destinationIndex)
 {
-    if (!graph || !src || !dst)
-        return false;
-
-    int srcIndex = -1, dstIndex = -1;
-    for (int i = 0; i < graph->vertexNum; i++)
+    Adjacency *adj = (Adjacency *)malloc(sizeof(Adjacency));
+    if (adj)
     {
-        if (graph->vertexList[i].aerial == src)
-            srcIndex = i;
-        if (graph->vertexList[i].aerial == dst)
-            dstIndex = i;
+        adj->distance = distance;
+        adj->resonanceFrequency = resonanceFrequency;
+        adj->destinationVertexIndex = destinationIndex;
+        adj->next = NULL;
+    }
+    return adj;
+}
+
+Vertex *InsertAdjacency(Vertex *head, Adjacency *newAdj, int originIndex, int destinationIndex, int *res)
+{
+    if (!head || !newAdj)
+    {
+        *res = 0;
+        return head;
     }
 
-    if (srcIndex == -1 || dstIndex == -1)
+    Vertex *origin = head;
+    for (int i = 0; origin && i < originIndex; i++)
+        origin = origin->next;
+    Vertex *dest = head;
+    for (int i = 0; dest && i < destinationIndex; i++)
+        dest = dest->next;
+
+    if (!origin || !dest)
+    {
+        *res = 0;
+        return head;
+    }
+
+    newAdj->next = origin->adjacencies;
+    origin->adjacencies = newAdj;
+    *res = 1;
+    return head;
+}
+
+Vertex *InsertVertex(Vertex *newVertex, Vertex *head, int *res)
+{
+    if (!newVertex)
+    {
+        *res = 0;
+        return head;
+    }
+
+    if (!head)
+    {
+        *res = 1;
+        return newVertex;
+    }
+
+    Vertex *last = head;
+    int newIndex = 0;
+    while (last->next)
+    {
+        last = last->next;
+        newIndex++;
+    }
+    last->next = newVertex;
+    newIndex++;
+
+    Vertex *aux = head;
+    int existingIndex = 0;
+    while (aux)
+    {
+        if (aux->resonanceFrequency == newVertex->resonanceFrequency)
+        {
+            float dist = CalculateDistance(aux, newVertex);
+            if (!AdjacencyExists(aux, newIndex))
+            {
+                Adjacency *a1 = CreateAdjacency(dist, newVertex->resonanceFrequency, newIndex);
+                head = InsertAdjacency(head, a1, existingIndex, newIndex, res);
+            }
+            if (!AdjacencyExists(newVertex, existingIndex))
+            {
+                Adjacency *a2 = CreateAdjacency(dist, aux->resonanceFrequency, existingIndex);
+                head = InsertAdjacency(head, a2, newIndex, existingIndex, res);
+            }
+        }
+        aux = aux->next;
+        existingIndex++;
+    }
+
+    *res = 1;
+    return head;
+}
+
+bool LoadGraph(char *fileName, Graph *graph)
+{
+    FILE *file = fopen(fileName, "r");
+    if (!file)
+    {
+        printf("Error opening file '%s'.\n", fileName);
         return false;
+    }
 
-    Adjacency *newAdj = newAdjacency(dst, weight);
-    newAdj->next = graph->vertexList[srcIndex].adjList;
-    graph->vertexList[srcIndex].adjList = newAdj;
+    char line[256];
+    int y = 1;
+    while (fgets(line, sizeof(line), file))
+    {
+        int x = 1;
+        for (int i = 0; line[i]; i++)
+        {
+            if (line[i] == ' ' || line[i] == '\n')
+                continue;
 
-    newAdj = newAdjacency(src, weight);
-    newAdj->next = graph->vertexList[dstIndex].adjList;
-    graph->vertexList[dstIndex].adjList = newAdj;
+            if (isalpha(line[i]))
+            {
+                Vertex *v = CreateVertex(line[i], (float)x, (float)y);
+                int res;
+                graph->head = InsertVertex(v, graph->head, &res);
+                if (res)
+                    graph->numVertices++;
+            }
+            x++;
+        }
 
+        y++;
+    }
+
+    fclose(file);
     return true;
 }
 
-bool buildResonanceGR(GR *graph, ED *aerialList)
+void ShowGraph(Graph *g)
 {
-    if (!graph || !aerialList)
-        return false;
-
-    // Agrupa antenas por frequência
-    typedef struct FrequencyGroup
+    if (!g || !g->head)
     {
-        char freq;
-        ED *first;
-        ED *last;
-        struct FrequencyGroup *next;
-    } FrequencyGroup;
-
-    FrequencyGroup *groups = NULL;
-
-    // Cria grupos de frequências
-    ED *current = aerialList;
-    while (current)
-    {
-        FrequencyGroup *group = groups;
-        while (group)
-        {
-            if (group->freq == current->resonanceFrequency)
-            {
-                break;
-            }
-            group = group->next;
-        }
-
-        if (!group)
-        {
-            // Novo grupo
-            group = (FrequencyGroup *)malloc(sizeof(FrequencyGroup));
-            if (!group)
-                return false;
-            group->freq = current->resonanceFrequency;
-            group->first = current;
-            group->last = current;
-            group->next = groups;
-            groups = group;
-        }
-        else
-        {
-            // Adiciona ao grupo existente
-            group->last->next = current; // Temporariamente usa 'next' para ligar
-            group->last = current;
-        }
-        current = current->next;
+        printf("Empty graph.\n");
+        return;
     }
 
-    // Constrói o grafo (conecta cada grupo em uma árvore)
-    bool hasConnections = false;
-    FrequencyGroup *group = groups;
-    while (group)
+    Vertex *v = g->head;
+    int originIndex = 0;
+    while (v)
     {
-        if (group->first != group->last)
-        { // Se houver mais de uma antena no grupo
-            ED *prev = group->first;
-            ED *curr = prev->next; // Usamos o campo 'next' temporário
-
-            while (curr)
-            {
-                if (addEdge(graph, prev, curr, 1.0f))
-                {
-                    hasConnections = true;
-                }
-                prev = curr;
-                curr = curr->next;
-            }
-        }
-
-        // Limpa o 'next' temporário
-        ED *aerial = group->first;
-        while (aerial && aerial != group->last)
-        {
-            ED *next = aerial->next;
-            aerial->next = next; // Restaura o próximo nó original (se necessário)
-            aerial = next;
-        }
-
-        FrequencyGroup *temp = group;
-        group = group->next;
-        free(temp);
-    }
-
-    return hasConnections;
-}
-
-int printGR(const GR *graph)
-{
-    if (!graph)
-        return 0;
-
-    printf("\nGrafo de Ressonância:\n");
-    int count = 0;
-    for (int i = 0; i < graph->vertexNum; i++)
-    {
-        ED *aerial = graph->vertexList[i].aerial;
-        printf("Antena '%c' (%d, %d) -> ",
-               aerial->resonanceFrequency,
-               aerial->coordinateX,
-               aerial->coordinateY);
-
-        for (Adjacency *adj = graph->vertexList[i].adjList; adj; adj = adj->next)
-        {
-            printf("[%c (%.1f)] ", adj->dst->resonanceFrequency, adj->weight);
-            count++;
-        }
-        printf("\n");
-    }
-    return count;
-}
-
-bool freeGR(GR *graph)
-{
-    if (!graph)
-        return false;
-
-    for (int i = 0; i < graph->vertexNum; i++)
-    {
-        Adjacency *adj = graph->vertexList[i].adjList;
+        printf("%c(%.0f,%.0f)", v->resonanceFrequency, v->coordinateX, v->coordinateY);
+        Adjacency *adj = v->adjacencies;
         while (adj)
         {
-            Adjacency *temp = adj;
+            if (adj->destinationVertexIndex != originIndex)
+            {
+                Vertex *dest = g->head;
+                for (int i = 0; dest && i < adj->destinationVertexIndex; i++)
+                    dest = dest->next;
+                if (dest && dest->resonanceFrequency == v->resonanceFrequency)
+                    printf(" -> %c(%.0f,%.0f)", dest->resonanceFrequency, dest->coordinateX, dest->coordinateY);
+            }
             adj = adj->next;
-            free(temp);
         }
+        printf("\n");
+        v = v->next;
+        originIndex++;
     }
-
-    free(graph->vertexList);
-    free(graph);
-    return true;
 }
 
-// Função auxiliar para encontrar índice de uma antena pelas coordenadas
-static int findVertexIndex(GR *graph, int x, int y)
+float CalculateDistance(Vertex *a, Vertex *b)
 {
-    for (int i = 0; i < graph->vertexNum; i++)
-    {
-        if (graph->vertexList[i].aerial->coordinateX == x &&
-            graph->vertexList[i].aerial->coordinateY == y)
-            return i;
-    }
-    return -1;
+    return sqrtf(powf(a->coordinateX - b->coordinateX, 2) + powf(a->coordinateY - b->coordinateY, 2));
 }
 
-static void dfsVisit(GR *graph, int index, bool *visited)
+// --------------------- DFT ---------------------
+
+void visitDFT(Vertex *v, bool *visited, Graph *graph, int index)
 {
+    if (!v)
+        return;
+
     visited[index] = true;
-    ED *a = graph->vertexList[index].aerial;
-    printf("(%d, %d)\n", a->coordinateX, a->coordinateY);
+    printf("Antenna reached: %c (%.0f, %.0f)\n", v->resonanceFrequency, v->coordinateX, v->coordinateY);
 
-    for (Adjacency *adj = graph->vertexList[index].adjList; adj; adj = adj->next)
+    // Criar uma lista temporária de adjacências para poder ordenar/controlar a ordem de visita
+    Adjacency *adjList = NULL;
+    Adjacency *adj = v->adjacencies;
+
+    // Copiar as adjacências para uma lista temporária
+    while (adj)
     {
-        int neighborIndex = findVertexIndex(graph, adj->dst->coordinateX, adj->dst->coordinateY);
-        if (neighborIndex != -1 && !visited[neighborIndex])
+        Adjacency *newAdj = CreateAdjacency(adj->distance, adj->resonanceFrequency, adj->destinationVertexIndex);
+        newAdj->next = adjList;
+        adjList = newAdj;
+        adj = adj->next;
+    }
+
+    // Visitar cada adjacência na ordem em que foram encontradas (primeiro -> último)
+    adj = adjList;
+    while (adj)
+    {
+        if (!visited[adj->destinationVertexIndex])
         {
-            dfsVisit(graph, neighborIndex, visited);
+            Vertex *next = graph->head;
+            for (int i = 0; next && i < adj->destinationVertexIndex; i++)
+                next = next->next;
+
+            if (next && next->resonanceFrequency == v->resonanceFrequency)
+                visitDFT(next, visited, graph, adj->destinationVertexIndex);
         }
+        adj = adj->next;
+    }
+
+    // Libertar a lista temporária
+    while (adjList)
+    {
+        Adjacency *temp = adjList;
+        adjList = adjList->next;
+        free(temp);
     }
 }
 
-void dfsGR(GR *graph, int startX, int startY)
+void DFT_FromCoordinates(float x, float y, Graph *graph)
 {
-    if (!graph)
-        return;
-
-    int startIndex = findVertexIndex(graph, startX, startY);
-    if (startIndex == -1)
+    if (!graph || !graph->head)
     {
-        printf("Antena inicial não encontrada.\n");
+        printf("Empty graph.\n");
         return;
     }
 
-    bool *visited = (bool *)calloc(graph->vertexNum, sizeof(bool));
-    printf("DFS a partir de (%d, %d):\n", startX, startY);
-    dfsVisit(graph, startIndex, visited);
+    Vertex *v = graph->head;
+    int index = 0;
+    while (v && (v->coordinateX != x || v->coordinateY != y))
+    {
+        v = v->next;
+        index++;
+    }
+
+    if (!v)
+    {
+        printf("Antenna not found at coordinates (%.0f, %.0f)\n", x, y);
+        return;
+    }
+
+    bool *visited = (bool *)calloc(graph->numVertices, sizeof(bool));
+    if (!visited)
+    {
+        printf("Memory error.\n");
+        return;
+    }
+
+    printf("DFT starting from antenna %c (%.0f, %.0f):\n", v->resonanceFrequency, x, y);
+    visitDFT(v, visited, graph, index);
     free(visited);
 }
 
-#include <string.h>
+// --------------------- BFT ---------------------
 
-void bfsGR(GR *graph, int startX, int startY)
+void Enqueue(Queue *q, int index)
 {
-    if (!graph)
-        return;
+    QueueNode *node = (QueueNode *)malloc(sizeof(QueueNode));
+    node->index = index;
+    node->next = NULL;
+    if (q->rear)
+        q->rear->next = node;
+    else
+        q->front = node;
+    q->rear = node;
+}
 
-    int startIndex = findVertexIndex(graph, startX, startY);
-    if (startIndex == -1)
+int Dequeue(Queue *q)
+{
+    if (!q->front)
+        return -1;
+    QueueNode *temp = q->front;
+    int index = temp->index;
+    q->front = temp->next;
+    if (!q->front)
+        q->rear = NULL;
+    free(temp);
+    return index;
+}
+
+bool IsQueueEmpty(Queue *q)
+{
+    return q->front == NULL;
+}
+
+void BFT_FromCoordinates(float x, float y, Graph *graph)
+{
+    if (!graph || !graph->head)
     {
-        printf("Antena inicial não encontrada.\n");
+        printf("Empty graph.\n");
         return;
     }
 
-    bool *visited = (bool *)calloc(graph->vertexNum, sizeof(bool));
-    int *queue = (int *)malloc(sizeof(int) * graph->vertexNum);
-    int front = 0, rear = 0;
-
-    visited[startIndex] = true;
-    queue[rear++] = startIndex;
-
-    printf("BFS a partir de (%d, %d):\n", startX, startY);
-
-    while (front < rear)
+    Vertex *v = graph->head;
+    int index = 0;
+    while (v && (v->coordinateX != x || v->coordinateY != y))
     {
-        int currentIndex = queue[front++];
-        ED *a = graph->vertexList[currentIndex].aerial;
-        printf("(%d, %d)\n", a->coordinateX, a->coordinateY);
+        v = v->next;
+        index++;
+    }
 
-        for (Adjacency *adj = graph->vertexList[currentIndex].adjList; adj; adj = adj->next)
+    if (!v)
+    {
+        printf("Antenna not found at coordinates (%.0f, %.0f)\n", x, y);
+        return;
+    }
+
+    char targetResonance = v->resonanceFrequency;
+    bool *visited = (bool *)calloc(graph->numVertices, sizeof(bool));
+    if (!visited)
+    {
+        printf("Memory error.\n");
+        return;
+    }
+
+    Queue q = {NULL, NULL};
+    Enqueue(&q, index);
+    visited[index] = true;
+
+    printf("BFT starting from antenna %c (%.0f, %.0f):\n", v->resonanceFrequency, x, y);
+
+    while (!IsQueueEmpty(&q))
+    {
+        int currentIndex = Dequeue(&q);
+        Vertex *curr = graph->head;
+        for (int i = 0; curr && i < currentIndex; i++)
+            curr = curr->next;
+
+        if (curr)
         {
-            int neighborIndex = findVertexIndex(graph, adj->dst->coordinateX, adj->dst->coordinateY);
-            if (neighborIndex != -1 && !visited[neighborIndex])
+            printf("Antenna reached: %c (%.0f, %.0f)\n", curr->resonanceFrequency, curr->coordinateX, curr->coordinateY);
+
+            Adjacency *adj = curr->adjacencies;
+            while (adj)
             {
-                visited[neighborIndex] = true;
-                queue[rear++] = neighborIndex;
+                if (!visited[adj->destinationVertexIndex])
+                {
+                    Vertex *neighbor = graph->head;
+                    for (int i = 0; neighbor && i < adj->destinationVertexIndex; i++)
+                        neighbor = neighbor->next;
+
+                    if (neighbor && neighbor->resonanceFrequency == targetResonance)
+                    {
+                        Enqueue(&q, adj->destinationVertexIndex);
+                        visited[adj->destinationVertexIndex] = true;
+                    }
+                }
+                adj = adj->next;
             }
         }
     }
 
-    free(queue);
     free(visited);
 }
 
-// Função para criar o grafo de ressonância (sem imprimir)
-GR *createResonanceGraph(ED *aerialList)
-{
-    if (!aerialList)
-        return NULL;
-
-    GR *graph = createGR(aerialList);
-    if (!graph)
-        return NULL;
-
-    if (!buildResonanceGR(graph, aerialList))
-    {
-        freeGR(graph);
-        return NULL;
-    }
-
-    return graph;
-}
-
-// Função auxiliar para encontrar caminhos entre duas antenas
-void findAllPaths(GR *graph, int currentIndex, int targetIndex, bool *visited, int *path, int pathLength, int *totalPaths)
+void FindAllPathsUtil(Vertex *current, int currentIndex, int endIndex, bool *visited, int *path, int pathIndex, Graph *graph)
 {
     visited[currentIndex] = true;
-    path[pathLength] = currentIndex;
-    pathLength++;
+    path[pathIndex] = currentIndex;
+    pathIndex++;
 
-    if (currentIndex == targetIndex)
+    if (currentIndex == endIndex)
     {
-        (*totalPaths)++;
-        printf("Caminho %d: ", *totalPaths);
-        for (int i = 0; i < pathLength; i++)
+        // Caminho encontrado - imprimir
+        for (int i = 0; i < pathIndex; i++)
         {
-            ED *a = graph->vertexList[path[i]].aerial;
-            printf("(%d, %d)", a->coordinateX, a->coordinateY);
-            if (i < pathLength - 1)
-            {
+            Vertex *v = graph->head;
+            for (int j = 0; j < path[i]; j++)
+                v = v->next;
+            printf("%c(%.0f,%.0f)", v->resonanceFrequency, v->coordinateX, v->coordinateY);
+            if (i < pathIndex - 1)
                 printf(" -> ");
-            }
         }
         printf("\n");
     }
     else
     {
-        for (Adjacency *adj = graph->vertexList[currentIndex].adjList; adj != NULL; adj = adj->next)
+        Adjacency *adj = current->adjacencies;
+        while (adj)
         {
-            int neighborIndex = findVertexIndex(graph, adj->dst->coordinateX, adj->dst->coordinateY);
-            if (!visited[neighborIndex])
+            if (!visited[adj->destinationVertexIndex])
             {
-                findAllPaths(graph, neighborIndex, targetIndex, visited, path, pathLength, totalPaths);
+                Vertex *next = graph->head;
+                for (int i = 0; i < adj->destinationVertexIndex; i++)
+                    next = next->next;
+
+                if (next && next->resonanceFrequency == current->resonanceFrequency)
+                {
+                    FindAllPathsUtil(next, adj->destinationVertexIndex, endIndex, visited, path, pathIndex, graph);
+                }
             }
+            adj = adj->next;
         }
     }
 
+    // Backtrack
     visited[currentIndex] = false;
-    pathLength--;
+    pathIndex--;
 }
 
-// Função principal para listar caminhos entre duas antenas
-int listAllPaths(GR *graph, int startX, int startY, int endX, int endY)
+void FindAllPaths(Graph *graph, float startX, float startY, float endX, float endY)
 {
-    if (!graph)
-        return 0;
-
-    int startIndex = findVertexIndex(graph, startX, startY);
-    int endIndex = findVertexIndex(graph, endX, endY);
-
-    if (startIndex == -1 || endIndex == -1)
+    if (!graph || !graph->head)
     {
-        printf("Antena inicial ou final não encontrada.\n");
-        return 0;
-    }
-
-    bool *visited = (bool *)calloc(graph->vertexNum, sizeof(bool));
-    int *path = (int *)malloc(graph->vertexNum * sizeof(int));
-    int totalPaths = 0;
-
-    printf("Caminhos entre (%d, %d) e (%d, %d):\n", startX, startY, endX, endY);
-    findAllPaths(graph, startIndex, endIndex, visited, path, 0, &totalPaths);
-
-    if (totalPaths == 0)
-    {
-        printf("Nenhum caminho encontrado.\n");
-    }
-
-    free(visited);
-    free(path);
-    return totalPaths;
-}
-
-#include <stdbool.h>
-
-// Estrutura auxiliar para representar um segmento
-typedef struct
-{
-    int x1, y1;
-    int x2, y2;
-} Segment;
-
-// Verifica se dois segmentos se cruzam (geometria computacional)
-bool segmentsIntersect(Segment a, Segment b)
-{
-    int d1 = (b.x2 - b.x1) * (a.y1 - b.y1) - (b.y2 - b.y1) * (a.x1 - b.x1);
-    int d2 = (b.x2 - b.x1) * (a.y2 - b.y1) - (b.y2 - b.y1) * (a.x2 - b.x1);
-    int d3 = (a.x2 - a.x1) * (b.y1 - a.y1) - (a.y2 - a.y1) * (b.x1 - a.x1);
-    int d4 = (a.x2 - a.x1) * (b.y2 - a.y1) - (a.y2 - a.y1) * (b.x2 - a.x1);
-
-    return ((d1 * d2 < 0) && (d3 * d4 < 0));
-}
-
-void checkSegmentIntersections(ED *list, char f1, char f2)
-{
-    ED *group1[100], *group2[100];
-    int count1 = 0, count2 = 0;
-
-    // Separar as antenas por frequência
-    for (ED *temp = list; temp; temp = temp->next)
-    {
-        if (temp->resonanceFrequency == f1)
-            group1[count1++] = temp;
-        else if (temp->resonanceFrequency == f2)
-            group2[count2++] = temp;
-    }
-
-    if (count1 < 2 || count2 < 2)
-    {
-        printf("Ambas as frequências precisam de pelo menos duas antenas.\n");
+        printf("Grafo vazio.\n");
         return;
     }
 
-    // Construir segmentos consecutivos dentro de cada grupo
-    Segment segs1[100], segs2[100];
-    int s1 = 0, s2 = 0;
-    for (int i = 0; i < count1 - 1; i++)
-    {
-        segs1[s1++] = (Segment){group1[i]->coordinateX, group1[i]->coordinateY,
-                                group1[i + 1]->coordinateX, group1[i + 1]->coordinateY};
-    }
-    for (int i = 0; i < count2 - 1; i++)
-    {
-        segs2[s2++] = (Segment){group2[i]->coordinateX, group2[i]->coordinateY,
-                                group2[i + 1]->coordinateX, group2[i + 1]->coordinateY};
-    }
+    Vertex *start = graph->head;
+    Vertex *end = graph->head;
+    int startIndex = 0, endIndex = 0;
+    bool startFound = false, endFound = false;
 
-    // Verificar interseções
-    for (int i = 0; i < s1; i++)
+    // Procura pelos vértices de início e fim
+    Vertex *current = graph->head;
+    int index = 0;
+    while (current)
     {
-        for (int j = 0; j < s2; j++)
+        if (!startFound && current->coordinateX == startX && current->coordinateY == startY)
         {
-            Segment a = segs1[i];
-            Segment b = segs2[j];
-            printf("Segmento A(%d,%d -> %d,%d) vs B(%d,%d -> %d,%d): ",
-                   a.x1, a.y1, a.x2, a.y2, b.x1, b.y1, b.x2, b.y2);
-
-            if (segmentsIntersect(a, b))
-                printf("par\n");
-            else
-                printf("ímpar\n");
+            start = current;
+            startIndex = index;
+            startFound = true;
         }
-    }
-}
 
-int printGRV2(GR *graph)
-{
-    if (!graph)
-        return 0;
-
-    bool *visited = (bool *)calloc(graph->vertexNum, sizeof(bool));
-    int *path = (int *)malloc(graph->vertexNum * sizeof(int));
-
-    printf("\n--- Caminhos no Grafo (por frequência) ---\n");
-
-    for (int i = 0; i < graph->vertexNum; i++)
-    {
-        if (!visited[i])
+        if (!endFound && current->coordinateX == endX && current->coordinateY == endY)
         {
-            ED *origin = graph->vertexList[i].aerial;
-            char freq = origin->resonanceFrequency;
-
-            // Caminhos só entre antenas da mesma frequência
-            printf("Frequência '%c':\n", freq);
-
-            for (int j = 0; j < graph->vertexNum; j++)
-            {
-                if (!visited[j] && graph->vertexList[j].aerial->resonanceFrequency == freq)
-                {
-                    int totalPaths = 0;
-                    bool *localVisited = (bool *)calloc(graph->vertexNum, sizeof(bool));
-                    findAllPaths(graph, j, j, localVisited, path, 0, &totalPaths);
-                    free(localVisited);
-                    visited[j] = true;
-                }
-            }
-            printf("\n");
+            end = current;
+            endIndex = index;
+            endFound = true;
         }
+
+        current = current->next;
+        index++;
     }
+
+    if (!startFound || !endFound)
+    {
+        printf("Antenas inicial ou final não encontradas.\n");
+        return;
+    }
+
+    if (start->resonanceFrequency != end->resonanceFrequency)
+    {
+        printf("As antenas não tem a mesma frequência.\n");
+        return;
+    }
+
+    bool *visited = (bool *)calloc(graph->numVertices, sizeof(bool));
+    int *path = (int *)malloc(graph->numVertices * sizeof(int));
+
+    printf("Todos os caminhos de %c(%.0f,%.0f) a %c(%.0f,%.0f):\n",
+           start->resonanceFrequency, startX, startY,
+           end->resonanceFrequency, endX, endY);
+
+    FindAllPathsUtil(start, startIndex, endIndex, visited, path, 0, graph);
 
     free(visited);
     free(path);
-    return 0;
+}
+
+void ShowGraphAsGrid(Graph *graph)
+{
+    if (!graph || !graph->head)
+    {
+        printf("Grafo vazio.\n");
+        return;
+    }
+
+    char grid[M][M];
+    for (int i = 0; i < M; i++)
+        for (int j = 0; j < M; j++)
+            grid[i][j] = '.';
+
+    int maxX = 0, maxY = 0;
+
+    Vertex *v = graph->head;
+    while (v)
+    {
+        int x = (int)(v->coordinateX) - 1;
+        int y = (int)(v->coordinateY) - 1;
+
+        if (x >= 0 && x < M && y >= 0 && y < M)
+        {
+            grid[y][x] = v->resonanceFrequency;
+            if (x > maxX)
+                maxX = x;
+            if (y > maxY)
+                maxY = y;
+        }
+
+        v = v->next;
+    }
+
+    printf("\n--- Grafo em grid ---\n");
+
+    // Imprimir de cima para baixo (Y crescente)
+    for (int i = 0; i <= maxY; i++)
+    {
+        for (int j = 0; j <= maxX; j++)
+        {
+            printf("%c ", grid[i][j]);
+        }
+        printf("\n");
+    }
 }
