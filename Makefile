@@ -7,8 +7,8 @@ CC = gcc
 # Flags do compilador
 CFLAGS = -Wall -Wextra -lm
 
-# Arquivos fonte
-SOURCE = main.c aerial.c fileUtils.c gridUtils.c interference.c graph.c
+# Ficheiros fonte
+SOURCE = main.c aerial.c fileUtils.c gridUtils.c interference.c graph.c graphIO.c graphSearch.c graphOp.c
 
 # Regra para construir o executável
 $(EXECUTABLE): $(SOURCE)
