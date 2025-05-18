@@ -9,6 +9,7 @@
 #include <stdlib.h> // Para malloc, free
 #include <ctype.h>  // Para isalpha
 
+// Função para carregar o grafo a partir de um ficheiro
 bool LoadGraph(char *fileName, Graph *graph)
 {
     FILE *file = fopen(fileName, "r");
@@ -46,6 +47,7 @@ bool LoadGraph(char *fileName, Graph *graph)
     return true;
 }
 
+// Função para mostrar o grafo em formato de lista
 int ShowGraph(Graph *g)
 {
     if (!g || !g->head)
@@ -81,6 +83,7 @@ int ShowGraph(Graph *g)
     return count;
 }
 
+// Função para mostrar o grafo em formato de grid
 int ShowGraphAsGrid(Graph *graph)
 {
     if (!graph || !graph->head)

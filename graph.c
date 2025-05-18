@@ -8,6 +8,7 @@
 #include <stdlib.h> // Para malloc, free
 #include <math.h>   // Para sqrtf, powf
 
+// Função para criar um vértice
 Vertex *CreateVertex(char resonanceFrequency, float coordinateX, float coordinateY)
 {
     Vertex *v = (Vertex *)malloc(sizeof(Vertex));
@@ -22,6 +23,7 @@ Vertex *CreateVertex(char resonanceFrequency, float coordinateX, float coordinat
     return v;
 }
 
+// Função para verificar se existe uma adjacência entre dois vértices
 bool AdjacencyExists(Vertex *origin, int destinationIndex)
 {
     Adjacency *adj = origin->adjacencies;
@@ -34,6 +36,7 @@ bool AdjacencyExists(Vertex *origin, int destinationIndex)
     return false;
 }
 
+// Função para criar uma nova adjacência
 Adjacency *CreateAdjacency(float distance, char resonanceFrequency, int destinationIndex)
 {
     Adjacency *adj = (Adjacency *)malloc(sizeof(Adjacency));
@@ -47,6 +50,7 @@ Adjacency *CreateAdjacency(float distance, char resonanceFrequency, int destinat
     return adj;
 }
 
+// Função para inserir uma nova adjacência na lista de adjacências de um vértice
 Vertex *InsertAdjacency(Vertex *head, Adjacency *newAdj, int originIndex, int destinationIndex, int *res)
 {
     if (!head || !newAdj)
@@ -74,6 +78,7 @@ Vertex *InsertAdjacency(Vertex *head, Adjacency *newAdj, int originIndex, int de
     return head;
 }
 
+// Função para inserir um novo vértice na lista de vértices
 Vertex *InsertVertex(Vertex *newVertex, Vertex *head, int *res)
 {
     if (!newVertex)
@@ -124,12 +129,15 @@ Vertex *InsertVertex(Vertex *newVertex, Vertex *head, int *res)
     return head;
 }
 
+// Função para calcular a distância entre dois vértices
+// sqrtf é usado para calcular a raiz quadrada
+// powf é usado para elevar ao quadrado
 float CalculateDistance(Vertex *a, Vertex *b)
 {
     return sqrtf(powf(a->coordinateX - b->coordinateX, 2) + powf(a->coordinateY - b->coordinateY, 2));
 }
 
-// Liberta a lista de adjacências
+// Liberta a memória alocada para as adjacências
 void FreeAdjacencies(Adjacency *adj)
 {
     while (adj != NULL)
@@ -140,7 +148,7 @@ void FreeAdjacencies(Adjacency *adj)
     }
 }
 
-// Liberta o grafo e todos os vértices
+// Liberta a memória alocada para o grafo e todos os vértices
 void FreeGraph(Graph *graph)
 {
     if (graph == NULL)

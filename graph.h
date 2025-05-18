@@ -11,44 +11,49 @@
 
 #define M 40 // Tamanho máximo do grid (40x40)
 
+// Representação de um vértice no grafo
 typedef struct Vertex
 {
-    char resonanceFrequency;
-    float coordinateX, coordinateY;
-    struct Vertex *next;
-    struct Adjacency *adjacencies;
+    char resonanceFrequency;        // Frequência de ressonância
+    float coordinateX, coordinateY; // Coordenadas da antena
+    struct Vertex *next;            // Próximo vértice
+    struct Adjacency *adjacencies;  // Lista de adjacências
 } Vertex;
 
+// Representação de uma aresta no grafo
 typedef struct Adjacency
 {
-    float distance;
-    char resonanceFrequency;
-    int destinationVertexIndex;
-    struct Adjacency *next;
+    float distance;             // Distância até o vértice adjacente
+    char resonanceFrequency;    // Frequência de ressonância do vértice adjacente
+    int destinationVertexIndex; // Índice do vértice adjacente
+    struct Adjacency *next;     // Próxima aresta
 } Adjacency;
 
+// Representação do grafo
 typedef struct Graph
 {
-    int numVertices;
-    Vertex *head;
+    int numVertices; // Quantidade de vértices
+    Vertex *head;    // Ponteiro para o primeiro vértice
 } Graph;
 
+// Representação de uma fila para BFT
 typedef struct QueueNode
 {
-    int index;
-    struct QueueNode *next;
+    int index;              // Índice do vértice na fila
+    struct QueueNode *next; // Próximo nó na fila
 } QueueNode;
 
+// Representação de uma fila
 typedef struct Queue
 {
-    QueueNode *front, *rear;
+    QueueNode *front, *rear; // Ponteiros para o início e fim da fila
 } Queue;
 
 // Lista de caminhos para cada frequência
 typedef struct
 {
-    Vertex *start;
-    Vertex *end;
+    Vertex *start;  // Vértice inicial
+    Vertex *end;    // Vértice final
     bool processed; // Para evitar duplicados
 } Path;
 

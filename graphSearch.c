@@ -8,7 +8,8 @@
 #include <stdio.h>
 #include <stdlib.h> // Para malloc, free
 
-// DFT
+// DFT - Procura em profundidade
+// Função auxiliar recursiva para visitar os vértices
 int visitDFT(Vertex *v, bool *visited, Graph *graph, int index)
 {
     if (!v)
@@ -58,6 +59,7 @@ int visitDFT(Vertex *v, bool *visited, Graph *graph, int index)
     return count;
 }
 
+// Função principal para DFT a partir de coordenadas
 int DFT_FromCoordinates(float x, float y, Graph *graph)
 {
     if (!graph || !graph->head)
@@ -95,7 +97,8 @@ int DFT_FromCoordinates(float x, float y, Graph *graph)
     return verticesVisited;
 }
 
-// BFT
+// BFT - Procura em largura
+// Adiciona um nó à fila
 int Enqueue(Queue *q, int index)
 {
     if (q == NULL)
@@ -121,6 +124,7 @@ int Enqueue(Queue *q, int index)
     return 1;
 }
 
+// Remove um nó da fila
 int Dequeue(Queue *q)
 {
     if (!q->front)
@@ -134,11 +138,13 @@ int Dequeue(Queue *q)
     return index;
 }
 
+// Verifica se a fila está vazia
 bool IsQueueEmpty(Queue *q)
 {
     return q->front == NULL;
 }
 
+// Função principal para BFT a partir de coordenadas
 int BFT_FromCoordinates(float x, float y, Graph *graph)
 {
     if (!graph || !graph->head)
@@ -213,23 +219,33 @@ int BFT_FromCoordinates(float x, float y, Graph *graph)
     return verticesVisited;
 }
 
-// Caminhos
+// Caminhos entre antenas
+// Função auxiliar recursiva para encontrar todos os caminhos entre dois vértices com a mesma frequência de ressonância
 int FindAllPathsUtil(Vertex *current, int currentIndex, int endIndex, bool *visited, int *path, int pathIndex, Graph *graph)
 {
     int pathCount = 0;
+
+    // Marca o vértice atual como visitado
     visited[currentIndex] = true;
+
+    // Adiciona o índice atual ao caminho
     path[pathIndex] = currentIndex;
     pathIndex++;
 
+    // Se o vértice atual é o destino, mostra o caminho completo
     if (currentIndex == endIndex)
     {
         pathCount++;
         for (int i = 0; i < pathIndex; i++)
         {
+            // Navega até o vértice correspondente ao índice armazenado
             Vertex *v = graph->head;
             for (int j = 0; j < path[i]; j++)
                 v = v->next;
+
+            // Mostra o vértice no formato: letra(frequência)(x,y)
             printf("%c(%.0f,%.0f)", v->resonanceFrequency, v->coordinateX, v->coordinateY);
+
             if (i < pathIndex - 1)
                 printf(" -> ");
         }
@@ -237,30 +253,37 @@ int FindAllPathsUtil(Vertex *current, int currentIndex, int endIndex, bool *visi
     }
     else
     {
+        // Percorre todas as adjacências do vértice atual
         Adjacency *adj = current->adjacencies;
         while (adj)
         {
+            // Se o vértice destino ainda não foi visitado
             if (!visited[adj->destinationVertexIndex])
             {
+                // Encontra o próximo vértice com base no índice de destino
                 Vertex *next = graph->head;
                 for (int i = 0; i < adj->destinationVertexIndex; i++)
                     next = next->next;
 
+                // Só continua a procura se a frequência for a mesma
                 if (next && next->resonanceFrequency == current->resonanceFrequency)
                 {
+                    // Chamada recursiva para continuar a procura a partir do vértice adjacente
                     pathCount += FindAllPathsUtil(next, adj->destinationVertexIndex, endIndex, visited, path, pathIndex, graph);
                 }
             }
+            // Avança para a próxima adjacência
             adj = adj->next;
         }
     }
 
-    // Backtrack
+    // Backtracking: desmarca o vértice como visitado e retrocede o caminho
     visited[currentIndex] = false;
     pathIndex--;
     return pathCount;
 }
 
+// Função principal que inicia a procura por todos os caminhos entre duas antenas com mesma frequência
 int FindAllPaths(Graph *graph, float startX, float startY, float endX, float endY)
 {
     if (!graph || !graph->head)
@@ -274,7 +297,7 @@ int FindAllPaths(Graph *graph, float startX, float startY, float endX, float end
     int startIndex = 0, endIndex = 0;
     bool startFound = false, endFound = false;
 
-    // Procura pelos vértices de início e fim
+    // Procura os vértices correspondentes às coordenadas de início e fim
     Vertex *current = graph->head;
     int index = 0;
     while (current)
@@ -297,28 +320,36 @@ int FindAllPaths(Graph *graph, float startX, float startY, float endX, float end
         index++;
     }
 
+    // Verifica se ambos os vértices foram encontrados
     if (!startFound || !endFound)
     {
         printf("Antenas inicial ou final não encontradas.\n");
         return 0;
     }
 
+    // Verifica se ambos os vértices possuem a mesma frequência de ressonância
     if (start->resonanceFrequency != end->resonanceFrequency)
     {
-        printf("As antenas não tem a mesma frequência.\n");
+        printf("As antenas não têm a mesma frequência.\n");
         return 0;
     }
 
+    // Aloca memória para controlar os vértices visitados e o caminho atual
     bool *visited = (bool *)calloc(graph->numVertices, sizeof(bool));
     int *path = (int *)malloc(graph->numVertices * sizeof(int));
 
+    // Mostra as informações de início e fim
     printf("Todos os caminhos de %c(%.0f,%.0f) a %c(%.0f,%.0f):\n",
            start->resonanceFrequency, startX, startY,
            end->resonanceFrequency, endX, endY);
 
+    // Inicia a procura pelos caminhos
     int totalPaths = FindAllPathsUtil(start, startIndex, endIndex, visited, path, 0, graph);
+
+    // Mostra o número total de caminhos encontrados
     printf("Total de caminhos encontrados: %d\n", totalPaths);
 
+    // Liberta memória alocada
     free(visited);
     free(path);
     return totalPaths;

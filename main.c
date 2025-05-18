@@ -102,6 +102,7 @@ int runPart1()
 // Função para executar a Fase 2 (Grafos)
 int runPart2()
 {
+    // Inicializa o grafo
     Graph *graph = (Graph *)malloc(sizeof(Graph));
     if (graph == NULL)
     {
@@ -109,8 +110,8 @@ int runPart2()
         return 0;
     }
 
-    graph->numVertices = 0;
-    graph->head = NULL;
+    graph->numVertices = 0; // Inicializa o número de vértices
+    graph->head = NULL;     // Inicializa a início do grafo
 
     int choice, result;
     char resonance;
@@ -134,7 +135,7 @@ int runPart2()
 
         switch (choice)
         {
-        case 1:
+        case 1: // Adicionar antena manualmente
             printf("Frequência da antena: ");
             scanf(" %c", &resonance);
             printf("Coordenada X: ");
@@ -158,7 +159,7 @@ int runPart2()
             }
             break;
 
-        case 2:
+        case 2: // Mostrar o grafo em formato de lista
             if (graph == NULL)
             {
                 printf("Erro: Grafo não inicializado.\n");
@@ -177,7 +178,7 @@ int runPart2()
             }
             break;
 
-        case 3:
+        case 3: // Mostrar o grafo em formato de grid
             if (graph == NULL)
             {
                 printf("Erro: Grafo não inicializado.\n");
@@ -196,7 +197,7 @@ int runPart2()
             }
             break;
 
-        case 4:
+        case 4: // Carregar grafo de um ficheiro
             printf("Nome do ficheiro e formato: ");
             scanf("%s", fileName);
             if (LoadGraph(fileName, graph))
@@ -209,7 +210,7 @@ int runPart2()
             }
             break;
 
-        case 5:
+        case 5: // DFT
             printf("Coordenada X: ");
             scanf("%f", &x);
             printf("Coordenada Y: ");
@@ -217,7 +218,7 @@ int runPart2()
             DFT_FromCoordinates(x, y, graph);
             break;
 
-        case 6:
+        case 6: // BFT
             printf("Coordenada X: ");
             scanf("%f", &x);
             printf("Coordenada Y: ");
@@ -225,7 +226,7 @@ int runPart2()
             BFT_FromCoordinates(x, y, graph);
             break;
 
-        case 7:
+        case 7: // Mostrar todos os caminhos entre duas antenas
             printf("Coordenada X da antena inicial: ");
             scanf("%f", &x);
             printf("Coordenada Y da antena inicial: ");
@@ -239,7 +240,7 @@ int runPart2()
             FindAllPaths(graph, startX, startY, x, y);
             break;
 
-        case 8:
+        case 8: // Mostrar interseções entre duas frequências
         {
             char freqA, freqB;
             printf("Primeira frequência: ");
@@ -283,11 +284,11 @@ int main()
         printf("\nA encerrar...\n");
         break;
 
-    case 1:
+    case 1: // Fase 1
         runPart1();
         break;
 
-    case 2:
+    case 2: // Fase 2
         runPart2();
         break;
 
