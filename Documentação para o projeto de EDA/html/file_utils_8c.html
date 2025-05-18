@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Documentação para o projeto de EDA: Referência ao ficheiro EDA-Project/fileUtils.c</title>
+<title>Documentação para o projeto de EDA: Referência ao ficheiro C:/Users/carlo/Desktop/EDA-Project/fileUtils.c</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Documentação para o projeto de EDA<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">Documentação para o projeto de EDA<span id="projectnumber">&#160;2.0</span>
    </div>
   </td>
  </tr>
@@ -69,7 +69,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_ef3bec018178901c8f24f3b45bd94f46.html">EDA-Project</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_e04ae2849dfa520b4ee2c9f7e9ff15de.html">Desktop</a></li><li class="navelem"><a class="el" href="dir_a7c32bdcbe9de4f9c203f5ae1802c74d.html">EDA-Project</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -85,20 +85,20 @@ $(function() {
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Funções</h2></td></tr>
-<tr class="memitem:a5414681b8fc0a4155433de5d898aa5df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file_utils_8c.html#a5414681b8fc0a4155433de5d898aa5df">loadAerialsFromFile</a> (<a class="el" href="struct_e_d.html">ED</a> **list, const char *filename)</td></tr>
-<tr class="separator:a5414681b8fc0a4155433de5d898aa5df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a295ed0e1c138f3fa0017018a5ca307fe"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_e_d.html">ED</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="file_utils_8c.html#a295ed0e1c138f3fa0017018a5ca307fe">loadAerialsFromFile</a> (<a class="el" href="struct_e_d.html">ED</a> *list, const char *filename)</td></tr>
+<tr class="separator:a295ed0e1c138f3fa0017018a5ca307fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentação das funções</h2>
-<a id="a5414681b8fc0a4155433de5d898aa5df" name="a5414681b8fc0a4155433de5d898aa5df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5414681b8fc0a4155433de5d898aa5df">&#9670;&#160;</a></span>loadAerialsFromFile()</h2>
+<a id="a295ed0e1c138f3fa0017018a5ca307fe" name="a295ed0e1c138f3fa0017018a5ca307fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a295ed0e1c138f3fa0017018a5ca307fe">&#9670;&#160;</a></span>loadAerialsFromFile()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void loadAerialsFromFile </td>
+          <td class="memname"><a class="el" href="struct_e_d.html">ED</a> * loadAerialsFromFile </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="struct_e_d.html">ED</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="struct_e_d.html">ED</a> *&#160;</td>
           <td class="paramname"><em>list</em>, </td>
         </tr>
         <tr>
@@ -115,39 +115,37 @@ Funções</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><span class="lineno">   14</span>{</div>
-<div class="line"><span class="lineno">   15</span>    <span class="keywordtype">int</span> y = 1;                  <span class="comment">// Para iniciar a coordenada Y</span></div>
-<div class="line"><span class="lineno">   16</span>    <span class="keywordtype">char</span> line[<a class="code hl_define" href="aerial_8h.html#af0f2173e3b202ddf5756531b4471dcb2">MAX_LINE_LENGTH</a>]; <span class="comment">// Tamanho máximo da linha do ficheiro</span></div>
+<div class="line"><span class="lineno">   15</span>    <span class="keywordtype">int</span> y = 1;</div>
+<div class="line"><span class="lineno">   16</span>    <span class="keywordtype">char</span> line[<a class="code hl_define" href="aerial_8h.html#af0f2173e3b202ddf5756531b4471dcb2">MAX_LINE_LENGTH</a>];</div>
 <div class="line"><span class="lineno">   17</span> </div>
 <div class="line"><span class="lineno">   18</span>    FILE *file = fopen(filename, <span class="stringliteral">&quot;r&quot;</span>);</div>
 <div class="line"><span class="lineno">   19</span>    <span class="keywordflow">if</span> (file == NULL)</div>
 <div class="line"><span class="lineno">   20</span>    {</div>
-<div class="line"><span class="lineno">   21</span>        <span class="keywordflow">return</span>;</div>
+<div class="line"><span class="lineno">   21</span>        <span class="keywordflow">return</span> list;</div>
 <div class="line"><span class="lineno">   22</span>    }</div>
 <div class="line"><span class="lineno">   23</span> </div>
-<div class="line"><span class="lineno">   24</span>    <span class="comment">// Lê o ficheiro linha a linha</span></div>
-<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">while</span> (fgets(line, <a class="code hl_define" href="aerial_8h.html#af0f2173e3b202ddf5756531b4471dcb2">MAX_LINE_LENGTH</a>, file) != NULL)</div>
-<div class="line"><span class="lineno">   26</span>    {</div>
-<div class="line"><span class="lineno">   27</span>        <span class="keywordtype">int</span> x = 1; <span class="comment">// Para iniciar a coordenada X</span></div>
-<div class="line"><span class="lineno">   28</span>        <span class="comment">// Percorre a linha</span></div>
-<div class="line"><span class="lineno">   29</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; line[i] != <span class="charliteral">&#39;\0&#39;</span> &amp;&amp; line[i] != <span class="charliteral">&#39;\n&#39;</span>; i++) <span class="comment">// Parar também no \n</span></div>
-<div class="line"><span class="lineno">   30</span>        {</div>
-<div class="line"><span class="lineno">   31</span>            <span class="keywordflow">if</span> (line[i] != <span class="charliteral">&#39; &#39;</span> &amp;&amp; line[i] != <span class="charliteral">&#39;.&#39;</span>) <span class="comment">// Ignora espaços e pontos</span></div>
-<div class="line"><span class="lineno">   32</span>            {</div>
-<div class="line"><span class="lineno">   33</span>                <a class="code hl_function" href="aerial_8c.html#a3d3df9547d7b6a22110a11d9978decb4">insertAerialEnd</a>(list, line[i], x, y);</div>
-<div class="line"><span class="lineno">   34</span>            }</div>
-<div class="line"><span class="lineno">   35</span>            <span class="comment">// Incrementa X apenas para caracteres relevantes</span></div>
-<div class="line"><span class="lineno">   36</span>            <span class="keywordflow">if</span> (line[i] != <span class="charliteral">&#39; &#39;</span>) <span class="comment">// Espaços não contam como posições</span></div>
-<div class="line"><span class="lineno">   37</span>            {</div>
-<div class="line"><span class="lineno">   38</span>                x++;</div>
-<div class="line"><span class="lineno">   39</span>            }</div>
-<div class="line"><span class="lineno">   40</span>        }</div>
-<div class="line"><span class="lineno">   41</span>        y++; <span class="comment">// Incrementa a coordenada Y</span></div>
-<div class="line"><span class="lineno">   42</span>    }</div>
-<div class="line"><span class="lineno">   43</span> </div>
-<div class="line"><span class="lineno">   44</span>    fclose(file);</div>
-<div class="line"><span class="lineno">   45</span>    printf(<span class="stringliteral">&quot;Dados carregados do ficheiro %s com sucesso!\n&quot;</span>, filename);</div>
-<div class="line"><span class="lineno">   46</span>}</div>
-<div class="ttc" id="aaerial_8c_html_a3d3df9547d7b6a22110a11d9978decb4"><div class="ttname"><a href="aerial_8c.html#a3d3df9547d7b6a22110a11d9978decb4">insertAerialEnd</a></div><div class="ttdeci">void insertAerialEnd(ED **list, char resonanceFrequencyTmp, int coordinateXTmp, int coordinateYTmp)</div><div class="ttdef"><b>Definição</b> aerial.c:12</div></div>
+<div class="line"><span class="lineno">   24</span>    <span class="keywordflow">while</span> (fgets(line, <a class="code hl_define" href="aerial_8h.html#af0f2173e3b202ddf5756531b4471dcb2">MAX_LINE_LENGTH</a>, file) != NULL)</div>
+<div class="line"><span class="lineno">   25</span>    {</div>
+<div class="line"><span class="lineno">   26</span>        <span class="keywordtype">int</span> x = 1;</div>
+<div class="line"><span class="lineno">   27</span>        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; line[i] != <span class="charliteral">&#39;\0&#39;</span> &amp;&amp; line[i] != <span class="charliteral">&#39;\n&#39;</span>; i++)</div>
+<div class="line"><span class="lineno">   28</span>        {</div>
+<div class="line"><span class="lineno">   29</span>            <span class="keywordflow">if</span> (line[i] != <span class="charliteral">&#39; &#39;</span> &amp;&amp; line[i] != <span class="charliteral">&#39;.&#39;</span>)</div>
+<div class="line"><span class="lineno">   30</span>            {</div>
+<div class="line"><span class="lineno">   31</span>                list = <a class="code hl_function" href="aerial_8c.html#a80c5c32732caf86d2d4490b870385fec">insertAerialEnd</a>(list, line[i], x, y);</div>
+<div class="line"><span class="lineno">   32</span>            }</div>
+<div class="line"><span class="lineno">   33</span>            <span class="keywordflow">if</span> (line[i] != <span class="charliteral">&#39; &#39;</span>)</div>
+<div class="line"><span class="lineno">   34</span>            {</div>
+<div class="line"><span class="lineno">   35</span>                x++;</div>
+<div class="line"><span class="lineno">   36</span>            }</div>
+<div class="line"><span class="lineno">   37</span>        }</div>
+<div class="line"><span class="lineno">   38</span>        y++;</div>
+<div class="line"><span class="lineno">   39</span>    }</div>
+<div class="line"><span class="lineno">   40</span> </div>
+<div class="line"><span class="lineno">   41</span>    fclose(file);</div>
+<div class="line"><span class="lineno">   42</span>    printf(<span class="stringliteral">&quot;Dados carregados do ficheiro %s com sucesso!\n&quot;</span>, filename);</div>
+<div class="line"><span class="lineno">   43</span>    <span class="keywordflow">return</span> list;</div>
+<div class="line"><span class="lineno">   44</span>}</div>
+<div class="ttc" id="aaerial_8c_html_a80c5c32732caf86d2d4490b870385fec"><div class="ttname"><a href="aerial_8c.html#a80c5c32732caf86d2d4490b870385fec">insertAerialEnd</a></div><div class="ttdeci">ED * insertAerialEnd(ED *list, char resonanceFrequencyTmp, int coordinateXTmp, int coordinateYTmp)</div><div class="ttdef"><b>Definição</b> aerial.c:12</div></div>
 <div class="ttc" id="aaerial_8h_html_af0f2173e3b202ddf5756531b4471dcb2"><div class="ttname"><a href="aerial_8h.html#af0f2173e3b202ddf5756531b4471dcb2">MAX_LINE_LENGTH</a></div><div class="ttdeci">#define MAX_LINE_LENGTH</div><div class="ttdef"><b>Definição</b> aerial.h:10</div></div>
 </div><!-- fragment -->
 </div>

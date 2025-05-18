@@ -1,102 +1,122 @@
-\doxysection{Referência ao ficheiro EDA-\/\+Project/aerial.c}
-\hypertarget{aerial_8c}{}\label{aerial_8c}\index{EDA-\/Project/aerial.c@{EDA-\/Project/aerial.c}}
+\doxysection{Referência ao ficheiro C\+:/\+Users/carlo/\+Desktop/\+EDA-\/\+Project/aerial.c}
+\hypertarget{aerial_8c}{}\label{aerial_8c}\index{C:/Users/carlo/Desktop/EDA-\/Project/aerial.c@{C:/Users/carlo/Desktop/EDA-\/Project/aerial.c}}
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include \"{}aerial.\+h\"{}}\newline
 \doxysubsubsection*{Funções}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{aerial_8c_a3d3df9547d7b6a22110a11d9978decb4}{insert\+Aerial\+End}} (\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}list, char resonance\+Frequency\+Tmp, int coordinate\+XTmp, int coordinate\+YTmp)
+\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{aerial_8c_a80c5c32732caf86d2d4490b870385fec}{insert\+Aerial\+End}} (\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}list, char resonance\+Frequency\+Tmp, int coordinate\+XTmp, int coordinate\+YTmp)
 \item 
-void \mbox{\hyperlink{aerial_8c_a3a817e307efda897e560ab98309bfbb6}{remove\+Aerial}} (\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}list, int coordinateX, int coordinateY)
+\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{aerial_8c_a7a798c78f08324cdd20bd6bb94b66149}{remove\+Aerial}} (\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}list, int coordinateX, int coordinateY)
+\item 
+\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{aerial_8c_ac07619444f4c8699e4a68de2bb3ec766}{find\+Aerial}} (\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}list, int coordinateX, int coordinateY)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Documentação das funções}
-\Hypertarget{aerial_8c_a3d3df9547d7b6a22110a11d9978decb4}\label{aerial_8c_a3d3df9547d7b6a22110a11d9978decb4} 
+\Hypertarget{aerial_8c_ac07619444f4c8699e4a68de2bb3ec766}\label{aerial_8c_ac07619444f4c8699e4a68de2bb3ec766} 
+\index{aerial.c@{aerial.c}!findAerial@{findAerial}}
+\index{findAerial@{findAerial}!aerial.c@{aerial.c}}
+\doxysubsubsection{\texorpdfstring{findAerial()}{findAerial()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*} find\+Aerial (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}}]{list,  }\item[{int}]{coordinateX,  }\item[{int}]{coordinateY }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00082\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *current\ =\ list;}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}}\ ==\ coordinateX\ \&\&\ current-\/>\mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}}\ ==\ coordinateY)}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ current;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
+\DoxyCodeLine{00093\ \}}
+
+\end{DoxyCode}
+\Hypertarget{aerial_8c_a80c5c32732caf86d2d4490b870385fec}\label{aerial_8c_a80c5c32732caf86d2d4490b870385fec} 
 \index{aerial.c@{aerial.c}!insertAerialEnd@{insertAerialEnd}}
 \index{insertAerialEnd@{insertAerialEnd}!aerial.c@{aerial.c}}
 \doxysubsubsection{\texorpdfstring{insertAerialEnd()}{insertAerialEnd()}}
-{\footnotesize\ttfamily void insert\+Aerial\+End (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{list,  }\item[{char}]{resonance\+Frequency\+Tmp,  }\item[{int}]{coordinate\+XTmp,  }\item[{int}]{coordinate\+YTmp }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*} insert\+Aerial\+End (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}}]{list,  }\item[{char}]{resonance\+Frequency\+Tmp,  }\item[{int}]{coordinate\+XTmp,  }\item[{int}]{coordinate\+YTmp }\end{DoxyParamCaption})}
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00013\ \{}
-\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *aux,\ *\textcolor{keyword}{new}\ =\ malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_e_d}{ED}}));\ \textcolor{comment}{//\ Alocação\ de\ memória\ para\ a\ nova\ antena}}
-\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{new}\ ==\ NULL)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Verificação\ da\ alocação\ de\ memória}}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *aux,\ *\textcolor{keyword}{new}\ =\ malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_e_d}{ED}}));}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordflow}{if}\ (\textcolor{keyword}{new}\ ==\ NULL)}
 \DoxyCodeLine{00016\ \ \ \ \ \{}
 \DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Erro\ ao\ alocar\ memória\ para\ a\ nova\ antena\(\backslash\)n"{}});}
-\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list;}
 \DoxyCodeLine{00019\ \ \ \ \ \}}
 \DoxyCodeLine{00020\ }
-\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{new}-\/>resonanceFrequency\ =\ resonanceFrequencyTmp;\ \textcolor{comment}{//\ Atribuição\ da\ frequência\ de\ ressonância}}
-\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{new}-\/>coordinateX\ =\ coordinateXTmp;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Atribuição\ da\ coordenada\ X}}
-\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{new}-\/>coordinateY\ =\ coordinateYTmp;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Atribuição\ da\ coordenada\ Y}}
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{new}-\/>next\ =\ NULL;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{new}-\/>\mbox{\hyperlink{struct_e_d_ab43fc24c19ee01b5c6c1950aac2ae0fa}{resonanceFrequency}}\ =\ resonanceFrequencyTmp;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{new}-\/>coordinateX\ =\ coordinateXTmp;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{new}-\/>coordinateY\ =\ coordinateYTmp;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{new}-\/>next\ =\ NULL;}
 \DoxyCodeLine{00025\ }
-\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{if}\ (*list\ ==\ NULL)\ \textcolor{comment}{//\ Se\ o\ conteúdo\ da\ lista\ for\ nulo,\ então\ a\ nova\ antena\ passa\ a\ ser\ a\ primeira\ da\ lista}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{if}\ (list\ ==\ NULL)}
 \DoxyCodeLine{00027\ \ \ \ \ \{}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ *list\ =\ \textcolor{keyword}{new};}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00030\ \ \ \ \ \}}
-\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ Se\ a\ lista\ não\ for\ nula,\ então\ a\ nova\ antena\ é\ inserida\ no\ fim\ da\ lista}}
-\DoxyCodeLine{00032\ \ \ \ \ \{}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ aux\ =\ *list;\ \ \ \ \ \ \textcolor{comment}{//\ Variável\ auxiliar\ para\ percorrer\ a\ lista}}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (aux-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}})\ \textcolor{comment}{//\ Enquanto\ aux\ for\ diferente\ de\ nulo,\ ou\ seja,\ enquanto\ não\ chegar\ ao\ fim\ da\ lista}}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ aux\ =\ aux-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};\ \textcolor{comment}{//\ Avança\ para\ o\ próximo\ registo\ da\ lista}}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ aux-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}}\ =\ \textcolor{keyword}{new};\ \textcolor{comment}{//\ O\ último\ registo\ da\ lista\ aponta\ para\ a\ nova\ antena}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new};}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00031\ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ aux\ =\ list;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (aux-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}})}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ aux\ =\ aux-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ aux-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}}\ =\ \textcolor{keyword}{new};}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list;}
 \DoxyCodeLine{00039\ \ \ \ \ \}}
 \DoxyCodeLine{00040\ \}}
 
 \end{DoxyCode}
-\Hypertarget{aerial_8c_a3a817e307efda897e560ab98309bfbb6}\label{aerial_8c_a3a817e307efda897e560ab98309bfbb6} 
+\Hypertarget{aerial_8c_a7a798c78f08324cdd20bd6bb94b66149}\label{aerial_8c_a7a798c78f08324cdd20bd6bb94b66149} 
 \index{aerial.c@{aerial.c}!removeAerial@{removeAerial}}
 \index{removeAerial@{removeAerial}!aerial.c@{aerial.c}}
 \doxysubsubsection{\texorpdfstring{removeAerial()}{removeAerial()}}
-{\footnotesize\ttfamily void remove\+Aerial (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{list,  }\item[{int}]{coordinateX,  }\item[{int}]{coordinateY }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*} remove\+Aerial (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}}]{list,  }\item[{int}]{coordinateX,  }\item[{int}]{coordinateY }\end{DoxyParamCaption})}
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00044\ \{}
-\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{if}\ (*list\ ==\ NULL)\ \textcolor{comment}{//\ Verifica\ se\ a\ lista\ está\ vazia}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{if}\ (list\ ==\ NULL)}
 \DoxyCodeLine{00046\ \ \ \ \ \{}
 \DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Lista\ de\ antenas\ vazia.\ Nada\ para\ remover.\(\backslash\)n"{}});}
-\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ NULL;}
 \DoxyCodeLine{00049\ \ \ \ \ \}}
 \DoxyCodeLine{00050\ }
-\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *current\ =\ *list;\ \textcolor{comment}{//\ Variável\ auxiliar\ para\ percorrer\ a\ lista}}
-\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *previous\ =\ NULL;\ \textcolor{comment}{//\ Variável\ auxiliar\ para\ guardar\ o\ registo\ anterior}}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *current\ =\ list;}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{struct_e_d}{ED}}\ *previous\ =\ NULL;}
 \DoxyCodeLine{00053\ }
-\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ Percorre\ a\ lista\ à\ procura\ da\ antena}}
-\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)}
-\DoxyCodeLine{00056\ \ \ \ \ \{}
-\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}}\ ==\ coordinateX\ \&\&\ current-\/>\mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}}\ ==\ coordinateY)\ \textcolor{comment}{//\ Verifica\ se\ a\ antena\ foi\ encontrada}}
-\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Remove\ a\ antena\ da\ lista}}
-\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (previous\ ==\ NULL)}
-\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Se\ for\ o\ primeiro\ elemento}}
-\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *list\ =\ current-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};}
-\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
-\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Se\ for\ um\ elemento\ do\ meio\ ou\ fim}}
-\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ previous-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}}\ =\ current-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};}
-\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00070\ }
-\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ free(current);\ \textcolor{comment}{//\ Liberta\ a\ memória\ alocada\ para\ a\ antena}}
-\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Antena\ na\ posição\ (\%d,\ \%d)\ removida\ com\ sucesso.\(\backslash\)n"{}},\ coordinateX,\ coordinateY);}
-\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
-\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{while}\ (current\ !=\ NULL)}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (current-\/>\mbox{\hyperlink{struct_e_d_af16597a35e6726051afb504ca04dc723}{coordinateX}}\ ==\ coordinateX\ \&\&\ current-\/>\mbox{\hyperlink{struct_e_d_a9be5ccf528c7fff8348356c45328c0e6}{coordinateY}}\ ==\ coordinateY)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (previous\ ==\ NULL)}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list\ =\ current-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ previous-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}}\ =\ current-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ free(current);}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Antena\ na\ posição\ (\%d,\ \%d)\ removida\ com\ sucesso.\(\backslash\)n"{}},\ coordinateX,\ coordinateY);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ previous\ =\ current;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
 \DoxyCodeLine{00075\ }
-\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ previous\ =\ current;\ \ \ \ \ \ \textcolor{comment}{//\ Guarda\ o\ registo\ anterior}}
-\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_e_d_a88a4c32bee369a38a6065bdd46cce3ba}{next}};\ \textcolor{comment}{//\ Avança\ para\ o\ próximo\ registo}}
-\DoxyCodeLine{00078\ \ \ \ \ \}}
-\DoxyCodeLine{00079\ }
-\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ A\ antena\ não\ foi\ encontrada}}
-\DoxyCodeLine{00081\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Antena\ na\ posição\ (\%d,\ \%d)\ não\ encontrada.\(\backslash\)n"{}},\ coordinateX,\ coordinateY);}
-\DoxyCodeLine{00082\ \}}
+\DoxyCodeLine{00076\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Antena\ na\ posição\ (\%d,\ \%d)\ não\ encontrada.\(\backslash\)n"{}},\ coordinateX,\ coordinateY);}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordflow}{return}\ list;}
+\DoxyCodeLine{00078\ \}}
 
 \end{DoxyCode}

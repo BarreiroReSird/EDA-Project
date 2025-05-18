@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['getgridsize_0',['getGridSize',['../grid_utils_8c.html#a98a216314ca4efce318aeabfb421e611',1,'getGridSize(ED *list, int *xMax, int *yMax):&#160;gridUtils.c'],['../grid_utils_8h.html#a98a216314ca4efce318aeabfb421e611',1,'getGridSize(ED *list, int *xMax, int *yMax):&#160;gridUtils.c']]]
+  ['adjacencyexists_0',['AdjacencyExists',['../graph_8c.html#a3411ca22210a6e68b154413ffce1c03b',1,'AdjacencyExists(Vertex *origin, int destinationIndex):&#160;graph.c'],['../graph_8h.html#a3411ca22210a6e68b154413ffce1c03b',1,'AdjacencyExists(Vertex *origin, int destinationIndex):&#160;graph.c']]]
 ];

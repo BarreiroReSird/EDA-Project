@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Documentação para o projeto de EDA: Referência ao ficheiro EDA-Project/main.c</title>
+<title>Documentação para o projeto de EDA: Referência ao ficheiro C:/Users/carlo/Desktop/EDA-Project/main.c</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Documentação para o projeto de EDA<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">Documentação para o projeto de EDA<span id="projectnumber">&#160;2.0</span>
    </div>
   </td>
  </tr>
@@ -69,7 +69,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_ef3bec018178901c8f24f3b45bd94f46.html">EDA-Project</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_e04ae2849dfa520b4ee2c9f7e9ff15de.html">Desktop</a></li><li class="navelem"><a class="el" href="dir_a7c32bdcbe9de4f9c203f5ae1802c74d.html">EDA-Project</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -85,9 +85,14 @@ $(function() {
 <code>#include &quot;<a class="el" href="file_utils_8h_source.html">fileUtils.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="grid_utils_8h_source.html">gridUtils.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="interference_8h_source.html">interference.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="graph_8h_source.html">graph.h</a>&quot;</code><br />
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Funções</h2></td></tr>
+<tr class="memitem:ae759fd23ea85a53d594404ec8a18d815"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae759fd23ea85a53d594404ec8a18d815">runPart1</a> ()</td></tr>
+<tr class="separator:ae759fd23ea85a53d594404ec8a18d815"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d25584f35f21200b3839bed78cff5d2"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#a0d25584f35f21200b3839bed78cff5d2">runPart2</a> ()</td></tr>
+<tr class="separator:a0d25584f35f21200b3839bed78cff5d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="main_8c.html#ae66f6b31b5ad750f1fe042a706a4e3d4">main</a> ()</td></tr>
 <tr class="separator:ae66f6b31b5ad750f1fe042a706a4e3d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -106,9 +111,59 @@ Funções</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   16</span>{</div>
-<div class="line"><span class="lineno">   17</span>    SetConsoleOutputCP(65001); <span class="comment">// Define a codificação do terminal para UTF-8</span></div>
-<div class="line"><span class="lineno">   18</span> </div>
+<div class="fragment"><div class="line"><span class="lineno">  269</span>{</div>
+<div class="line"><span class="lineno">  270</span>    SetConsoleOutputCP(65001); <span class="comment">// Define a codificação do terminal para UTF-8</span></div>
+<div class="line"><span class="lineno">  271</span> </div>
+<div class="line"><span class="lineno">  272</span>    <span class="keywordtype">int</span> partChoice;</div>
+<div class="line"><span class="lineno">  273</span> </div>
+<div class="line"><span class="lineno">  274</span>    printf(<span class="stringliteral">&quot;\nProjecto de EDA\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  275</span>    printf(<span class="stringliteral">&quot;Escolha a fase que deseja executar:\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  276</span>    printf(<span class="stringliteral">&quot;1 - Fase 1: Gestão de antenas\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  277</span>    printf(<span class="stringliteral">&quot;2 - Fase 2: Teste de grafo\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  278</span>    printf(<span class="stringliteral">&quot;Escolha: &quot;</span>);</div>
+<div class="line"><span class="lineno">  279</span>    scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;partChoice);</div>
+<div class="line"><span class="lineno">  280</span> </div>
+<div class="line"><span class="lineno">  281</span>    <span class="keywordflow">switch</span> (partChoice)</div>
+<div class="line"><span class="lineno">  282</span>    {</div>
+<div class="line"><span class="lineno">  283</span>    <span class="keywordflow">case</span> 0:</div>
+<div class="line"><span class="lineno">  284</span>        printf(<span class="stringliteral">&quot;\nA encerrar...\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  285</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  286</span> </div>
+<div class="line"><span class="lineno">  287</span>    <span class="keywordflow">case</span> 1: <span class="comment">// Fase 1</span></div>
+<div class="line"><span class="lineno">  288</span>        <a class="code hl_function" href="main_8c.html#ae759fd23ea85a53d594404ec8a18d815">runPart1</a>();</div>
+<div class="line"><span class="lineno">  289</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  290</span> </div>
+<div class="line"><span class="lineno">  291</span>    <span class="keywordflow">case</span> 2: <span class="comment">// Fase 2</span></div>
+<div class="line"><span class="lineno">  292</span>        <a class="code hl_function" href="main_8c.html#a0d25584f35f21200b3839bed78cff5d2">runPart2</a>();</div>
+<div class="line"><span class="lineno">  293</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  294</span> </div>
+<div class="line"><span class="lineno">  295</span>    <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  296</span>        printf(<span class="stringliteral">&quot;\nOpção inválida! A encerrar...\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  297</span>        <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  298</span>    }</div>
+<div class="line"><span class="lineno">  299</span> </div>
+<div class="line"><span class="lineno">  300</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  301</span>}</div>
+<div class="ttc" id="amain_8c_html_a0d25584f35f21200b3839bed78cff5d2"><div class="ttname"><a href="main_8c.html#a0d25584f35f21200b3839bed78cff5d2">runPart2</a></div><div class="ttdeci">int runPart2()</div><div class="ttdef"><b>Definição</b> main.c:103</div></div>
+<div class="ttc" id="amain_8c_html_ae759fd23ea85a53d594404ec8a18d815"><div class="ttname"><a href="main_8c.html#ae759fd23ea85a53d594404ec8a18d815">runPart1</a></div><div class="ttdeci">int runPart1()</div><div class="ttdef"><b>Definição</b> main.c:17</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="ae759fd23ea85a53d594404ec8a18d815" name="ae759fd23ea85a53d594404ec8a18d815"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae759fd23ea85a53d594404ec8a18d815">&#9670;&#160;</a></span>runPart1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int runPart1 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   18</span>{</div>
 <div class="line"><span class="lineno">   19</span>    <span class="keywordtype">int</span> choice, coordinateX, coordinateY;</div>
 <div class="line"><span class="lineno">   20</span>    <span class="keywordtype">char</span> resonanceFrequency, loadChoice, retryChoice;</div>
 <div class="line"><span class="lineno">   21</span>    <a class="code hl_struct" href="struct_e_d.html">ED</a> *list = NULL;</div>
@@ -125,72 +180,272 @@ Funções</h2></td></tr>
 <div class="line"><span class="lineno">   32</span>            printf(<span class="stringliteral">&quot;Qual o nome do ficheiro: &quot;</span>);</div>
 <div class="line"><span class="lineno">   33</span>            scanf(<span class="stringliteral">&quot;%s&quot;</span>, filename);</div>
 <div class="line"><span class="lineno">   34</span> </div>
-<div class="line"><span class="lineno">   35</span>            <span class="comment">// Tenta carregar o arquivo diretamente</span></div>
-<div class="line"><span class="lineno">   36</span>            <a class="code hl_function" href="file_utils_8c.html#a5414681b8fc0a4155433de5d898aa5df">loadAerialsFromFile</a>(&amp;list, filename);</div>
-<div class="line"><span class="lineno">   37</span> </div>
-<div class="line"><span class="lineno">   38</span>            <span class="comment">// Verifica se a lista foi preenchida (arquivo carregado com sucesso)</span></div>
-<div class="line"><span class="lineno">   39</span>            <span class="keywordflow">if</span> (list == NULL)</div>
-<div class="line"><span class="lineno">   40</span>            {</div>
-<div class="line"><span class="lineno">   41</span>                printf(<span class="stringliteral">&quot;Erro ao abrir o ficheiro %s. Deseja tentar novamente? (s/n): &quot;</span>, filename);</div>
-<div class="line"><span class="lineno">   42</span>                scanf(<span class="stringliteral">&quot; %c&quot;</span>, &amp;retryChoice);</div>
-<div class="line"><span class="lineno">   43</span>                <span class="keywordflow">if</span> (retryChoice == <span class="charliteral">&#39;n&#39;</span> || retryChoice == <span class="charliteral">&#39;N&#39;</span>)</div>
-<div class="line"><span class="lineno">   44</span>                {</div>
-<div class="line"><span class="lineno">   45</span>                    <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   46</span>                }</div>
-<div class="line"><span class="lineno">   47</span>            }</div>
-<div class="line"><span class="lineno">   48</span>            <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">   49</span>            {</div>
-<div class="line"><span class="lineno">   50</span>                <span class="keywordflow">break</span>; <span class="comment">// Sai do loop se o arquivo foi carregado com sucesso</span></div>
-<div class="line"><span class="lineno">   51</span>            }</div>
-<div class="line"><span class="lineno">   52</span>        } <span class="keywordflow">while</span> (1);</div>
-<div class="line"><span class="lineno">   53</span>    }</div>
-<div class="line"><span class="lineno">   54</span>    <span class="keywordflow">else</span></div>
-<div class="line"><span class="lineno">   55</span>    {</div>
-<div class="line"><span class="lineno">   56</span>        printf(<span class="stringliteral">&quot;A criar uma nova lista vazia...\n&quot;</span>);</div>
-<div class="line"><span class="lineno">   57</span>    }</div>
-<div class="line"><span class="lineno">   58</span> </div>
-<div class="line"><span class="lineno">   59</span>    <span class="keywordflow">do</span></div>
-<div class="line"><span class="lineno">   60</span>    {</div>
-<div class="line"><span class="lineno">   61</span>        printf(<span class="stringliteral">&quot;\n\t0 - Sair\n\t1 - Inserir na lista\n\t2 - Mostrar a lista\n\t3 - Remover da lista\n\t4 - Mostrar interferências\n\tEscolha uma opção: &quot;</span>);</div>
-<div class="line"><span class="lineno">   62</span>        scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;choice);</div>
-<div class="line"><span class="lineno">   63</span> </div>
-<div class="line"><span class="lineno">   64</span>        <span class="keywordflow">switch</span> (choice)</div>
-<div class="line"><span class="lineno">   65</span>        {</div>
-<div class="line"><span class="lineno">   66</span>        <span class="keywordflow">case</span> 1:</div>
-<div class="line"><span class="lineno">   67</span>            printf(<span class="stringliteral">&quot;Insira a frequência de ressonância da antena: &quot;</span>);</div>
-<div class="line"><span class="lineno">   68</span>            scanf(<span class="stringliteral">&quot; %c&quot;</span>, &amp;resonanceFrequency);</div>
-<div class="line"><span class="lineno">   69</span>            printf(<span class="stringliteral">&quot;Insira a coordenada X da antena: &quot;</span>);</div>
-<div class="line"><span class="lineno">   70</span>            scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;coordinateX);</div>
-<div class="line"><span class="lineno">   71</span>            printf(<span class="stringliteral">&quot;Insira a coordenada Y da antena: &quot;</span>);</div>
-<div class="line"><span class="lineno">   72</span>            scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;coordinateY);</div>
-<div class="line"><span class="lineno">   73</span>            <a class="code hl_function" href="aerial_8c.html#a3d3df9547d7b6a22110a11d9978decb4">insertAerialEnd</a>(&amp;list, resonanceFrequency, coordinateX, coordinateY);</div>
-<div class="line"><span class="lineno">   74</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   75</span>        <span class="keywordflow">case</span> 2:</div>
-<div class="line"><span class="lineno">   76</span>            <a class="code hl_function" href="grid_utils_8c.html#ae41577cef1aeffa8c33665d15a6941e9">showAerialList</a>(list);</div>
-<div class="line"><span class="lineno">   77</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   78</span>        <span class="keywordflow">case</span> 3:</div>
-<div class="line"><span class="lineno">   79</span>            printf(<span class="stringliteral">&quot;Insira a coordenada X da antena a remover: &quot;</span>);</div>
-<div class="line"><span class="lineno">   80</span>            scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;coordinateX);</div>
-<div class="line"><span class="lineno">   81</span>            printf(<span class="stringliteral">&quot;Insira a coordenada Y da antena a remover: &quot;</span>);</div>
-<div class="line"><span class="lineno">   82</span>            scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;coordinateY);</div>
-<div class="line"><span class="lineno">   83</span>            <a class="code hl_function" href="aerial_8c.html#a3a817e307efda897e560ab98309bfbb6">removeAerial</a>(&amp;list, coordinateX, coordinateY);</div>
-<div class="line"><span class="lineno">   84</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   85</span>        <span class="keywordflow">case</span> 4:</div>
-<div class="line"><span class="lineno">   86</span>            <a class="code hl_function" href="interference_8c.html#a33a306520827a930a7d51574f41fbf8b">interferencesED</a>(list);</div>
-<div class="line"><span class="lineno">   87</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   88</span>        <span class="keywordflow">default</span>:</div>
-<div class="line"><span class="lineno">   89</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   90</span>        }</div>
-<div class="line"><span class="lineno">   91</span>    } <span class="keywordflow">while</span> (choice != 0);</div>
-<div class="line"><span class="lineno">   92</span> </div>
-<div class="line"><span class="lineno">   93</span>    <span class="keywordflow">return</span> 0;</div>
-<div class="line"><span class="lineno">   94</span>}</div>
-<div class="ttc" id="aaerial_8c_html_a3a817e307efda897e560ab98309bfbb6"><div class="ttname"><a href="aerial_8c.html#a3a817e307efda897e560ab98309bfbb6">removeAerial</a></div><div class="ttdeci">void removeAerial(ED **list, int coordinateX, int coordinateY)</div><div class="ttdef"><b>Definição</b> aerial.c:43</div></div>
-<div class="ttc" id="aaerial_8c_html_a3d3df9547d7b6a22110a11d9978decb4"><div class="ttname"><a href="aerial_8c.html#a3d3df9547d7b6a22110a11d9978decb4">insertAerialEnd</a></div><div class="ttdeci">void insertAerialEnd(ED **list, char resonanceFrequencyTmp, int coordinateXTmp, int coordinateYTmp)</div><div class="ttdef"><b>Definição</b> aerial.c:12</div></div>
-<div class="ttc" id="afile_utils_8c_html_a5414681b8fc0a4155433de5d898aa5df"><div class="ttname"><a href="file_utils_8c.html#a5414681b8fc0a4155433de5d898aa5df">loadAerialsFromFile</a></div><div class="ttdeci">void loadAerialsFromFile(ED **list, const char *filename)</div><div class="ttdef"><b>Definição</b> fileUtils.c:13</div></div>
-<div class="ttc" id="agrid_utils_8c_html_ae41577cef1aeffa8c33665d15a6941e9"><div class="ttname"><a href="grid_utils_8c.html#ae41577cef1aeffa8c33665d15a6941e9">showAerialList</a></div><div class="ttdeci">void showAerialList(ED *list)</div><div class="ttdef"><b>Definição</b> gridUtils.c:34</div></div>
-<div class="ttc" id="ainterference_8c_html_a33a306520827a930a7d51574f41fbf8b"><div class="ttname"><a href="interference_8c.html#a33a306520827a930a7d51574f41fbf8b">interferencesED</a></div><div class="ttdeci">void interferencesED(ED *list)</div><div class="ttdef"><b>Definição</b> interference.c:14</div></div>
+<div class="line"><span class="lineno">   35</span>            list = <a class="code hl_function" href="file_utils_8c.html#a295ed0e1c138f3fa0017018a5ca307fe">loadAerialsFromFile</a>(list, filename);</div>
+<div class="line"><span class="lineno">   36</span> </div>
+<div class="line"><span class="lineno">   37</span>            <span class="keywordflow">if</span> (list == NULL)</div>
+<div class="line"><span class="lineno">   38</span>            {</div>
+<div class="line"><span class="lineno">   39</span>                printf(<span class="stringliteral">&quot;Erro ao abrir o ficheiro %s. Deseja tentar novamente? (s/n): &quot;</span>, filename);</div>
+<div class="line"><span class="lineno">   40</span>                scanf(<span class="stringliteral">&quot; %c&quot;</span>, &amp;retryChoice);</div>
+<div class="line"><span class="lineno">   41</span>                <span class="keywordflow">if</span> (retryChoice == <span class="charliteral">&#39;n&#39;</span> || retryChoice == <span class="charliteral">&#39;N&#39;</span>)</div>
+<div class="line"><span class="lineno">   42</span>                {</div>
+<div class="line"><span class="lineno">   43</span>                    <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   44</span>                }</div>
+<div class="line"><span class="lineno">   45</span>            }</div>
+<div class="line"><span class="lineno">   46</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   47</span>            {</div>
+<div class="line"><span class="lineno">   48</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   49</span>            }</div>
+<div class="line"><span class="lineno">   50</span>        } <span class="keywordflow">while</span> (1);</div>
+<div class="line"><span class="lineno">   51</span>    }</div>
+<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">   53</span>    {</div>
+<div class="line"><span class="lineno">   54</span>        printf(<span class="stringliteral">&quot;A criar uma nova lista vazia...\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   55</span>    }</div>
+<div class="line"><span class="lineno">   56</span> </div>
+<div class="line"><span class="lineno">   57</span>    <span class="keywordflow">do</span></div>
+<div class="line"><span class="lineno">   58</span>    {</div>
+<div class="line"><span class="lineno">   59</span>        printf(<span class="stringliteral">&quot;\n\t0 - Sair\n\t1 - Inserir na lista\n\t2 - Mostrar a lista\n\t3 - Remover da lista\n\t4 - Mostrar interferências\n\tEscolha uma opção: &quot;</span>);</div>
+<div class="line"><span class="lineno">   60</span>        scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;choice);</div>
+<div class="line"><span class="lineno">   61</span> </div>
+<div class="line"><span class="lineno">   62</span>        <span class="keywordflow">switch</span> (choice)</div>
+<div class="line"><span class="lineno">   63</span>        {</div>
+<div class="line"><span class="lineno">   64</span>        <span class="keywordflow">case</span> 0:</div>
+<div class="line"><span class="lineno">   65</span>            printf(<span class="stringliteral">&quot;\nA encerrar o programa...\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   66</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   67</span> </div>
+<div class="line"><span class="lineno">   68</span>        <span class="keywordflow">case</span> 1:</div>
+<div class="line"><span class="lineno">   69</span>            printf(<span class="stringliteral">&quot;Insira a frequência de ressonância da antena: &quot;</span>);</div>
+<div class="line"><span class="lineno">   70</span>            scanf(<span class="stringliteral">&quot; %c&quot;</span>, &amp;resonanceFrequency);</div>
+<div class="line"><span class="lineno">   71</span>            printf(<span class="stringliteral">&quot;Insira a coordenada X da antena: &quot;</span>);</div>
+<div class="line"><span class="lineno">   72</span>            scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;coordinateX);</div>
+<div class="line"><span class="lineno">   73</span>            printf(<span class="stringliteral">&quot;Insira a coordenada Y da antena: &quot;</span>);</div>
+<div class="line"><span class="lineno">   74</span>            scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;coordinateY);</div>
+<div class="line"><span class="lineno">   75</span>            list = <a class="code hl_function" href="aerial_8c.html#a80c5c32732caf86d2d4490b870385fec">insertAerialEnd</a>(list, resonanceFrequency, coordinateX, coordinateY);</div>
+<div class="line"><span class="lineno">   76</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   77</span> </div>
+<div class="line"><span class="lineno">   78</span>        <span class="keywordflow">case</span> 2:</div>
+<div class="line"><span class="lineno">   79</span>            <a class="code hl_function" href="grid_utils_8c.html#aeec69b0d6375560baf63bfde18b37c92">showAerialList</a>(list);</div>
+<div class="line"><span class="lineno">   80</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   81</span> </div>
+<div class="line"><span class="lineno">   82</span>        <span class="keywordflow">case</span> 3:</div>
+<div class="line"><span class="lineno">   83</span>            printf(<span class="stringliteral">&quot;Insira a coordenada X da antena a remover: &quot;</span>);</div>
+<div class="line"><span class="lineno">   84</span>            scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;coordinateX);</div>
+<div class="line"><span class="lineno">   85</span>            printf(<span class="stringliteral">&quot;Insira a coordenada Y da antena a remover: &quot;</span>);</div>
+<div class="line"><span class="lineno">   86</span>            scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;coordinateY);</div>
+<div class="line"><span class="lineno">   87</span>            list = <a class="code hl_function" href="aerial_8c.html#a7a798c78f08324cdd20bd6bb94b66149">removeAerial</a>(list, coordinateX, coordinateY);</div>
+<div class="line"><span class="lineno">   88</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   89</span> </div>
+<div class="line"><span class="lineno">   90</span>        <span class="keywordflow">case</span> 4:</div>
+<div class="line"><span class="lineno">   91</span>            <a class="code hl_function" href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a>(list);</div>
+<div class="line"><span class="lineno">   92</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   93</span> </div>
+<div class="line"><span class="lineno">   94</span>        <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">   95</span>            printf(<span class="stringliteral">&quot;\nOpção inválida!\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   96</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   97</span>        }</div>
+<div class="line"><span class="lineno">   98</span>    } <span class="keywordflow">while</span> (choice != 0);</div>
+<div class="line"><span class="lineno">   99</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  100</span>}</div>
+<div class="ttc" id="aaerial_8c_html_a7a798c78f08324cdd20bd6bb94b66149"><div class="ttname"><a href="aerial_8c.html#a7a798c78f08324cdd20bd6bb94b66149">removeAerial</a></div><div class="ttdeci">ED * removeAerial(ED *list, int coordinateX, int coordinateY)</div><div class="ttdef"><b>Definição</b> aerial.c:43</div></div>
+<div class="ttc" id="aaerial_8c_html_a80c5c32732caf86d2d4490b870385fec"><div class="ttname"><a href="aerial_8c.html#a80c5c32732caf86d2d4490b870385fec">insertAerialEnd</a></div><div class="ttdeci">ED * insertAerialEnd(ED *list, char resonanceFrequencyTmp, int coordinateXTmp, int coordinateYTmp)</div><div class="ttdef"><b>Definição</b> aerial.c:12</div></div>
+<div class="ttc" id="afile_utils_8c_html_a295ed0e1c138f3fa0017018a5ca307fe"><div class="ttname"><a href="file_utils_8c.html#a295ed0e1c138f3fa0017018a5ca307fe">loadAerialsFromFile</a></div><div class="ttdeci">ED * loadAerialsFromFile(ED *list, const char *filename)</div><div class="ttdef"><b>Definição</b> fileUtils.c:13</div></div>
+<div class="ttc" id="agrid_utils_8c_html_aeec69b0d6375560baf63bfde18b37c92"><div class="ttname"><a href="grid_utils_8c.html#aeec69b0d6375560baf63bfde18b37c92">showAerialList</a></div><div class="ttdeci">int showAerialList(ED *list)</div><div class="ttdef"><b>Definição</b> gridUtils.c:35</div></div>
+<div class="ttc" id="ainterference_8c_html_a1a209b8877ab392ad333d1e01d8d2c73"><div class="ttname"><a href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a></div><div class="ttdeci">int interferencesED(ED *list)</div><div class="ttdef"><b>Definição</b> interference.c:14</div></div>
 <div class="ttc" id="astruct_e_d_html"><div class="ttname"><a href="struct_e_d.html">ED</a></div><div class="ttdef"><b>Definição</b> aerial.h:14</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a0d25584f35f21200b3839bed78cff5d2" name="a0d25584f35f21200b3839bed78cff5d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d25584f35f21200b3839bed78cff5d2">&#9670;&#160;</a></span>runPart2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int runPart2 </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">  104</span>{</div>
+<div class="line"><span class="lineno">  105</span>    <span class="comment">// Inicializa o grafo</span></div>
+<div class="line"><span class="lineno">  106</span>    <a class="code hl_struct" href="struct_graph.html">Graph</a> *graph = (<a class="code hl_struct" href="struct_graph.html">Graph</a> *)malloc(<span class="keyword">sizeof</span>(<a class="code hl_struct" href="struct_graph.html">Graph</a>));</div>
+<div class="line"><span class="lineno">  107</span>    <span class="keywordflow">if</span> (graph == NULL)</div>
+<div class="line"><span class="lineno">  108</span>    {</div>
+<div class="line"><span class="lineno">  109</span>        printf(<span class="stringliteral">&quot;Erro: Falha ao alocar memória para o grafo.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  110</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  111</span>    }</div>
+<div class="line"><span class="lineno">  112</span> </div>
+<div class="line"><span class="lineno">  113</span>    graph-&gt;<a class="code hl_variable" href="struct_graph.html#a72bb0a04571b49a568e0eed371a35c33">numVertices</a> = 0; <span class="comment">// Inicializa o número de vértices</span></div>
+<div class="line"><span class="lineno">  114</span>    graph-&gt;<a class="code hl_variable" href="struct_graph.html#a282c7e3b458f2375193126e06c415ed1">head</a> = NULL;     <span class="comment">// Inicializa a início do grafo</span></div>
+<div class="line"><span class="lineno">  115</span> </div>
+<div class="line"><span class="lineno">  116</span>    <span class="keywordtype">int</span> choice, result;</div>
+<div class="line"><span class="lineno">  117</span>    <span class="keywordtype">char</span> resonance;</div>
+<div class="line"><span class="lineno">  118</span>    <span class="keywordtype">float</span> x, y;</div>
+<div class="line"><span class="lineno">  119</span>    <span class="keywordtype">char</span> fileName[100];</div>
+<div class="line"><span class="lineno">  120</span> </div>
+<div class="line"><span class="lineno">  121</span>    <span class="keywordflow">do</span></div>
+<div class="line"><span class="lineno">  122</span>    {</div>
+<div class="line"><span class="lineno">  123</span>        printf(<span class="stringliteral">&quot;\n--- Menu ---\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  124</span>        printf(<span class="stringliteral">&quot;1. Adicionar antena\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  125</span>        printf(<span class="stringliteral">&quot;2. Mostrar o grafo\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  126</span>        printf(<span class="stringliteral">&quot;3. Mostrar grafo atraves de grid\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  127</span>        printf(<span class="stringliteral">&quot;4. Carregar ficheiro\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  128</span>        printf(<span class="stringliteral">&quot;5. DFT\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  129</span>        printf(<span class="stringliteral">&quot;6. BFT\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  130</span>        printf(<span class="stringliteral">&quot;7. Mostrar todos os caminhos entre duas antenas\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  131</span>        printf(<span class="stringliteral">&quot;8. Mostrar interseções entre duas frequências\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  132</span>        printf(<span class="stringliteral">&quot;0. Sair\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  133</span>        printf(<span class="stringliteral">&quot;Escolha: &quot;</span>);</div>
+<div class="line"><span class="lineno">  134</span>        scanf(<span class="stringliteral">&quot;%d&quot;</span>, &amp;choice);</div>
+<div class="line"><span class="lineno">  135</span> </div>
+<div class="line"><span class="lineno">  136</span>        <span class="keywordflow">switch</span> (choice)</div>
+<div class="line"><span class="lineno">  137</span>        {</div>
+<div class="line"><span class="lineno">  138</span>        <span class="keywordflow">case</span> 1: <span class="comment">// Adicionar antena manualmente</span></div>
+<div class="line"><span class="lineno">  139</span>            printf(<span class="stringliteral">&quot;Frequência da antena: &quot;</span>);</div>
+<div class="line"><span class="lineno">  140</span>            scanf(<span class="stringliteral">&quot; %c&quot;</span>, &amp;resonance);</div>
+<div class="line"><span class="lineno">  141</span>            printf(<span class="stringliteral">&quot;Coordenada X: &quot;</span>);</div>
+<div class="line"><span class="lineno">  142</span>            scanf(<span class="stringliteral">&quot;%f&quot;</span>, &amp;x);</div>
+<div class="line"><span class="lineno">  143</span>            printf(<span class="stringliteral">&quot;Coordenada Y: &quot;</span>);</div>
+<div class="line"><span class="lineno">  144</span>            scanf(<span class="stringliteral">&quot;%f&quot;</span>, &amp;y);</div>
+<div class="line"><span class="lineno">  145</span> </div>
+<div class="line"><span class="lineno">  146</span>            {</div>
+<div class="line"><span class="lineno">  147</span>                <a class="code hl_struct" href="struct_vertex.html">Vertex</a> *v = <a class="code hl_function" href="graph_8c.html#a3942f2d9f780b453c36762a16e9080aa">CreateVertex</a>(resonance, x, y);</div>
+<div class="line"><span class="lineno">  148</span>                <span class="keywordtype">int</span> res;</div>
+<div class="line"><span class="lineno">  149</span>                graph-&gt;<a class="code hl_variable" href="struct_graph.html#a282c7e3b458f2375193126e06c415ed1">head</a> = <a class="code hl_function" href="graph_8c.html#a9169e696db030c673fb7cc65aa85b8ad">InsertVertex</a>(v, graph-&gt;<a class="code hl_variable" href="struct_graph.html#a282c7e3b458f2375193126e06c415ed1">head</a>, &amp;res);</div>
+<div class="line"><span class="lineno">  150</span>                <span class="keywordflow">if</span> (res)</div>
+<div class="line"><span class="lineno">  151</span>                {</div>
+<div class="line"><span class="lineno">  152</span>                    graph-&gt;<a class="code hl_variable" href="struct_graph.html#a72bb0a04571b49a568e0eed371a35c33">numVertices</a>++;</div>
+<div class="line"><span class="lineno">  153</span>                    printf(<span class="stringliteral">&quot;A antena foi adicionada.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  154</span>                }</div>
+<div class="line"><span class="lineno">  155</span>                <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  156</span>                {</div>
+<div class="line"><span class="lineno">  157</span>                    printf(<span class="stringliteral">&quot;A antena não foi adicionada.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  158</span>                }</div>
+<div class="line"><span class="lineno">  159</span>            }</div>
+<div class="line"><span class="lineno">  160</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  161</span> </div>
+<div class="line"><span class="lineno">  162</span>        <span class="keywordflow">case</span> 2: <span class="comment">// Mostrar o grafo em formato de lista</span></div>
+<div class="line"><span class="lineno">  163</span>            <span class="keywordflow">if</span> (graph == NULL)</div>
+<div class="line"><span class="lineno">  164</span>            {</div>
+<div class="line"><span class="lineno">  165</span>                printf(<span class="stringliteral">&quot;Erro: Grafo não inicializado.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  166</span>            }</div>
+<div class="line"><span class="lineno">  167</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  168</span>            {</div>
+<div class="line"><span class="lineno">  169</span>                result = <a class="code hl_function" href="graph_8h.html#abcff0647b5b71b02a6ce0df1cb5f67e4">ShowGraph</a>(graph);</div>
+<div class="line"><span class="lineno">  170</span>                <span class="keywordflow">if</span> (result == 0)</div>
+<div class="line"><span class="lineno">  171</span>                {</div>
+<div class="line"><span class="lineno">  172</span>                    printf(<span class="stringliteral">&quot;Nenhum vértice foi mostrado (erro).\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  173</span>                }</div>
+<div class="line"><span class="lineno">  174</span>                <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  175</span>                {</div>
+<div class="line"><span class="lineno">  176</span>                    printf(<span class="stringliteral">&quot;Total de %d vértices mostrados.\n&quot;</span>, result);</div>
+<div class="line"><span class="lineno">  177</span>                }</div>
+<div class="line"><span class="lineno">  178</span>            }</div>
+<div class="line"><span class="lineno">  179</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  180</span> </div>
+<div class="line"><span class="lineno">  181</span>        <span class="keywordflow">case</span> 3: <span class="comment">// Mostrar o grafo em formato de grid</span></div>
+<div class="line"><span class="lineno">  182</span>            <span class="keywordflow">if</span> (graph == NULL)</div>
+<div class="line"><span class="lineno">  183</span>            {</div>
+<div class="line"><span class="lineno">  184</span>                printf(<span class="stringliteral">&quot;Erro: Grafo não inicializado.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  185</span>            }</div>
+<div class="line"><span class="lineno">  186</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  187</span>            {</div>
+<div class="line"><span class="lineno">  188</span>                result = <a class="code hl_function" href="graph_8h.html#a0f18d5b5a47592462a3aec8fffbb860e">ShowGraphAsGrid</a>(graph);</div>
+<div class="line"><span class="lineno">  189</span>                <span class="keywordflow">if</span> (result == 0)</div>
+<div class="line"><span class="lineno">  190</span>                {</div>
+<div class="line"><span class="lineno">  191</span>                    printf(<span class="stringliteral">&quot;Nenhum vértice foi mostrado no grid (erro).\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  192</span>                }</div>
+<div class="line"><span class="lineno">  193</span>                <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  194</span>                {</div>
+<div class="line"><span class="lineno">  195</span>                    printf(<span class="stringliteral">&quot;Grid mostrado com %d vértices.\n&quot;</span>, result);</div>
+<div class="line"><span class="lineno">  196</span>                }</div>
+<div class="line"><span class="lineno">  197</span>            }</div>
+<div class="line"><span class="lineno">  198</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  199</span> </div>
+<div class="line"><span class="lineno">  200</span>        <span class="keywordflow">case</span> 4: <span class="comment">// Carregar grafo de um ficheiro</span></div>
+<div class="line"><span class="lineno">  201</span>            printf(<span class="stringliteral">&quot;Nome do ficheiro e formato: &quot;</span>);</div>
+<div class="line"><span class="lineno">  202</span>            scanf(<span class="stringliteral">&quot;%s&quot;</span>, fileName);</div>
+<div class="line"><span class="lineno">  203</span>            <span class="keywordflow">if</span> (<a class="code hl_function" href="graph_8h.html#a17573e051acb909c000e4304500598e0">LoadGraph</a>(fileName, graph))</div>
+<div class="line"><span class="lineno">  204</span>            {</div>
+<div class="line"><span class="lineno">  205</span>                printf(<span class="stringliteral">&quot;Grafo carregado com sucesso.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  206</span>            }</div>
+<div class="line"><span class="lineno">  207</span>            <span class="keywordflow">else</span></div>
+<div class="line"><span class="lineno">  208</span>            {</div>
+<div class="line"><span class="lineno">  209</span>                printf(<span class="stringliteral">&quot;Grafo não carregado.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  210</span>            }</div>
+<div class="line"><span class="lineno">  211</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  212</span> </div>
+<div class="line"><span class="lineno">  213</span>        <span class="keywordflow">case</span> 5: <span class="comment">// DFT</span></div>
+<div class="line"><span class="lineno">  214</span>            printf(<span class="stringliteral">&quot;Coordenada X: &quot;</span>);</div>
+<div class="line"><span class="lineno">  215</span>            scanf(<span class="stringliteral">&quot;%f&quot;</span>, &amp;x);</div>
+<div class="line"><span class="lineno">  216</span>            printf(<span class="stringliteral">&quot;Coordenada Y: &quot;</span>);</div>
+<div class="line"><span class="lineno">  217</span>            scanf(<span class="stringliteral">&quot;%f&quot;</span>, &amp;y);</div>
+<div class="line"><span class="lineno">  218</span>            <a class="code hl_function" href="graph_8h.html#a8cd62045213714bd0c709f888ba018c8">DFT_FromCoordinates</a>(x, y, graph);</div>
+<div class="line"><span class="lineno">  219</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  220</span> </div>
+<div class="line"><span class="lineno">  221</span>        <span class="keywordflow">case</span> 6: <span class="comment">// BFT</span></div>
+<div class="line"><span class="lineno">  222</span>            printf(<span class="stringliteral">&quot;Coordenada X: &quot;</span>);</div>
+<div class="line"><span class="lineno">  223</span>            scanf(<span class="stringliteral">&quot;%f&quot;</span>, &amp;x);</div>
+<div class="line"><span class="lineno">  224</span>            printf(<span class="stringliteral">&quot;Coordenada Y: &quot;</span>);</div>
+<div class="line"><span class="lineno">  225</span>            scanf(<span class="stringliteral">&quot;%f&quot;</span>, &amp;y);</div>
+<div class="line"><span class="lineno">  226</span>            <a class="code hl_function" href="graph_8h.html#a8ecf184691efb9d1d955d7de817b7dc2">BFT_FromCoordinates</a>(x, y, graph);</div>
+<div class="line"><span class="lineno">  227</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  228</span> </div>
+<div class="line"><span class="lineno">  229</span>        <span class="keywordflow">case</span> 7: <span class="comment">// Mostrar todos os caminhos entre duas antenas</span></div>
+<div class="line"><span class="lineno">  230</span>            printf(<span class="stringliteral">&quot;Coordenada X da antena inicial: &quot;</span>);</div>
+<div class="line"><span class="lineno">  231</span>            scanf(<span class="stringliteral">&quot;%f&quot;</span>, &amp;x);</div>
+<div class="line"><span class="lineno">  232</span>            printf(<span class="stringliteral">&quot;Coordenada Y da antena inicial: &quot;</span>);</div>
+<div class="line"><span class="lineno">  233</span>            scanf(<span class="stringliteral">&quot;%f&quot;</span>, &amp;y);</div>
+<div class="line"><span class="lineno">  234</span>            <span class="keywordtype">float</span> startX = x, startY = y;</div>
+<div class="line"><span class="lineno">  235</span> </div>
+<div class="line"><span class="lineno">  236</span>            printf(<span class="stringliteral">&quot;Coordenada X da antena final: &quot;</span>);</div>
+<div class="line"><span class="lineno">  237</span>            scanf(<span class="stringliteral">&quot;%f&quot;</span>, &amp;x);</div>
+<div class="line"><span class="lineno">  238</span>            printf(<span class="stringliteral">&quot;Coordenada Y da antena final: &quot;</span>);</div>
+<div class="line"><span class="lineno">  239</span>            scanf(<span class="stringliteral">&quot;%f&quot;</span>, &amp;y);</div>
+<div class="line"><span class="lineno">  240</span>            <a class="code hl_function" href="graph_8h.html#a9677cf822a20104a9632c1403dcde364">FindAllPaths</a>(graph, startX, startY, x, y);</div>
+<div class="line"><span class="lineno">  241</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  242</span> </div>
+<div class="line"><span class="lineno">  243</span>        <span class="keywordflow">case</span> 8: <span class="comment">// Mostrar interseções entre duas frequências</span></div>
+<div class="line"><span class="lineno">  244</span>        {</div>
+<div class="line"><span class="lineno">  245</span>            <span class="keywordtype">char</span> freqA, freqB;</div>
+<div class="line"><span class="lineno">  246</span>            printf(<span class="stringliteral">&quot;Primeira frequência: &quot;</span>);</div>
+<div class="line"><span class="lineno">  247</span>            scanf(<span class="stringliteral">&quot; %c&quot;</span>, &amp;freqA);</div>
+<div class="line"><span class="lineno">  248</span>            printf(<span class="stringliteral">&quot;Segunda frequência: &quot;</span>);</div>
+<div class="line"><span class="lineno">  249</span>            scanf(<span class="stringliteral">&quot; %c&quot;</span>, &amp;freqB);</div>
+<div class="line"><span class="lineno">  250</span>            <span class="keywordtype">int</span> result = <a class="code hl_function" href="graph_8h.html#a5f26faa858c6b32575e8248ffe258c51">findIntersections</a>(graph, freqA, freqB);</div>
+<div class="line"><span class="lineno">  251</span>            printf(<span class="stringliteral">&quot;Total de %d interseções encontradas.\n&quot;</span>, result);</div>
+<div class="line"><span class="lineno">  252</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  253</span>        }</div>
+<div class="line"><span class="lineno">  254</span> </div>
+<div class="line"><span class="lineno">  255</span>        <span class="keywordflow">case</span> 0:</div>
+<div class="line"><span class="lineno">  256</span>            printf(<span class="stringliteral">&quot;A encerrar...\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  257</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  258</span> </div>
+<div class="line"><span class="lineno">  259</span>        <span class="keywordflow">default</span>:</div>
+<div class="line"><span class="lineno">  260</span>            printf(<span class="stringliteral">&quot;Escolha inválida.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  261</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  262</span>        }</div>
+<div class="line"><span class="lineno">  263</span>    } <span class="keywordflow">while</span> (choice != 0);</div>
+<div class="line"><span class="lineno">  264</span>    <a class="code hl_function" href="graph_8c.html#a6e4e04e726f3d0b291ec2a849610d10f">FreeGraph</a>(graph); <span class="comment">// Liberta toda a memória alocada</span></div>
+<div class="line"><span class="lineno">  265</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><span class="lineno">  266</span>}</div>
+<div class="ttc" id="agraph_8c_html_a3942f2d9f780b453c36762a16e9080aa"><div class="ttname"><a href="graph_8c.html#a3942f2d9f780b453c36762a16e9080aa">CreateVertex</a></div><div class="ttdeci">Vertex * CreateVertex(char resonanceFrequency, float coordinateX, float coordinateY)</div><div class="ttdef"><b>Definição</b> graph.c:12</div></div>
+<div class="ttc" id="agraph_8c_html_a6e4e04e726f3d0b291ec2a849610d10f"><div class="ttname"><a href="graph_8c.html#a6e4e04e726f3d0b291ec2a849610d10f">FreeGraph</a></div><div class="ttdeci">void FreeGraph(Graph *graph)</div><div class="ttdef"><b>Definição</b> graph.c:152</div></div>
+<div class="ttc" id="agraph_8c_html_a9169e696db030c673fb7cc65aa85b8ad"><div class="ttname"><a href="graph_8c.html#a9169e696db030c673fb7cc65aa85b8ad">InsertVertex</a></div><div class="ttdeci">Vertex * InsertVertex(Vertex *newVertex, Vertex *head, int *res)</div><div class="ttdef"><b>Definição</b> graph.c:82</div></div>
+<div class="ttc" id="agraph_8h_html_a0f18d5b5a47592462a3aec8fffbb860e"><div class="ttname"><a href="graph_8h.html#a0f18d5b5a47592462a3aec8fffbb860e">ShowGraphAsGrid</a></div><div class="ttdeci">int ShowGraphAsGrid(Graph *graph)</div><div class="ttdef"><b>Definição</b> graphIO.c:87</div></div>
+<div class="ttc" id="agraph_8h_html_a17573e051acb909c000e4304500598e0"><div class="ttname"><a href="graph_8h.html#a17573e051acb909c000e4304500598e0">LoadGraph</a></div><div class="ttdeci">bool LoadGraph(char *fileName, Graph *graph)</div><div class="ttdef"><b>Definição</b> graphIO.c:13</div></div>
+<div class="ttc" id="agraph_8h_html_a5f26faa858c6b32575e8248ffe258c51"><div class="ttname"><a href="graph_8h.html#a5f26faa858c6b32575e8248ffe258c51">findIntersections</a></div><div class="ttdeci">int findIntersections(Graph *graph, char freqA, char freqB)</div><div class="ttdef"><b>Definição</b> graphOp.c:14</div></div>
+<div class="ttc" id="agraph_8h_html_a8cd62045213714bd0c709f888ba018c8"><div class="ttname"><a href="graph_8h.html#a8cd62045213714bd0c709f888ba018c8">DFT_FromCoordinates</a></div><div class="ttdeci">int DFT_FromCoordinates(float x, float y, Graph *graph)</div><div class="ttdef"><b>Definição</b> graphSearch.c:63</div></div>
+<div class="ttc" id="agraph_8h_html_a8ecf184691efb9d1d955d7de817b7dc2"><div class="ttname"><a href="graph_8h.html#a8ecf184691efb9d1d955d7de817b7dc2">BFT_FromCoordinates</a></div><div class="ttdeci">int BFT_FromCoordinates(float x, float y, Graph *graph)</div><div class="ttdef"><b>Definição</b> graphSearch.c:148</div></div>
+<div class="ttc" id="agraph_8h_html_a9677cf822a20104a9632c1403dcde364"><div class="ttname"><a href="graph_8h.html#a9677cf822a20104a9632c1403dcde364">FindAllPaths</a></div><div class="ttdeci">int FindAllPaths(Graph *graph, float startX, float startY, float endX, float endY)</div><div class="ttdef"><b>Definição</b> graphSearch.c:287</div></div>
+<div class="ttc" id="agraph_8h_html_abcff0647b5b71b02a6ce0df1cb5f67e4"><div class="ttname"><a href="graph_8h.html#abcff0647b5b71b02a6ce0df1cb5f67e4">ShowGraph</a></div><div class="ttdeci">int ShowGraph(Graph *graph)</div><div class="ttdef"><b>Definição</b> graphIO.c:51</div></div>
+<div class="ttc" id="astruct_graph_html"><div class="ttname"><a href="struct_graph.html">Graph</a></div><div class="ttdef"><b>Definição</b> graph.h:34</div></div>
+<div class="ttc" id="astruct_graph_html_a282c7e3b458f2375193126e06c415ed1"><div class="ttname"><a href="struct_graph.html#a282c7e3b458f2375193126e06c415ed1">Graph::head</a></div><div class="ttdeci">Vertex * head</div><div class="ttdef"><b>Definição</b> graph.h:36</div></div>
+<div class="ttc" id="astruct_graph_html_a72bb0a04571b49a568e0eed371a35c33"><div class="ttname"><a href="struct_graph.html#a72bb0a04571b49a568e0eed371a35c33">Graph::numVertices</a></div><div class="ttdeci">int numVertices</div><div class="ttdef"><b>Definição</b> graph.h:35</div></div>
+<div class="ttc" id="astruct_vertex_html"><div class="ttname"><a href="struct_vertex.html">Vertex</a></div><div class="ttdef"><b>Definição</b> graph.h:16</div></div>
 </div><!-- fragment -->
 </div>
 </div>

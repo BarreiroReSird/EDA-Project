@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ed_0',['ED',['../struct_e_d.html',1,'']]]
+  ['adjacency_0',['Adjacency',['../struct_adjacency.html',1,'']]]
 ];

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.7"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Documentação para o projeto de EDA: Referência ao ficheiro EDA-Project/interference.c</title>
+<title>Documentação para o projeto de EDA: Referência ao ficheiro C:/Users/carlo/Desktop/EDA-Project/interference.c</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -21,7 +21,7 @@
  <tbody>
  <tr id="projectrow">
   <td id="projectalign">
-   <div id="projectname">Documentação para o projeto de EDA<span id="projectnumber">&#160;1.0</span>
+   <div id="projectname">Documentação para o projeto de EDA<span id="projectnumber">&#160;2.0</span>
    </div>
   </td>
  </tr>
@@ -69,7 +69,7 @@ $(function() {
 
 <div id="nav-path" class="navpath">
   <ul>
-<li class="navelem"><a class="el" href="dir_ef3bec018178901c8f24f3b45bd94f46.html">EDA-Project</a></li>  </ul>
+<li class="navelem"><a class="el" href="dir_e04ae2849dfa520b4ee2c9f7e9ff15de.html">Desktop</a></li><li class="navelem"><a class="el" href="dir_a7c32bdcbe9de4f9c203f5ae1802c74d.html">EDA-Project</a></li>  </ul>
 </div>
 </div><!-- top -->
 <div class="header">
@@ -87,18 +87,18 @@ $(function() {
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Funções</h2></td></tr>
-<tr class="memitem:a33a306520827a930a7d51574f41fbf8b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interference_8c.html#a33a306520827a930a7d51574f41fbf8b">interferencesED</a> (<a class="el" href="struct_e_d.html">ED</a> *list)</td></tr>
-<tr class="separator:a33a306520827a930a7d51574f41fbf8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a209b8877ab392ad333d1e01d8d2c73"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a> (<a class="el" href="struct_e_d.html">ED</a> *list)</td></tr>
+<tr class="separator:a1a209b8877ab392ad333d1e01d8d2c73"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Documentação das funções</h2>
-<a id="a33a306520827a930a7d51574f41fbf8b" name="a33a306520827a930a7d51574f41fbf8b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a33a306520827a930a7d51574f41fbf8b">&#9670;&#160;</a></span>interferencesED()</h2>
+<a id="a1a209b8877ab392ad333d1e01d8d2c73" name="a1a209b8877ab392ad333d1e01d8d2c73"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1a209b8877ab392ad333d1e01d8d2c73">&#9670;&#160;</a></span>interferencesED()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void interferencesED </td>
+          <td class="memname">int interferencesED </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="struct_e_d.html">ED</a> *&#160;</td>
           <td class="paramname"><em>list</em></td><td>)</td>
@@ -107,137 +107,120 @@ Funções</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <div class="fragment"><div class="line"><span class="lineno">   15</span>{</div>
-<div class="line"><span class="lineno">   16</span>    <span class="comment">// Cria uma lista ligada interferencesED para guardar as interferencias</span></div>
-<div class="line"><span class="lineno">   17</span>    <a class="code hl_struct" href="struct_e_d.html">ED</a> *<a class="code hl_function" href="interference_8c.html#a33a306520827a930a7d51574f41fbf8b">interferencesED</a> = NULL;</div>
+<div class="line"><span class="lineno">   16</span>    <a class="code hl_struct" href="struct_e_d.html">ED</a> *<a class="code hl_function" href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a> = NULL;</div>
+<div class="line"><span class="lineno">   17</span>    <span class="keywordtype">int</span> hasDuplicates = 0;</div>
 <div class="line"><span class="lineno">   18</span> </div>
-<div class="line"><span class="lineno">   19</span>    <span class="comment">// Verifica se há frequências de ressonância repetidas</span></div>
-<div class="line"><span class="lineno">   20</span>    <span class="keywordtype">int</span> hasDuplicates = 0;</div>
-<div class="line"><span class="lineno">   21</span>    <a class="code hl_struct" href="struct_e_d.html">ED</a> *current = list;</div>
-<div class="line"><span class="lineno">   22</span>    <span class="keywordflow">while</span> (current != NULL)</div>
-<div class="line"><span class="lineno">   23</span>    {</div>
-<div class="line"><span class="lineno">   24</span>        <a class="code hl_struct" href="struct_e_d.html">ED</a> *temp = current-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>; <span class="comment">// Aponta para o próximo registo da lista</span></div>
-<div class="line"><span class="lineno">   25</span>        <span class="keywordflow">while</span> (temp != NULL)</div>
-<div class="line"><span class="lineno">   26</span>        {</div>
-<div class="line"><span class="lineno">   27</span>            <span class="comment">// Compara a frequência atual com a próxima</span></div>
-<div class="line"><span class="lineno">   28</span>            <span class="keywordflow">if</span> (temp-&gt;<a class="code hl_variable" href="struct_e_d.html#ab43fc24c19ee01b5c6c1950aac2ae0fa">resonanceFrequency</a> == current-&gt;<a class="code hl_variable" href="struct_e_d.html#ab43fc24c19ee01b5c6c1950aac2ae0fa">resonanceFrequency</a>)</div>
-<div class="line"><span class="lineno">   29</span>            {</div>
-<div class="line"><span class="lineno">   30</span>                <span class="comment">// Frequência repetida encontrada</span></div>
-<div class="line"><span class="lineno">   31</span>                hasDuplicates = 1;</div>
-<div class="line"><span class="lineno">   32</span>                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   33</span>            }</div>
-<div class="line"><span class="lineno">   34</span>            temp = temp-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>; <span class="comment">// Avança para o próximo registo temp</span></div>
-<div class="line"><span class="lineno">   35</span>        }</div>
-<div class="line"><span class="lineno">   36</span>        <span class="keywordflow">if</span> (hasDuplicates) <span class="comment">// Se encontrar uma frequência repetida, sai do loop</span></div>
-<div class="line"><span class="lineno">   37</span>            <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   38</span>        current = current-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>; <span class="comment">// Avança para o próximo registo current</span></div>
-<div class="line"><span class="lineno">   39</span>    }</div>
-<div class="line"><span class="lineno">   40</span> </div>
-<div class="line"><span class="lineno">   41</span>    <span class="keywordflow">if</span> (!hasDuplicates) <span class="comment">// Se não houver frequências repetidas, mostra a lista normal</span></div>
-<div class="line"><span class="lineno">   42</span>    {</div>
-<div class="line"><span class="lineno">   43</span>        printf(<span class="stringliteral">&quot;Não há frequências de ressonância repetidas.\n&quot;</span>);</div>
-<div class="line"><span class="lineno">   44</span>        <a class="code hl_function" href="grid_utils_8c.html#ae41577cef1aeffa8c33665d15a6941e9">showAerialList</a>(list);</div>
-<div class="line"><span class="lineno">   45</span>        <span class="keywordflow">return</span>;</div>
-<div class="line"><span class="lineno">   46</span>    }</div>
-<div class="line"><span class="lineno">   47</span> </div>
-<div class="line"><span class="lineno">   48</span>    <span class="comment">// Copia toda a lista ligada ED para a lista ligada interferencesED</span></div>
-<div class="line"><span class="lineno">   49</span>    current = list;</div>
-<div class="line"><span class="lineno">   50</span>    <span class="keywordflow">while</span> (current != NULL)</div>
-<div class="line"><span class="lineno">   51</span>    {</div>
-<div class="line"><span class="lineno">   52</span>        <span class="comment">// Adiciona a antena à lista de interferências</span></div>
-<div class="line"><span class="lineno">   53</span>        <a class="code hl_function" href="aerial_8c.html#a3d3df9547d7b6a22110a11d9978decb4">insertAerialEnd</a>(&amp;<a class="code hl_function" href="interference_8c.html#a33a306520827a930a7d51574f41fbf8b">interferencesED</a>, current-&gt;<a class="code hl_variable" href="struct_e_d.html#ab43fc24c19ee01b5c6c1950aac2ae0fa">resonanceFrequency</a>, current-&gt;<a class="code hl_variable" href="struct_e_d.html#af16597a35e6726051afb504ca04dc723">coordinateX</a>, current-&gt;<a class="code hl_variable" href="struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6">coordinateY</a>);</div>
-<div class="line"><span class="lineno">   54</span>        current = current-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>;</div>
-<div class="line"><span class="lineno">   55</span>    }</div>
-<div class="line"><span class="lineno">   56</span> </div>
-<div class="line"><span class="lineno">   57</span>    <span class="comment">// Processa cada frequência</span></div>
-<div class="line"><span class="lineno">   58</span>    current = list;</div>
-<div class="line"><span class="lineno">   59</span>    <span class="keywordflow">while</span> (current != NULL)</div>
-<div class="line"><span class="lineno">   60</span>    {</div>
-<div class="line"><span class="lineno">   61</span>        <a class="code hl_struct" href="struct_e_d.html">ED</a> *other = current-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>;</div>
-<div class="line"><span class="lineno">   62</span>        <span class="keywordflow">while</span> (other != NULL)</div>
-<div class="line"><span class="lineno">   63</span>        {</div>
-<div class="line"><span class="lineno">   64</span>            <span class="comment">// Verifica se as frequências são iguais</span></div>
-<div class="line"><span class="lineno">   65</span>            <span class="keywordflow">if</span> (current-&gt;<a class="code hl_variable" href="struct_e_d.html#ab43fc24c19ee01b5c6c1950aac2ae0fa">resonanceFrequency</a> == other-&gt;<a class="code hl_variable" href="struct_e_d.html#ab43fc24c19ee01b5c6c1950aac2ae0fa">resonanceFrequency</a>)</div>
-<div class="line"><span class="lineno">   66</span>            {</div>
-<div class="line"><span class="lineno">   67</span>                <span class="comment">// Calcula a diferença nas coordenadas</span></div>
-<div class="line"><span class="lineno">   68</span>                <span class="keywordtype">int</span> diffX = other-&gt;<a class="code hl_variable" href="struct_e_d.html#af16597a35e6726051afb504ca04dc723">coordinateX</a> - current-&gt;<a class="code hl_variable" href="struct_e_d.html#af16597a35e6726051afb504ca04dc723">coordinateX</a>;</div>
-<div class="line"><span class="lineno">   69</span>                <span class="keywordtype">int</span> diffY = other-&gt;<a class="code hl_variable" href="struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6">coordinateY</a> - current-&gt;<a class="code hl_variable" href="struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6">coordinateY</a>;</div>
-<div class="line"><span class="lineno">   70</span> </div>
-<div class="line"><span class="lineno">   71</span>                <span class="comment">// Verifica se a diferença é pelo menos +2 ou -2 em X ou Y</span></div>
-<div class="line"><span class="lineno">   72</span>                <span class="keywordflow">if</span> (abs(diffX) &gt;= 2 || abs(diffY) &gt;= 2)</div>
-<div class="line"><span class="lineno">   73</span>                {</div>
-<div class="line"><span class="lineno">   74</span>                    <span class="comment">// Calcula a primeira interferência (troca sinais do caminho)</span></div>
-<div class="line"><span class="lineno">   75</span>                    <span class="keywordtype">int</span> interferenceX1 = current-&gt;<a class="code hl_variable" href="struct_e_d.html#af16597a35e6726051afb504ca04dc723">coordinateX</a> - diffX;</div>
-<div class="line"><span class="lineno">   76</span>                    <span class="keywordtype">int</span> interferenceY1 = current-&gt;<a class="code hl_variable" href="struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6">coordinateY</a> - diffY;</div>
-<div class="line"><span class="lineno">   77</span> </div>
-<div class="line"><span class="lineno">   78</span>                    <span class="comment">// Verifica se as coordenadas são positivas</span></div>
-<div class="line"><span class="lineno">   79</span>                    <span class="keywordflow">if</span> (interferenceX1 &gt; 0 &amp;&amp; interferenceY1 &gt; 0)</div>
-<div class="line"><span class="lineno">   80</span>                    {</div>
-<div class="line"><span class="lineno">   81</span>                        <span class="comment">// Verifica se já existe uma antena nesta posição</span></div>
-<div class="line"><span class="lineno">   82</span>                        <span class="keywordtype">int</span> isAerial = 0;</div>
-<div class="line"><span class="lineno">   83</span>                        <a class="code hl_struct" href="struct_e_d.html">ED</a> *check = list;</div>
-<div class="line"><span class="lineno">   84</span>                        <span class="keywordflow">while</span> (check != NULL)</div>
-<div class="line"><span class="lineno">   85</span>                        {</div>
-<div class="line"><span class="lineno">   86</span>                            <span class="keywordflow">if</span> (check-&gt;<a class="code hl_variable" href="struct_e_d.html#af16597a35e6726051afb504ca04dc723">coordinateX</a> == interferenceX1 &amp;&amp; check-&gt;<a class="code hl_variable" href="struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6">coordinateY</a> == interferenceY1)</div>
-<div class="line"><span class="lineno">   87</span>                            {</div>
-<div class="line"><span class="lineno">   88</span>                                isAerial = 1;</div>
-<div class="line"><span class="lineno">   89</span>                                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">   90</span>                            }</div>
-<div class="line"><span class="lineno">   91</span>                            check = check-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>;</div>
-<div class="line"><span class="lineno">   92</span>                        }</div>
-<div class="line"><span class="lineno">   93</span> </div>
-<div class="line"><span class="lineno">   94</span>                        <span class="keywordflow">if</span> (!isAerial)</div>
+<div class="line"><span class="lineno">   19</span>    <a class="code hl_struct" href="struct_e_d.html">ED</a> *current = list;</div>
+<div class="line"><span class="lineno">   20</span>    <span class="keywordflow">while</span> (current != NULL)</div>
+<div class="line"><span class="lineno">   21</span>    {</div>
+<div class="line"><span class="lineno">   22</span>        <a class="code hl_struct" href="struct_e_d.html">ED</a> *temp = current-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>;</div>
+<div class="line"><span class="lineno">   23</span>        <span class="keywordflow">while</span> (temp != NULL)</div>
+<div class="line"><span class="lineno">   24</span>        {</div>
+<div class="line"><span class="lineno">   25</span>            <span class="keywordflow">if</span> (temp-&gt;<a class="code hl_variable" href="struct_e_d.html#ab43fc24c19ee01b5c6c1950aac2ae0fa">resonanceFrequency</a> == current-&gt;<a class="code hl_variable" href="struct_e_d.html#ab43fc24c19ee01b5c6c1950aac2ae0fa">resonanceFrequency</a>)</div>
+<div class="line"><span class="lineno">   26</span>            {</div>
+<div class="line"><span class="lineno">   27</span>                hasDuplicates = 1;</div>
+<div class="line"><span class="lineno">   28</span>                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   29</span>            }</div>
+<div class="line"><span class="lineno">   30</span>            temp = temp-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>;</div>
+<div class="line"><span class="lineno">   31</span>        }</div>
+<div class="line"><span class="lineno">   32</span>        <span class="keywordflow">if</span> (hasDuplicates)</div>
+<div class="line"><span class="lineno">   33</span>            <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   34</span>        current = current-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>;</div>
+<div class="line"><span class="lineno">   35</span>    }</div>
+<div class="line"><span class="lineno">   36</span> </div>
+<div class="line"><span class="lineno">   37</span>    <span class="keywordflow">if</span> (!hasDuplicates)</div>
+<div class="line"><span class="lineno">   38</span>    {</div>
+<div class="line"><span class="lineno">   39</span>        printf(<span class="stringliteral">&quot;Não há frequências de ressonância repetidas.\n&quot;</span>);</div>
+<div class="line"><span class="lineno">   40</span>        <a class="code hl_function" href="grid_utils_8c.html#aeec69b0d6375560baf63bfde18b37c92">showAerialList</a>(list);</div>
+<div class="line"><span class="lineno">   41</span>        <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">   42</span>    }</div>
+<div class="line"><span class="lineno">   43</span> </div>
+<div class="line"><span class="lineno">   44</span>    current = list;</div>
+<div class="line"><span class="lineno">   45</span>    <span class="keywordflow">while</span> (current != NULL)</div>
+<div class="line"><span class="lineno">   46</span>    {</div>
+<div class="line"><span class="lineno">   47</span>        <a class="code hl_function" href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a> = <a class="code hl_function" href="aerial_8c.html#a80c5c32732caf86d2d4490b870385fec">insertAerialEnd</a>(<a class="code hl_function" href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a>, current-&gt;<a class="code hl_variable" href="struct_e_d.html#ab43fc24c19ee01b5c6c1950aac2ae0fa">resonanceFrequency</a>, current-&gt;<a class="code hl_variable" href="struct_e_d.html#af16597a35e6726051afb504ca04dc723">coordinateX</a>, current-&gt;<a class="code hl_variable" href="struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6">coordinateY</a>);</div>
+<div class="line"><span class="lineno">   48</span>        current = current-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>;</div>
+<div class="line"><span class="lineno">   49</span>    }</div>
+<div class="line"><span class="lineno">   50</span> </div>
+<div class="line"><span class="lineno">   51</span>    current = list;</div>
+<div class="line"><span class="lineno">   52</span>    <span class="keywordflow">while</span> (current != NULL)</div>
+<div class="line"><span class="lineno">   53</span>    {</div>
+<div class="line"><span class="lineno">   54</span>        <a class="code hl_struct" href="struct_e_d.html">ED</a> *other = current-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>;</div>
+<div class="line"><span class="lineno">   55</span>        <span class="keywordflow">while</span> (other != NULL)</div>
+<div class="line"><span class="lineno">   56</span>        {</div>
+<div class="line"><span class="lineno">   57</span>            <span class="keywordflow">if</span> (current-&gt;<a class="code hl_variable" href="struct_e_d.html#ab43fc24c19ee01b5c6c1950aac2ae0fa">resonanceFrequency</a> == other-&gt;<a class="code hl_variable" href="struct_e_d.html#ab43fc24c19ee01b5c6c1950aac2ae0fa">resonanceFrequency</a>)</div>
+<div class="line"><span class="lineno">   58</span>            {</div>
+<div class="line"><span class="lineno">   59</span>                <span class="keywordtype">int</span> diffX = other-&gt;<a class="code hl_variable" href="struct_e_d.html#af16597a35e6726051afb504ca04dc723">coordinateX</a> - current-&gt;<a class="code hl_variable" href="struct_e_d.html#af16597a35e6726051afb504ca04dc723">coordinateX</a>;</div>
+<div class="line"><span class="lineno">   60</span>                <span class="keywordtype">int</span> diffY = other-&gt;<a class="code hl_variable" href="struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6">coordinateY</a> - current-&gt;<a class="code hl_variable" href="struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6">coordinateY</a>;</div>
+<div class="line"><span class="lineno">   61</span> </div>
+<div class="line"><span class="lineno">   62</span>                <span class="keywordflow">if</span> (abs(diffX) &gt;= 2 || abs(diffY) &gt;= 2)</div>
+<div class="line"><span class="lineno">   63</span>                {</div>
+<div class="line"><span class="lineno">   64</span>                    <span class="keywordtype">int</span> interferenceX1 = current-&gt;<a class="code hl_variable" href="struct_e_d.html#af16597a35e6726051afb504ca04dc723">coordinateX</a> - diffX;</div>
+<div class="line"><span class="lineno">   65</span>                    <span class="keywordtype">int</span> interferenceY1 = current-&gt;<a class="code hl_variable" href="struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6">coordinateY</a> - diffY;</div>
+<div class="line"><span class="lineno">   66</span> </div>
+<div class="line"><span class="lineno">   67</span>                    <span class="keywordflow">if</span> (interferenceX1 &gt; 0 &amp;&amp; interferenceY1 &gt; 0)</div>
+<div class="line"><span class="lineno">   68</span>                    {</div>
+<div class="line"><span class="lineno">   69</span>                        <span class="keywordtype">int</span> isAerial = 0;</div>
+<div class="line"><span class="lineno">   70</span>                        <a class="code hl_struct" href="struct_e_d.html">ED</a> *check = list;</div>
+<div class="line"><span class="lineno">   71</span>                        <span class="keywordflow">while</span> (check != NULL)</div>
+<div class="line"><span class="lineno">   72</span>                        {</div>
+<div class="line"><span class="lineno">   73</span>                            <span class="keywordflow">if</span> (check-&gt;<a class="code hl_variable" href="struct_e_d.html#af16597a35e6726051afb504ca04dc723">coordinateX</a> == interferenceX1 &amp;&amp; check-&gt;<a class="code hl_variable" href="struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6">coordinateY</a> == interferenceY1)</div>
+<div class="line"><span class="lineno">   74</span>                            {</div>
+<div class="line"><span class="lineno">   75</span>                                isAerial = 1;</div>
+<div class="line"><span class="lineno">   76</span>                                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">   77</span>                            }</div>
+<div class="line"><span class="lineno">   78</span>                            check = check-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>;</div>
+<div class="line"><span class="lineno">   79</span>                        }</div>
+<div class="line"><span class="lineno">   80</span> </div>
+<div class="line"><span class="lineno">   81</span>                        <span class="keywordflow">if</span> (!isAerial)</div>
+<div class="line"><span class="lineno">   82</span>                        {</div>
+<div class="line"><span class="lineno">   83</span>                            <a class="code hl_function" href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a> = <a class="code hl_function" href="aerial_8c.html#a80c5c32732caf86d2d4490b870385fec">insertAerialEnd</a>(<a class="code hl_function" href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a>, <span class="charliteral">&#39;#&#39;</span>, interferenceX1, interferenceY1);</div>
+<div class="line"><span class="lineno">   84</span>                        }</div>
+<div class="line"><span class="lineno">   85</span>                    }</div>
+<div class="line"><span class="lineno">   86</span> </div>
+<div class="line"><span class="lineno">   87</span>                    <span class="keywordtype">int</span> interferenceX2 = other-&gt;<a class="code hl_variable" href="struct_e_d.html#af16597a35e6726051afb504ca04dc723">coordinateX</a> + diffX;</div>
+<div class="line"><span class="lineno">   88</span>                    <span class="keywordtype">int</span> interferenceY2 = other-&gt;<a class="code hl_variable" href="struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6">coordinateY</a> + diffY;</div>
+<div class="line"><span class="lineno">   89</span> </div>
+<div class="line"><span class="lineno">   90</span>                    <span class="keywordflow">if</span> (interferenceX2 &gt; 0 &amp;&amp; interferenceY2 &gt; 0)</div>
+<div class="line"><span class="lineno">   91</span>                    {</div>
+<div class="line"><span class="lineno">   92</span>                        <span class="keywordtype">int</span> isAerial = 0;</div>
+<div class="line"><span class="lineno">   93</span>                        <a class="code hl_struct" href="struct_e_d.html">ED</a> *check = list;</div>
+<div class="line"><span class="lineno">   94</span>                        <span class="keywordflow">while</span> (check != NULL)</div>
 <div class="line"><span class="lineno">   95</span>                        {</div>
-<div class="line"><span class="lineno">   96</span>                            <a class="code hl_function" href="aerial_8c.html#a3d3df9547d7b6a22110a11d9978decb4">insertAerialEnd</a>(&amp;<a class="code hl_function" href="interference_8c.html#a33a306520827a930a7d51574f41fbf8b">interferencesED</a>, <span class="charliteral">&#39;#&#39;</span>, interferenceX1, interferenceY1);</div>
-<div class="line"><span class="lineno">   97</span>                        }</div>
-<div class="line"><span class="lineno">   98</span>                    }</div>
-<div class="line"><span class="lineno">   99</span> </div>
-<div class="line"><span class="lineno">  100</span>                    <span class="comment">// Calcula a segunda interferência (troca sinais do caminho)</span></div>
-<div class="line"><span class="lineno">  101</span>                    <span class="keywordtype">int</span> interferenceX2 = other-&gt;<a class="code hl_variable" href="struct_e_d.html#af16597a35e6726051afb504ca04dc723">coordinateX</a> + diffX;</div>
-<div class="line"><span class="lineno">  102</span>                    <span class="keywordtype">int</span> interferenceY2 = other-&gt;<a class="code hl_variable" href="struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6">coordinateY</a> + diffY;</div>
+<div class="line"><span class="lineno">   96</span>                            <span class="keywordflow">if</span> (check-&gt;<a class="code hl_variable" href="struct_e_d.html#af16597a35e6726051afb504ca04dc723">coordinateX</a> == interferenceX2 &amp;&amp; check-&gt;<a class="code hl_variable" href="struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6">coordinateY</a> == interferenceY2)</div>
+<div class="line"><span class="lineno">   97</span>                            {</div>
+<div class="line"><span class="lineno">   98</span>                                isAerial = 1;</div>
+<div class="line"><span class="lineno">   99</span>                                <span class="keywordflow">break</span>;</div>
+<div class="line"><span class="lineno">  100</span>                            }</div>
+<div class="line"><span class="lineno">  101</span>                            check = check-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>;</div>
+<div class="line"><span class="lineno">  102</span>                        }</div>
 <div class="line"><span class="lineno">  103</span> </div>
-<div class="line"><span class="lineno">  104</span>                    <span class="comment">// Verifica se as coordenadas são positivas</span></div>
-<div class="line"><span class="lineno">  105</span>                    <span class="keywordflow">if</span> (interferenceX2 &gt; 0 &amp;&amp; interferenceY2 &gt; 0)</div>
-<div class="line"><span class="lineno">  106</span>                    {</div>
-<div class="line"><span class="lineno">  107</span>                        <span class="comment">// Verifica se já existe uma antena nesta posição</span></div>
-<div class="line"><span class="lineno">  108</span>                        <span class="keywordtype">int</span> isAerial = 0;</div>
-<div class="line"><span class="lineno">  109</span>                        <a class="code hl_struct" href="struct_e_d.html">ED</a> *check = list;</div>
-<div class="line"><span class="lineno">  110</span>                        <span class="keywordflow">while</span> (check != NULL)</div>
-<div class="line"><span class="lineno">  111</span>                        {</div>
-<div class="line"><span class="lineno">  112</span>                            <span class="keywordflow">if</span> (check-&gt;<a class="code hl_variable" href="struct_e_d.html#af16597a35e6726051afb504ca04dc723">coordinateX</a> == interferenceX2 &amp;&amp; check-&gt;<a class="code hl_variable" href="struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6">coordinateY</a> == interferenceY2)</div>
-<div class="line"><span class="lineno">  113</span>                            {</div>
-<div class="line"><span class="lineno">  114</span>                                isAerial = 1;</div>
-<div class="line"><span class="lineno">  115</span>                                <span class="keywordflow">break</span>;</div>
-<div class="line"><span class="lineno">  116</span>                            }</div>
-<div class="line"><span class="lineno">  117</span>                            check = check-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>;</div>
-<div class="line"><span class="lineno">  118</span>                        }</div>
-<div class="line"><span class="lineno">  119</span> </div>
-<div class="line"><span class="lineno">  120</span>                        <span class="keywordflow">if</span> (!isAerial)</div>
-<div class="line"><span class="lineno">  121</span>                        {</div>
-<div class="line"><span class="lineno">  122</span>                            <a class="code hl_function" href="aerial_8c.html#a3d3df9547d7b6a22110a11d9978decb4">insertAerialEnd</a>(&amp;<a class="code hl_function" href="interference_8c.html#a33a306520827a930a7d51574f41fbf8b">interferencesED</a>, <span class="charliteral">&#39;#&#39;</span>, interferenceX2, interferenceY2);</div>
-<div class="line"><span class="lineno">  123</span>                        }</div>
-<div class="line"><span class="lineno">  124</span>                    }</div>
-<div class="line"><span class="lineno">  125</span>                }</div>
-<div class="line"><span class="lineno">  126</span>            }</div>
-<div class="line"><span class="lineno">  127</span>            other = other-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>;</div>
-<div class="line"><span class="lineno">  128</span>        }</div>
-<div class="line"><span class="lineno">  129</span>        current = current-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>;</div>
-<div class="line"><span class="lineno">  130</span>    }</div>
-<div class="line"><span class="lineno">  131</span> </div>
-<div class="line"><span class="lineno">  132</span>    <span class="comment">// Mostra o grid com as interferências</span></div>
-<div class="line"><span class="lineno">  133</span>    printf(<span class="stringliteral">&quot;\nInterferências calculadas:\n&quot;</span>);</div>
-<div class="line"><span class="lineno">  134</span>    <a class="code hl_function" href="grid_utils_8c.html#ae41577cef1aeffa8c33665d15a6941e9">showAerialList</a>(<a class="code hl_function" href="interference_8c.html#a33a306520827a930a7d51574f41fbf8b">interferencesED</a>);</div>
-<div class="line"><span class="lineno">  135</span> </div>
-<div class="line"><span class="lineno">  136</span>    <span class="comment">// Liberta a memória da lista de interferências</span></div>
-<div class="line"><span class="lineno">  137</span>    <span class="keywordflow">while</span> (<a class="code hl_function" href="interference_8c.html#a33a306520827a930a7d51574f41fbf8b">interferencesED</a> != NULL)</div>
-<div class="line"><span class="lineno">  138</span>    {</div>
-<div class="line"><span class="lineno">  139</span>        <a class="code hl_struct" href="struct_e_d.html">ED</a> *temp = <a class="code hl_function" href="interference_8c.html#a33a306520827a930a7d51574f41fbf8b">interferencesED</a>;</div>
-<div class="line"><span class="lineno">  140</span>        <a class="code hl_function" href="interference_8c.html#a33a306520827a930a7d51574f41fbf8b">interferencesED</a> = <a class="code hl_function" href="interference_8c.html#a33a306520827a930a7d51574f41fbf8b">interferencesED</a>-&gt;next;</div>
-<div class="line"><span class="lineno">  141</span>        free(temp);</div>
-<div class="line"><span class="lineno">  142</span>    }</div>
-<div class="line"><span class="lineno">  143</span>}</div>
-<div class="ttc" id="aaerial_8c_html_a3d3df9547d7b6a22110a11d9978decb4"><div class="ttname"><a href="aerial_8c.html#a3d3df9547d7b6a22110a11d9978decb4">insertAerialEnd</a></div><div class="ttdeci">void insertAerialEnd(ED **list, char resonanceFrequencyTmp, int coordinateXTmp, int coordinateYTmp)</div><div class="ttdef"><b>Definição</b> aerial.c:12</div></div>
-<div class="ttc" id="agrid_utils_8c_html_ae41577cef1aeffa8c33665d15a6941e9"><div class="ttname"><a href="grid_utils_8c.html#ae41577cef1aeffa8c33665d15a6941e9">showAerialList</a></div><div class="ttdeci">void showAerialList(ED *list)</div><div class="ttdef"><b>Definição</b> gridUtils.c:34</div></div>
-<div class="ttc" id="ainterference_8c_html_a33a306520827a930a7d51574f41fbf8b"><div class="ttname"><a href="interference_8c.html#a33a306520827a930a7d51574f41fbf8b">interferencesED</a></div><div class="ttdeci">void interferencesED(ED *list)</div><div class="ttdef"><b>Definição</b> interference.c:14</div></div>
+<div class="line"><span class="lineno">  104</span>                        <span class="keywordflow">if</span> (!isAerial)</div>
+<div class="line"><span class="lineno">  105</span>                        {</div>
+<div class="line"><span class="lineno">  106</span>                            <a class="code hl_function" href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a> = <a class="code hl_function" href="aerial_8c.html#a80c5c32732caf86d2d4490b870385fec">insertAerialEnd</a>(<a class="code hl_function" href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a>, <span class="charliteral">&#39;#&#39;</span>, interferenceX2, interferenceY2);</div>
+<div class="line"><span class="lineno">  107</span>                        }</div>
+<div class="line"><span class="lineno">  108</span>                    }</div>
+<div class="line"><span class="lineno">  109</span>                }</div>
+<div class="line"><span class="lineno">  110</span>            }</div>
+<div class="line"><span class="lineno">  111</span>            other = other-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>;</div>
+<div class="line"><span class="lineno">  112</span>        }</div>
+<div class="line"><span class="lineno">  113</span>        current = current-&gt;<a class="code hl_variable" href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">next</a>;</div>
+<div class="line"><span class="lineno">  114</span>    }</div>
+<div class="line"><span class="lineno">  115</span> </div>
+<div class="line"><span class="lineno">  116</span>    printf(<span class="stringliteral">&quot;\nInterferências calculadas:\n&quot;</span>);</div>
+<div class="line"><span class="lineno">  117</span>    <a class="code hl_function" href="grid_utils_8c.html#aeec69b0d6375560baf63bfde18b37c92">showAerialList</a>(<a class="code hl_function" href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a>);</div>
+<div class="line"><span class="lineno">  118</span> </div>
+<div class="line"><span class="lineno">  119</span>    <span class="keywordflow">while</span> (<a class="code hl_function" href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a> != NULL)</div>
+<div class="line"><span class="lineno">  120</span>    {</div>
+<div class="line"><span class="lineno">  121</span>        <a class="code hl_struct" href="struct_e_d.html">ED</a> *temp = <a class="code hl_function" href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a>;</div>
+<div class="line"><span class="lineno">  122</span>        <a class="code hl_function" href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a> = <a class="code hl_function" href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a>-&gt;next;</div>
+<div class="line"><span class="lineno">  123</span>        free(temp);</div>
+<div class="line"><span class="lineno">  124</span>    }</div>
+<div class="line"><span class="lineno">  125</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><span class="lineno">  126</span>}</div>
+<div class="ttc" id="aaerial_8c_html_a80c5c32732caf86d2d4490b870385fec"><div class="ttname"><a href="aerial_8c.html#a80c5c32732caf86d2d4490b870385fec">insertAerialEnd</a></div><div class="ttdeci">ED * insertAerialEnd(ED *list, char resonanceFrequencyTmp, int coordinateXTmp, int coordinateYTmp)</div><div class="ttdef"><b>Definição</b> aerial.c:12</div></div>
+<div class="ttc" id="agrid_utils_8c_html_aeec69b0d6375560baf63bfde18b37c92"><div class="ttname"><a href="grid_utils_8c.html#aeec69b0d6375560baf63bfde18b37c92">showAerialList</a></div><div class="ttdeci">int showAerialList(ED *list)</div><div class="ttdef"><b>Definição</b> gridUtils.c:35</div></div>
+<div class="ttc" id="ainterference_8c_html_a1a209b8877ab392ad333d1e01d8d2c73"><div class="ttname"><a href="interference_8c.html#a1a209b8877ab392ad333d1e01d8d2c73">interferencesED</a></div><div class="ttdeci">int interferencesED(ED *list)</div><div class="ttdef"><b>Definição</b> interference.c:14</div></div>
 <div class="ttc" id="astruct_e_d_html"><div class="ttname"><a href="struct_e_d.html">ED</a></div><div class="ttdef"><b>Definição</b> aerial.h:14</div></div>
 <div class="ttc" id="astruct_e_d_html_a88a4c32bee369a38a6065bdd46cce3ba"><div class="ttname"><a href="struct_e_d.html#a88a4c32bee369a38a6065bdd46cce3ba">ED::next</a></div><div class="ttdeci">struct ED * next</div><div class="ttdef"><b>Definição</b> aerial.h:18</div></div>
 <div class="ttc" id="astruct_e_d_html_a9be5ccf528c7fff8348356c45328c0e6"><div class="ttname"><a href="struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6">ED::coordinateY</a></div><div class="ttdeci">int coordinateY</div><div class="ttdef"><b>Definição</b> aerial.h:17</div></div>

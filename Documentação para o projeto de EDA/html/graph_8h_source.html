@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.7"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Documentação para o projeto de EDA: Código-Fonte de C:/Users/carlo/Desktop/EDA-Project/graph.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Documentação para o projeto de EDA<span id="projectnumber">&#160;2.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.7 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_e04ae2849dfa520b4ee2c9f7e9ff15de.html">Desktop</a></li><li class="navelem"><a class="el" href="dir_a7c32bdcbe9de4f9c203f5ae1802c74d.html">EDA-Project</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle"><div class="title">graph.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="graph_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">// File: graph.h</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// Desc:</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">// Auth: Carlos Barreiro</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="comment">// Mail: a20360@alunos.ipca.pt</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="comment">// Date: 2025/05</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#ifndef GRAPH_H</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#define GRAPH_H</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="graph_8h.html#a52037c938e3c1b126c6277da5ca689d0">   12</a></span><span class="preprocessor">#define M 40 </span><span class="comment">// Tamanho máximo do grid (40x40)</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// Representação de um vértice no grafo</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="struct_vertex.html">   15</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_vertex.html">Vertex</a></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>{</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="struct_vertex.html#a1e5301c9ec80b2a3c3ea6f29ee9c33d2">   17</a></span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="struct_vertex.html#a1e5301c9ec80b2a3c3ea6f29ee9c33d2">resonanceFrequency</a>;        <span class="comment">// Frequência de ressonância</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="struct_vertex.html#a6fff210f9cc8f68a34ef80280f725d0e">   18</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_vertex.html#a6fff210f9cc8f68a34ef80280f725d0e">coordinateX</a>, <a class="code hl_variable" href="struct_vertex.html#a2ca4dfed34d8fd709c9e6a19135afaaf">coordinateY</a>; <span class="comment">// Coordenadas da antena</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="struct_vertex.html#a08612f92582322f8d07f61beece27362">   19</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_vertex.html">Vertex</a> *<a class="code hl_variable" href="struct_vertex.html#a08612f92582322f8d07f61beece27362">next</a>;            <span class="comment">// Próximo vértice</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="struct_vertex.html#a0d830afe3fd2fafcf2c861a61465cfd8">   20</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_adjacency.html">Adjacency</a> *<a class="code hl_variable" href="struct_vertex.html#a0d830afe3fd2fafcf2c861a61465cfd8">adjacencies</a>;  <span class="comment">// Lista de adjacências</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="graph_8h.html#a2e1662af5233d0fe6a6f061445d2ff25">   21</a></span>} <a class="code hl_struct" href="struct_vertex.html">Vertex</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="comment">// Representação de uma aresta no grafo</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="struct_adjacency.html">   24</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_adjacency.html">Adjacency</a></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>{</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="struct_adjacency.html#a605d08e56a792053d0f6f028d9450cb7">   26</a></span>    <span class="keywordtype">float</span> <a class="code hl_variable" href="struct_adjacency.html#a605d08e56a792053d0f6f028d9450cb7">distance</a>;             <span class="comment">// Distância até o vértice adjacente</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="struct_adjacency.html#ae273f8e50613cff5e883a667bd546b16">   27</a></span>    <span class="keywordtype">char</span> <a class="code hl_variable" href="struct_adjacency.html#ae273f8e50613cff5e883a667bd546b16">resonanceFrequency</a>;    <span class="comment">// Frequência de ressonância do vértice adjacente</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="struct_adjacency.html#af406f2bdf3ba27510be651a6ddf4417c">   28</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_adjacency.html#af406f2bdf3ba27510be651a6ddf4417c">destinationVertexIndex</a>; <span class="comment">// Índice do vértice adjacente</span></div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno"><a class="line" href="struct_adjacency.html#aa1de695ad362945c07784a107cdd2819">   29</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_adjacency.html">Adjacency</a> *<a class="code hl_variable" href="struct_adjacency.html#aa1de695ad362945c07784a107cdd2819">next</a>;     <span class="comment">// Próxima aresta</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="graph_8h.html#a27856a78003d0b59d2492e38f31349d3">   30</a></span>} <a class="code hl_struct" href="struct_adjacency.html">Adjacency</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="comment">// Representação do grafo</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="struct_graph.html">   33</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_graph.html">Graph</a></div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="struct_graph.html#a72bb0a04571b49a568e0eed371a35c33">   35</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_graph.html#a72bb0a04571b49a568e0eed371a35c33">numVertices</a>; <span class="comment">// Quantidade de vértices</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="struct_graph.html#a282c7e3b458f2375193126e06c415ed1">   36</a></span>    <a class="code hl_struct" href="struct_vertex.html">Vertex</a> *<a class="code hl_variable" href="struct_graph.html#a282c7e3b458f2375193126e06c415ed1">head</a>;    <span class="comment">// Ponteiro para o primeiro vértice</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="graph_8h.html#a0c94bbeb31bba748d2897a168f62e9bc">   37</a></span>} <a class="code hl_struct" href="struct_graph.html">Graph</a>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="comment">// Representação de uma fila para BFT</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="struct_queue_node.html">   40</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_queue_node.html">QueueNode</a></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>{</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="struct_queue_node.html#add8f3dd2e705ce1d3d3c2e5364b97b4f">   42</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_queue_node.html#add8f3dd2e705ce1d3d3c2e5364b97b4f">index</a>;              <span class="comment">// Índice do vértice na fila</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="struct_queue_node.html#a62c1c1f34bb19461763b618bbc8b6213">   43</a></span>    <span class="keyword">struct </span><a class="code hl_struct" href="struct_queue_node.html">QueueNode</a> *<a class="code hl_variable" href="struct_queue_node.html#a62c1c1f34bb19461763b618bbc8b6213">next</a>; <span class="comment">// Próximo nó na fila</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="graph_8h.html#ae89879d40f2de520473f2e823b6272df">   44</a></span>} <a class="code hl_struct" href="struct_queue_node.html">QueueNode</a>;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="comment">// Representação de uma fila</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="struct_queue.html">   47</a></span><span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code hl_struct" href="struct_queue.html">Queue</a></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>{</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="struct_queue.html#afe8bd8724fefb47966b59c25c77ee44e">   49</a></span>    <a class="code hl_struct" href="struct_queue_node.html">QueueNode</a> *<a class="code hl_variable" href="struct_queue.html#afe8bd8724fefb47966b59c25c77ee44e">front</a>, *<a class="code hl_variable" href="struct_queue.html#aede669c5bf672239285cf4d942e5fc80">rear</a>; <span class="comment">// Ponteiros para o início e fim da fila</span></div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="graph_8h.html#ad4f29a362a072ba563b41ae8e935c6fc">   50</a></span>} <a class="code hl_struct" href="struct_queue.html">Queue</a>;</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="comment">// Lista de caminhos para cada frequência</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno"><a class="line" href="struct_path.html">   53</a></span><span class="keyword">typedef</span> <span class="keyword">struct</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>{</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="struct_path.html#a66a614d73cf80828c01c50c052560481">   55</a></span>    <a class="code hl_struct" href="struct_vertex.html">Vertex</a> *<a class="code hl_variable" href="struct_path.html#a66a614d73cf80828c01c50c052560481">start</a>;  <span class="comment">// Vértice inicial</span></div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="struct_path.html#a117eb8bc5fd945576237ef3a3bdf7306">   56</a></span>    <a class="code hl_struct" href="struct_vertex.html">Vertex</a> *<a class="code hl_variable" href="struct_path.html#a117eb8bc5fd945576237ef3a3bdf7306">end</a>;    <span class="comment">// Vértice final</span></div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="struct_path.html#a69e47875b4b6e3d660ba5ef29c27cdc7">   57</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_path.html#a69e47875b4b6e3d660ba5ef29c27cdc7">processed</a>; <span class="comment">// Para evitar duplicados</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>} <a class="code hl_struct" href="struct_path.html">Path</a>;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="comment">// Inicialização e gestão de gráficos</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><a class="code hl_struct" href="struct_vertex.html">Vertex</a> *<a class="code hl_function" href="graph_8h.html#a3942f2d9f780b453c36762a16e9080aa">CreateVertex</a>(<span class="keywordtype">char</span> resonanceFrequency, <span class="keywordtype">float</span> coordinateX, <span class="keywordtype">float</span> coordinateY);</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><a class="code hl_struct" href="struct_vertex.html">Vertex</a> *<a class="code hl_function" href="graph_8h.html#a9169e696db030c673fb7cc65aa85b8ad">InsertVertex</a>(<a class="code hl_struct" href="struct_vertex.html">Vertex</a> *newVertex, <a class="code hl_struct" href="struct_vertex.html">Vertex</a> *head, <span class="keywordtype">int</span> *res);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="keywordtype">bool</span> <a class="code hl_function" href="graph_8h.html#a3411ca22210a6e68b154413ffce1c03b">AdjacencyExists</a>(<a class="code hl_struct" href="struct_vertex.html">Vertex</a> *origin, <span class="keywordtype">int</span> destinationIndex);</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><a class="code hl_struct" href="struct_adjacency.html">Adjacency</a> *<a class="code hl_function" href="graph_8h.html#a8ffefb5107e47d3912ed2aaf98cc1193">CreateAdjacency</a>(<span class="keywordtype">float</span> distance, <span class="keywordtype">char</span> resonanceFrequency, <span class="keywordtype">int</span> destinationIndex);</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><a class="code hl_struct" href="struct_vertex.html">Vertex</a> *<a class="code hl_function" href="graph_8h.html#a67165c984cfa59f0f04970dcc0c2a535">InsertAdjacency</a>(<a class="code hl_struct" href="struct_vertex.html">Vertex</a> *head, <a class="code hl_struct" href="struct_adjacency.html">Adjacency</a> *newAdj, <span class="keywordtype">int</span> originIndex, <span class="keywordtype">int</span> destinationIndex, <span class="keywordtype">int</span> *res);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="keywordtype">bool</span> <a class="code hl_function" href="graph_8h.html#a17573e051acb909c000e4304500598e0">LoadGraph</a>(<span class="keywordtype">char</span> *fileName, <a class="code hl_struct" href="struct_graph.html">Graph</a> *graph);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="keywordtype">int</span> <a class="code hl_function" href="graph_8h.html#abcff0647b5b71b02a6ce0df1cb5f67e4">ShowGraph</a>(<a class="code hl_struct" href="struct_graph.html">Graph</a> *graph);</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keywordtype">int</span> <a class="code hl_function" href="graph_8h.html#a0f18d5b5a47592462a3aec8fffbb860e">ShowGraphAsGrid</a>(<a class="code hl_struct" href="struct_graph.html">Graph</a> *graph);</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="keywordtype">int</span> <a class="code hl_function" href="graph_8h.html#a5f26faa858c6b32575e8248ffe258c51">findIntersections</a>(<a class="code hl_struct" href="struct_graph.html">Graph</a> *graph, <span class="keywordtype">char</span> freqA, <span class="keywordtype">char</span> freqB);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span><span class="comment">// Algoritmos de procura</span></div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="keywordtype">int</span> <a class="code hl_function" href="graph_8h.html#a7a02e2509a47f3adf8f7272ea53f50a6">visitDFT</a>(<a class="code hl_struct" href="struct_vertex.html">Vertex</a> *v, <span class="keywordtype">bool</span> *visited, <a class="code hl_struct" href="struct_graph.html">Graph</a> *graph, <span class="keywordtype">int</span> index);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span><span class="keywordtype">int</span> <a class="code hl_function" href="graph_8h.html#a8cd62045213714bd0c709f888ba018c8">DFT_FromCoordinates</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <a class="code hl_struct" href="struct_graph.html">Graph</a> *graph);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keywordtype">int</span> <a class="code hl_function" href="graph_8h.html#a8ecf184691efb9d1d955d7de817b7dc2">BFT_FromCoordinates</a>(<span class="keywordtype">float</span> x, <span class="keywordtype">float</span> y, <a class="code hl_struct" href="struct_graph.html">Graph</a> *graph);</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span><span class="keywordtype">int</span> <a class="code hl_function" href="graph_8h.html#af97dead2e4a8709bdc69016783e2b908">FindAllPathsUtil</a>(<a class="code hl_struct" href="struct_vertex.html">Vertex</a> *current, <span class="keywordtype">int</span> currentIndex, <span class="keywordtype">int</span> endIndex, <span class="keywordtype">bool</span> *visited, <span class="keywordtype">int</span> *path, <span class="keywordtype">int</span> pathIndex, <a class="code hl_struct" href="struct_graph.html">Graph</a> *graph);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keywordtype">int</span> <a class="code hl_function" href="graph_8h.html#a9677cf822a20104a9632c1403dcde364">FindAllPaths</a>(<a class="code hl_struct" href="struct_graph.html">Graph</a> *graph, <span class="keywordtype">float</span> startX, <span class="keywordtype">float</span> startY, <span class="keywordtype">float</span> endX, <span class="keywordtype">float</span> endY);</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span><span class="comment">// Funcões auxiliares</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keywordtype">float</span> <a class="code hl_function" href="graph_8h.html#ad07c70e99fe5a56e0476ec81a12c537c">CalculateDistance</a>(<a class="code hl_struct" href="struct_vertex.html">Vertex</a> *a, <a class="code hl_struct" href="struct_vertex.html">Vertex</a> *b);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span><span class="comment">// BFT</span></div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span><span class="keywordtype">int</span> <a class="code hl_function" href="graph_8h.html#a9226a57ccc9ebee82b2234981172e206">Enqueue</a>(<a class="code hl_struct" href="struct_queue.html">Queue</a> *q, <span class="keywordtype">int</span> index);</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span><span class="keywordtype">int</span> <a class="code hl_function" href="graph_8h.html#ae7cd1d8c603a3bdb0a545df0c84f8d57">Dequeue</a>(<a class="code hl_struct" href="struct_queue.html">Queue</a> *q);</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keywordtype">bool</span> <a class="code hl_function" href="graph_8h.html#a9ffaa5df7a5503af370d511332979fbe">IsQueueEmpty</a>(<a class="code hl_struct" href="struct_queue.html">Queue</a> *q);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">#endif </span><span class="comment">// GRAPH_H</span></div>
+<div class="ttc" id="agraph_8h_html_a0f18d5b5a47592462a3aec8fffbb860e"><div class="ttname"><a href="graph_8h.html#a0f18d5b5a47592462a3aec8fffbb860e">ShowGraphAsGrid</a></div><div class="ttdeci">int ShowGraphAsGrid(Graph *graph)</div><div class="ttdef"><b>Definição</b> graphIO.c:87</div></div>
+<div class="ttc" id="agraph_8h_html_a17573e051acb909c000e4304500598e0"><div class="ttname"><a href="graph_8h.html#a17573e051acb909c000e4304500598e0">LoadGraph</a></div><div class="ttdeci">bool LoadGraph(char *fileName, Graph *graph)</div><div class="ttdef"><b>Definição</b> graphIO.c:13</div></div>
+<div class="ttc" id="agraph_8h_html_a3411ca22210a6e68b154413ffce1c03b"><div class="ttname"><a href="graph_8h.html#a3411ca22210a6e68b154413ffce1c03b">AdjacencyExists</a></div><div class="ttdeci">bool AdjacencyExists(Vertex *origin, int destinationIndex)</div><div class="ttdef"><b>Definição</b> graph.c:27</div></div>
+<div class="ttc" id="agraph_8h_html_a3942f2d9f780b453c36762a16e9080aa"><div class="ttname"><a href="graph_8h.html#a3942f2d9f780b453c36762a16e9080aa">CreateVertex</a></div><div class="ttdeci">Vertex * CreateVertex(char resonanceFrequency, float coordinateX, float coordinateY)</div><div class="ttdef"><b>Definição</b> graph.c:12</div></div>
+<div class="ttc" id="agraph_8h_html_a5f26faa858c6b32575e8248ffe258c51"><div class="ttname"><a href="graph_8h.html#a5f26faa858c6b32575e8248ffe258c51">findIntersections</a></div><div class="ttdeci">int findIntersections(Graph *graph, char freqA, char freqB)</div><div class="ttdef"><b>Definição</b> graphOp.c:14</div></div>
+<div class="ttc" id="agraph_8h_html_a67165c984cfa59f0f04970dcc0c2a535"><div class="ttname"><a href="graph_8h.html#a67165c984cfa59f0f04970dcc0c2a535">InsertAdjacency</a></div><div class="ttdeci">Vertex * InsertAdjacency(Vertex *head, Adjacency *newAdj, int originIndex, int destinationIndex, int *res)</div><div class="ttdef"><b>Definição</b> graph.c:54</div></div>
+<div class="ttc" id="agraph_8h_html_a7a02e2509a47f3adf8f7272ea53f50a6"><div class="ttname"><a href="graph_8h.html#a7a02e2509a47f3adf8f7272ea53f50a6">visitDFT</a></div><div class="ttdeci">int visitDFT(Vertex *v, bool *visited, Graph *graph, int index)</div><div class="ttdef"><b>Definição</b> graphSearch.c:13</div></div>
+<div class="ttc" id="agraph_8h_html_a8cd62045213714bd0c709f888ba018c8"><div class="ttname"><a href="graph_8h.html#a8cd62045213714bd0c709f888ba018c8">DFT_FromCoordinates</a></div><div class="ttdeci">int DFT_FromCoordinates(float x, float y, Graph *graph)</div><div class="ttdef"><b>Definição</b> graphSearch.c:63</div></div>
+<div class="ttc" id="agraph_8h_html_a8ecf184691efb9d1d955d7de817b7dc2"><div class="ttname"><a href="graph_8h.html#a8ecf184691efb9d1d955d7de817b7dc2">BFT_FromCoordinates</a></div><div class="ttdeci">int BFT_FromCoordinates(float x, float y, Graph *graph)</div><div class="ttdef"><b>Definição</b> graphSearch.c:148</div></div>
+<div class="ttc" id="agraph_8h_html_a8ffefb5107e47d3912ed2aaf98cc1193"><div class="ttname"><a href="graph_8h.html#a8ffefb5107e47d3912ed2aaf98cc1193">CreateAdjacency</a></div><div class="ttdeci">Adjacency * CreateAdjacency(float distance, char resonanceFrequency, int destinationIndex)</div><div class="ttdef"><b>Definição</b> graph.c:40</div></div>
+<div class="ttc" id="agraph_8h_html_a9169e696db030c673fb7cc65aa85b8ad"><div class="ttname"><a href="graph_8h.html#a9169e696db030c673fb7cc65aa85b8ad">InsertVertex</a></div><div class="ttdeci">Vertex * InsertVertex(Vertex *newVertex, Vertex *head, int *res)</div><div class="ttdef"><b>Definição</b> graph.c:82</div></div>
+<div class="ttc" id="agraph_8h_html_a9226a57ccc9ebee82b2234981172e206"><div class="ttname"><a href="graph_8h.html#a9226a57ccc9ebee82b2234981172e206">Enqueue</a></div><div class="ttdeci">int Enqueue(Queue *q, int index)</div><div class="ttdef"><b>Definição</b> graphSearch.c:102</div></div>
+<div class="ttc" id="agraph_8h_html_a9677cf822a20104a9632c1403dcde364"><div class="ttname"><a href="graph_8h.html#a9677cf822a20104a9632c1403dcde364">FindAllPaths</a></div><div class="ttdeci">int FindAllPaths(Graph *graph, float startX, float startY, float endX, float endY)</div><div class="ttdef"><b>Definição</b> graphSearch.c:287</div></div>
+<div class="ttc" id="agraph_8h_html_a9ffaa5df7a5503af370d511332979fbe"><div class="ttname"><a href="graph_8h.html#a9ffaa5df7a5503af370d511332979fbe">IsQueueEmpty</a></div><div class="ttdeci">bool IsQueueEmpty(Queue *q)</div><div class="ttdef"><b>Definição</b> graphSearch.c:142</div></div>
+<div class="ttc" id="agraph_8h_html_abcff0647b5b71b02a6ce0df1cb5f67e4"><div class="ttname"><a href="graph_8h.html#abcff0647b5b71b02a6ce0df1cb5f67e4">ShowGraph</a></div><div class="ttdeci">int ShowGraph(Graph *graph)</div><div class="ttdef"><b>Definição</b> graphIO.c:51</div></div>
+<div class="ttc" id="agraph_8h_html_ad07c70e99fe5a56e0476ec81a12c537c"><div class="ttname"><a href="graph_8h.html#ad07c70e99fe5a56e0476ec81a12c537c">CalculateDistance</a></div><div class="ttdeci">float CalculateDistance(Vertex *a, Vertex *b)</div><div class="ttdef"><b>Definição</b> graph.c:135</div></div>
+<div class="ttc" id="agraph_8h_html_ae7cd1d8c603a3bdb0a545df0c84f8d57"><div class="ttname"><a href="graph_8h.html#ae7cd1d8c603a3bdb0a545df0c84f8d57">Dequeue</a></div><div class="ttdeci">int Dequeue(Queue *q)</div><div class="ttdef"><b>Definição</b> graphSearch.c:128</div></div>
+<div class="ttc" id="agraph_8h_html_af97dead2e4a8709bdc69016783e2b908"><div class="ttname"><a href="graph_8h.html#af97dead2e4a8709bdc69016783e2b908">FindAllPathsUtil</a></div><div class="ttdeci">int FindAllPathsUtil(Vertex *current, int currentIndex, int endIndex, bool *visited, int *path, int pathIndex, Graph *graph)</div><div class="ttdef"><b>Definição</b> graphSearch.c:224</div></div>
+<div class="ttc" id="astruct_adjacency_html"><div class="ttname"><a href="struct_adjacency.html">Adjacency</a></div><div class="ttdef"><b>Definição</b> graph.h:25</div></div>
+<div class="ttc" id="astruct_adjacency_html_a605d08e56a792053d0f6f028d9450cb7"><div class="ttname"><a href="struct_adjacency.html#a605d08e56a792053d0f6f028d9450cb7">Adjacency::distance</a></div><div class="ttdeci">float distance</div><div class="ttdef"><b>Definição</b> graph.h:26</div></div>
+<div class="ttc" id="astruct_adjacency_html_aa1de695ad362945c07784a107cdd2819"><div class="ttname"><a href="struct_adjacency.html#aa1de695ad362945c07784a107cdd2819">Adjacency::next</a></div><div class="ttdeci">struct Adjacency * next</div><div class="ttdef"><b>Definição</b> graph.h:29</div></div>
+<div class="ttc" id="astruct_adjacency_html_ae273f8e50613cff5e883a667bd546b16"><div class="ttname"><a href="struct_adjacency.html#ae273f8e50613cff5e883a667bd546b16">Adjacency::resonanceFrequency</a></div><div class="ttdeci">char resonanceFrequency</div><div class="ttdef"><b>Definição</b> graph.h:27</div></div>
+<div class="ttc" id="astruct_adjacency_html_af406f2bdf3ba27510be651a6ddf4417c"><div class="ttname"><a href="struct_adjacency.html#af406f2bdf3ba27510be651a6ddf4417c">Adjacency::destinationVertexIndex</a></div><div class="ttdeci">int destinationVertexIndex</div><div class="ttdef"><b>Definição</b> graph.h:28</div></div>
+<div class="ttc" id="astruct_graph_html"><div class="ttname"><a href="struct_graph.html">Graph</a></div><div class="ttdef"><b>Definição</b> graph.h:34</div></div>
+<div class="ttc" id="astruct_graph_html_a282c7e3b458f2375193126e06c415ed1"><div class="ttname"><a href="struct_graph.html#a282c7e3b458f2375193126e06c415ed1">Graph::head</a></div><div class="ttdeci">Vertex * head</div><div class="ttdef"><b>Definição</b> graph.h:36</div></div>
+<div class="ttc" id="astruct_graph_html_a72bb0a04571b49a568e0eed371a35c33"><div class="ttname"><a href="struct_graph.html#a72bb0a04571b49a568e0eed371a35c33">Graph::numVertices</a></div><div class="ttdeci">int numVertices</div><div class="ttdef"><b>Definição</b> graph.h:35</div></div>
+<div class="ttc" id="astruct_path_html"><div class="ttname"><a href="struct_path.html">Path</a></div><div class="ttdef"><b>Definição</b> graph.h:54</div></div>
+<div class="ttc" id="astruct_path_html_a117eb8bc5fd945576237ef3a3bdf7306"><div class="ttname"><a href="struct_path.html#a117eb8bc5fd945576237ef3a3bdf7306">Path::end</a></div><div class="ttdeci">Vertex * end</div><div class="ttdef"><b>Definição</b> graph.h:56</div></div>
+<div class="ttc" id="astruct_path_html_a66a614d73cf80828c01c50c052560481"><div class="ttname"><a href="struct_path.html#a66a614d73cf80828c01c50c052560481">Path::start</a></div><div class="ttdeci">Vertex * start</div><div class="ttdef"><b>Definição</b> graph.h:55</div></div>
+<div class="ttc" id="astruct_path_html_a69e47875b4b6e3d660ba5ef29c27cdc7"><div class="ttname"><a href="struct_path.html#a69e47875b4b6e3d660ba5ef29c27cdc7">Path::processed</a></div><div class="ttdeci">bool processed</div><div class="ttdef"><b>Definição</b> graph.h:57</div></div>
+<div class="ttc" id="astruct_queue_html"><div class="ttname"><a href="struct_queue.html">Queue</a></div><div class="ttdef"><b>Definição</b> graph.h:48</div></div>
+<div class="ttc" id="astruct_queue_html_aede669c5bf672239285cf4d942e5fc80"><div class="ttname"><a href="struct_queue.html#aede669c5bf672239285cf4d942e5fc80">Queue::rear</a></div><div class="ttdeci">QueueNode * rear</div><div class="ttdef"><b>Definição</b> graph.h:49</div></div>
+<div class="ttc" id="astruct_queue_html_afe8bd8724fefb47966b59c25c77ee44e"><div class="ttname"><a href="struct_queue.html#afe8bd8724fefb47966b59c25c77ee44e">Queue::front</a></div><div class="ttdeci">QueueNode * front</div><div class="ttdef"><b>Definição</b> graph.h:49</div></div>
+<div class="ttc" id="astruct_queue_node_html"><div class="ttname"><a href="struct_queue_node.html">QueueNode</a></div><div class="ttdef"><b>Definição</b> graph.h:41</div></div>
+<div class="ttc" id="astruct_queue_node_html_a62c1c1f34bb19461763b618bbc8b6213"><div class="ttname"><a href="struct_queue_node.html#a62c1c1f34bb19461763b618bbc8b6213">QueueNode::next</a></div><div class="ttdeci">struct QueueNode * next</div><div class="ttdef"><b>Definição</b> graph.h:43</div></div>
+<div class="ttc" id="astruct_queue_node_html_add8f3dd2e705ce1d3d3c2e5364b97b4f"><div class="ttname"><a href="struct_queue_node.html#add8f3dd2e705ce1d3d3c2e5364b97b4f">QueueNode::index</a></div><div class="ttdeci">int index</div><div class="ttdef"><b>Definição</b> graph.h:42</div></div>
+<div class="ttc" id="astruct_vertex_html"><div class="ttname"><a href="struct_vertex.html">Vertex</a></div><div class="ttdef"><b>Definição</b> graph.h:16</div></div>
+<div class="ttc" id="astruct_vertex_html_a08612f92582322f8d07f61beece27362"><div class="ttname"><a href="struct_vertex.html#a08612f92582322f8d07f61beece27362">Vertex::next</a></div><div class="ttdeci">struct Vertex * next</div><div class="ttdef"><b>Definição</b> graph.h:19</div></div>
+<div class="ttc" id="astruct_vertex_html_a0d830afe3fd2fafcf2c861a61465cfd8"><div class="ttname"><a href="struct_vertex.html#a0d830afe3fd2fafcf2c861a61465cfd8">Vertex::adjacencies</a></div><div class="ttdeci">struct Adjacency * adjacencies</div><div class="ttdef"><b>Definição</b> graph.h:20</div></div>
+<div class="ttc" id="astruct_vertex_html_a1e5301c9ec80b2a3c3ea6f29ee9c33d2"><div class="ttname"><a href="struct_vertex.html#a1e5301c9ec80b2a3c3ea6f29ee9c33d2">Vertex::resonanceFrequency</a></div><div class="ttdeci">char resonanceFrequency</div><div class="ttdef"><b>Definição</b> graph.h:17</div></div>
+<div class="ttc" id="astruct_vertex_html_a2ca4dfed34d8fd709c9e6a19135afaaf"><div class="ttname"><a href="struct_vertex.html#a2ca4dfed34d8fd709c9e6a19135afaaf">Vertex::coordinateY</a></div><div class="ttdeci">float coordinateY</div><div class="ttdef"><b>Definição</b> graph.h:18</div></div>
+<div class="ttc" id="astruct_vertex_html_a6fff210f9cc8f68a34ef80280f725d0e"><div class="ttname"><a href="struct_vertex.html#a6fff210f9cc8f68a34ef80280f725d0e">Vertex::coordinateX</a></div><div class="ttdeci">float coordinateX</div><div class="ttdef"><b>Definição</b> graph.h:18</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.7
+</small></address>
+</body>
+</html>

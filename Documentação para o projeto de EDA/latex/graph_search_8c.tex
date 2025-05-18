@@ -1,0 +1,427 @@
+\doxysection{Referência ao ficheiro C\+:/\+Users/carlo/\+Desktop/\+EDA-\/\+Project/graph\+Search.c}
+\hypertarget{graph_search_8c}{}\label{graph_search_8c}\index{C:/Users/carlo/Desktop/EDA-\/Project/graphSearch.c@{C:/Users/carlo/Desktop/EDA-\/Project/graphSearch.c}}
+{\ttfamily \#include \"{}graph.\+h\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+\doxysubsubsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{graph_search_8c_a7a02e2509a47f3adf8f7272ea53f50a6}{visit\+DFT}} (\mbox{\hyperlink{struct_vertex}{Vertex}} \texorpdfstring{$\ast$}{*}v, bool \texorpdfstring{$\ast$}{*}visited, \mbox{\hyperlink{struct_graph}{Graph}} \texorpdfstring{$\ast$}{*}graph, int index)
+\item 
+int \mbox{\hyperlink{graph_search_8c_a8cd62045213714bd0c709f888ba018c8}{DFT\+\_\+\+From\+Coordinates}} (float x, float y, \mbox{\hyperlink{struct_graph}{Graph}} \texorpdfstring{$\ast$}{*}graph)
+\item 
+int \mbox{\hyperlink{graph_search_8c_a9226a57ccc9ebee82b2234981172e206}{Enqueue}} (\mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}q, int index)
+\item 
+int \mbox{\hyperlink{graph_search_8c_ae7cd1d8c603a3bdb0a545df0c84f8d57}{Dequeue}} (\mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}q)
+\item 
+bool \mbox{\hyperlink{graph_search_8c_a9ffaa5df7a5503af370d511332979fbe}{Is\+Queue\+Empty}} (\mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}q)
+\item 
+int \mbox{\hyperlink{graph_search_8c_a8ecf184691efb9d1d955d7de817b7dc2}{BFT\+\_\+\+From\+Coordinates}} (float x, float y, \mbox{\hyperlink{struct_graph}{Graph}} \texorpdfstring{$\ast$}{*}graph)
+\item 
+int \mbox{\hyperlink{graph_search_8c_af97dead2e4a8709bdc69016783e2b908}{Find\+All\+Paths\+Util}} (\mbox{\hyperlink{struct_vertex}{Vertex}} \texorpdfstring{$\ast$}{*}current, int current\+Index, int end\+Index, bool \texorpdfstring{$\ast$}{*}visited, int \texorpdfstring{$\ast$}{*}path, int path\+Index, \mbox{\hyperlink{struct_graph}{Graph}} \texorpdfstring{$\ast$}{*}graph)
+\item 
+int \mbox{\hyperlink{graph_search_8c_a9677cf822a20104a9632c1403dcde364}{Find\+All\+Paths}} (\mbox{\hyperlink{struct_graph}{Graph}} \texorpdfstring{$\ast$}{*}graph, float startX, float startY, float endX, float endY)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Documentação das funções}
+\Hypertarget{graph_search_8c_a8ecf184691efb9d1d955d7de817b7dc2}\label{graph_search_8c_a8ecf184691efb9d1d955d7de817b7dc2} 
+\index{graphSearch.c@{graphSearch.c}!BFT\_FromCoordinates@{BFT\_FromCoordinates}}
+\index{BFT\_FromCoordinates@{BFT\_FromCoordinates}!graphSearch.c@{graphSearch.c}}
+\doxysubsubsection{\texorpdfstring{BFT\_FromCoordinates()}{BFT\_FromCoordinates()}}
+{\footnotesize\ttfamily int BFT\+\_\+\+From\+Coordinates (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{\mbox{\hyperlink{struct_graph}{Graph}} \texorpdfstring{$\ast$}{*}}]{graph }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00149\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{if}\ (!graph\ ||\ !graph-\/>\mbox{\hyperlink{struct_graph_a282c7e3b458f2375193126e06c415ed1}{head}})}
+\DoxyCodeLine{00151\ \ \ \ \ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Grafo\ vazio.\(\backslash\)n"{}});}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \mbox{\hyperlink{struct_vertex}{Vertex}}\ *v\ =\ graph-\/>\mbox{\hyperlink{struct_graph_a282c7e3b458f2375193126e06c415ed1}{head}};}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ 0;}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{while}\ (v\ \&\&\ (v-\/>\mbox{\hyperlink{struct_vertex_a6fff210f9cc8f68a34ef80280f725d0e}{coordinateX}}\ !=\ x\ ||\ v-\/>\mbox{\hyperlink{struct_vertex_a2ca4dfed34d8fd709c9e6a19135afaaf}{coordinateY}}\ !=\ y))}
+\DoxyCodeLine{00159\ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ v\ =\ v-\/>\mbox{\hyperlink{struct_vertex_a08612f92582322f8d07f61beece27362}{next}};}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ index++;}
+\DoxyCodeLine{00162\ \ \ \ \ \}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{if}\ (!v)}
+\DoxyCodeLine{00165\ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Antena\ não\ encontrada\ nas\ coordenadas\ (\%.0f,\ \%.0f)\(\backslash\)n"{}},\ x,\ y);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{char}\ targetResonance\ =\ v-\/>\mbox{\hyperlink{struct_vertex_a1e5301c9ec80b2a3c3ea6f29ee9c33d2}{resonanceFrequency}};}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{bool}\ *visited\ =\ (\textcolor{keywordtype}{bool}\ *)calloc(graph-\/>\mbox{\hyperlink{struct_graph_a72bb0a04571b49a568e0eed371a35c33}{numVertices}},\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{bool}));}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordflow}{if}\ (!visited)}
+\DoxyCodeLine{00173\ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Erro\ de\ memória.\(\backslash\)n"{}});}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00176\ \ \ \ \ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{struct_queue}{Queue}}\ q\ =\ \{NULL,\ NULL\};}
+\DoxyCodeLine{00179\ \ \ \ \ \mbox{\hyperlink{graph_search_8c_a9226a57ccc9ebee82b2234981172e206}{Enqueue}}(\&q,\ index);}
+\DoxyCodeLine{00180\ \ \ \ \ visited[index]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ printf(\textcolor{stringliteral}{"{}BFT\ a\ partir\ da\ antena\ \%c\ (\%.0f,\ \%.0f):\(\backslash\)n"{}},\ v-\/>\mbox{\hyperlink{struct_vertex_a1e5301c9ec80b2a3c3ea6f29ee9c33d2}{resonanceFrequency}},\ x,\ y);}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keywordtype}{int}\ verticesVisited\ =\ 0;}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordflow}{while}\ (!\mbox{\hyperlink{graph_search_8c_a9ffaa5df7a5503af370d511332979fbe}{IsQueueEmpty}}(\&q))}
+\DoxyCodeLine{00186\ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ currentIndex\ =\ \mbox{\hyperlink{graph_search_8c_ae7cd1d8c603a3bdb0a545df0c84f8d57}{Dequeue}}(\&q);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_vertex}{Vertex}}\ *curr\ =\ graph-\/>\mbox{\hyperlink{struct_graph_a282c7e3b458f2375193126e06c415ed1}{head}};}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ curr\ \&\&\ i\ <\ currentIndex;\ i++)}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ curr\ =\ curr-\/>\mbox{\hyperlink{struct_vertex_a08612f92582322f8d07f61beece27362}{next}};}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (curr)}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ verticesVisited++;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Antena:\ \%c\ (\%.0f,\ \%.0f)\(\backslash\)n"{}},\ curr-\/>\mbox{\hyperlink{struct_vertex_a1e5301c9ec80b2a3c3ea6f29ee9c33d2}{resonanceFrequency}},\ curr-\/>\mbox{\hyperlink{struct_vertex_a6fff210f9cc8f68a34ef80280f725d0e}{coordinateX}},\ curr-\/>\mbox{\hyperlink{struct_vertex_a2ca4dfed34d8fd709c9e6a19135afaaf}{coordinateY}});}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_adjacency}{Adjacency}}\ *adj\ =\ curr-\/>\mbox{\hyperlink{struct_vertex_a0d830afe3fd2fafcf2c861a61465cfd8}{adjacencies}};}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (adj)}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!visited[adj-\/>\mbox{\hyperlink{struct_adjacency_af406f2bdf3ba27510be651a6ddf4417c}{destinationVertexIndex}}])}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_vertex}{Vertex}}\ *neighbor\ =\ graph-\/>\mbox{\hyperlink{struct_graph_a282c7e3b458f2375193126e06c415ed1}{head}};}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ neighbor\ \&\&\ i\ <\ adj-\/>\mbox{\hyperlink{struct_adjacency_af406f2bdf3ba27510be651a6ddf4417c}{destinationVertexIndex}};\ i++)}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ neighbor\ =\ neighbor-\/>\mbox{\hyperlink{struct_vertex_a08612f92582322f8d07f61beece27362}{next}};}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (neighbor\ \&\&\ neighbor-\/>\mbox{\hyperlink{struct_vertex_a1e5301c9ec80b2a3c3ea6f29ee9c33d2}{resonanceFrequency}}\ ==\ targetResonance)}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{graph_search_8c_a9226a57ccc9ebee82b2234981172e206}{Enqueue}}(\&q,\ adj-\/>\mbox{\hyperlink{struct_adjacency_af406f2bdf3ba27510be651a6ddf4417c}{destinationVertexIndex}});}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ visited[adj-\/>\mbox{\hyperlink{struct_adjacency_af406f2bdf3ba27510be651a6ddf4417c}{destinationVertexIndex}}]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adj\ =\ adj-\/>\mbox{\hyperlink{struct_adjacency_aa1de695ad362945c07784a107cdd2819}{next}};}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00215\ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ free(visited);}
+\DoxyCodeLine{00218\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Total\ de\ vértices\ visitados:\ \%d\(\backslash\)n"{}},\ verticesVisited);}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordflow}{return}\ verticesVisited;}
+\DoxyCodeLine{00220\ \}}
+
+\end{DoxyCode}
+\Hypertarget{graph_search_8c_ae7cd1d8c603a3bdb0a545df0c84f8d57}\label{graph_search_8c_ae7cd1d8c603a3bdb0a545df0c84f8d57} 
+\index{graphSearch.c@{graphSearch.c}!Dequeue@{Dequeue}}
+\index{Dequeue@{Dequeue}!graphSearch.c@{graphSearch.c}}
+\doxysubsubsection{\texorpdfstring{Dequeue()}{Dequeue()}}
+{\footnotesize\ttfamily int Dequeue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}}]{q }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00129\ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keywordflow}{if}\ (!q-\/>\mbox{\hyperlink{struct_queue_afe8bd8724fefb47966b59c25c77ee44e}{front}})}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/1;}
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{struct_queue_node}{QueueNode}}\ *temp\ =\ q-\/>\mbox{\hyperlink{struct_queue_afe8bd8724fefb47966b59c25c77ee44e}{front}};}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ temp-\/>\mbox{\hyperlink{struct_queue_node_add8f3dd2e705ce1d3d3c2e5364b97b4f}{index}};}
+\DoxyCodeLine{00134\ \ \ \ \ q-\/>\mbox{\hyperlink{struct_queue_afe8bd8724fefb47966b59c25c77ee44e}{front}}\ =\ temp-\/>\mbox{\hyperlink{struct_queue_node_a62c1c1f34bb19461763b618bbc8b6213}{next}};}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{if}\ (!q-\/>\mbox{\hyperlink{struct_queue_afe8bd8724fefb47966b59c25c77ee44e}{front}})}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ q-\/>\mbox{\hyperlink{struct_queue_aede669c5bf672239285cf4d942e5fc80}{rear}}\ =\ NULL;}
+\DoxyCodeLine{00137\ \ \ \ \ free(temp);}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordflow}{return}\ index;}
+\DoxyCodeLine{00139\ \}}
+
+\end{DoxyCode}
+\Hypertarget{graph_search_8c_a8cd62045213714bd0c709f888ba018c8}\label{graph_search_8c_a8cd62045213714bd0c709f888ba018c8} 
+\index{graphSearch.c@{graphSearch.c}!DFT\_FromCoordinates@{DFT\_FromCoordinates}}
+\index{DFT\_FromCoordinates@{DFT\_FromCoordinates}!graphSearch.c@{graphSearch.c}}
+\doxysubsubsection{\texorpdfstring{DFT\_FromCoordinates()}{DFT\_FromCoordinates()}}
+{\footnotesize\ttfamily int DFT\+\_\+\+From\+Coordinates (\begin{DoxyParamCaption}\item[{float}]{x,  }\item[{float}]{y,  }\item[{\mbox{\hyperlink{struct_graph}{Graph}} \texorpdfstring{$\ast$}{*}}]{graph }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{if}\ (!graph\ ||\ !graph-\/>\mbox{\hyperlink{struct_graph_a282c7e3b458f2375193126e06c415ed1}{head}})}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Grafo\ vazio.\(\backslash\)n"{}});}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{struct_vertex}{Vertex}}\ *v\ =\ graph-\/>\mbox{\hyperlink{struct_graph_a282c7e3b458f2375193126e06c415ed1}{head}};}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ 0;}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{while}\ (v\ \&\&\ (v-\/>\mbox{\hyperlink{struct_vertex_a6fff210f9cc8f68a34ef80280f725d0e}{coordinateX}}\ !=\ x\ ||\ v-\/>\mbox{\hyperlink{struct_vertex_a2ca4dfed34d8fd709c9e6a19135afaaf}{coordinateY}}\ !=\ y))}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ v\ =\ v-\/>\mbox{\hyperlink{struct_vertex_a08612f92582322f8d07f61beece27362}{next}};}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ index++;}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{if}\ (!v)}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Antena\ não\ encontrada\ nas\ coordenadas\ (\%.0f,\ \%.0f)\(\backslash\)n"{}},\ x,\ y);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{bool}\ *visited\ =\ (\textcolor{keywordtype}{bool}\ *)calloc(graph-\/>\mbox{\hyperlink{struct_graph_a72bb0a04571b49a568e0eed371a35c33}{numVertices}},\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{bool}));}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{if}\ (!visited)}
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Erro\ de\ memória.\(\backslash\)n"{}});}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ printf(\textcolor{stringliteral}{"{}DFT\ a\ partir\ da\ antena\ \%c\ (\%.0f,\ \%.0f):\(\backslash\)n"{}},\ v-\/>\mbox{\hyperlink{struct_vertex_a1e5301c9ec80b2a3c3ea6f29ee9c33d2}{resonanceFrequency}},\ x,\ y);}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{int}\ verticesVisited\ =\ \mbox{\hyperlink{graph_search_8c_a7a02e2509a47f3adf8f7272ea53f50a6}{visitDFT}}(v,\ visited,\ graph,\ index);}
+\DoxyCodeLine{00094\ \ \ \ \ free(visited);}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Total\ de\ vértices\ visitados:\ \%d\(\backslash\)n"{}},\ verticesVisited);}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{return}\ verticesVisited;}
+\DoxyCodeLine{00098\ \}}
+
+\end{DoxyCode}
+\Hypertarget{graph_search_8c_a9226a57ccc9ebee82b2234981172e206}\label{graph_search_8c_a9226a57ccc9ebee82b2234981172e206} 
+\index{graphSearch.c@{graphSearch.c}!Enqueue@{Enqueue}}
+\index{Enqueue@{Enqueue}!graphSearch.c@{graphSearch.c}}
+\doxysubsubsection{\texorpdfstring{Enqueue()}{Enqueue()}}
+{\footnotesize\ttfamily int Enqueue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}}]{q,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00103\ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordflow}{if}\ (q\ ==\ NULL)}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{struct_queue_node}{QueueNode}}\ *newNode\ =\ (\mbox{\hyperlink{struct_queue_node}{QueueNode}}\ *)malloc(\textcolor{keyword}{sizeof}(\mbox{\hyperlink{struct_queue_node}{QueueNode}}));}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordflow}{if}\ (newNode\ ==\ NULL)}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ newNode-\/>\mbox{\hyperlink{struct_queue_node_add8f3dd2e705ce1d3d3c2e5364b97b4f}{index}}\ =\ index;}
+\DoxyCodeLine{00112\ \ \ \ \ newNode-\/>\mbox{\hyperlink{struct_queue_node_a62c1c1f34bb19461763b618bbc8b6213}{next}}\ =\ NULL;}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordflow}{if}\ (q-\/>\mbox{\hyperlink{struct_queue_aede669c5bf672239285cf4d942e5fc80}{rear}}\ ==\ NULL)}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ q-\/>\mbox{\hyperlink{struct_queue_afe8bd8724fefb47966b59c25c77ee44e}{front}}\ =\ q-\/>\mbox{\hyperlink{struct_queue_aede669c5bf672239285cf4d942e5fc80}{rear}}\ =\ newNode;}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00119\ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ q-\/>\mbox{\hyperlink{struct_queue_aede669c5bf672239285cf4d942e5fc80}{rear}}-\/>\mbox{\hyperlink{struct_queue_node_a62c1c1f34bb19461763b618bbc8b6213}{next}}\ =\ newNode;}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ q-\/>\mbox{\hyperlink{struct_queue_aede669c5bf672239285cf4d942e5fc80}{rear}}\ =\ newNode;}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00125\ \}}
+
+\end{DoxyCode}
+\Hypertarget{graph_search_8c_a9677cf822a20104a9632c1403dcde364}\label{graph_search_8c_a9677cf822a20104a9632c1403dcde364} 
+\index{graphSearch.c@{graphSearch.c}!FindAllPaths@{FindAllPaths}}
+\index{FindAllPaths@{FindAllPaths}!graphSearch.c@{graphSearch.c}}
+\doxysubsubsection{\texorpdfstring{FindAllPaths()}{FindAllPaths()}}
+{\footnotesize\ttfamily int Find\+All\+Paths (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_graph}{Graph}} \texorpdfstring{$\ast$}{*}}]{graph,  }\item[{float}]{startX,  }\item[{float}]{startY,  }\item[{float}]{endX,  }\item[{float}]{endY }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00288\ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keywordflow}{if}\ (!graph\ ||\ !graph-\/>\mbox{\hyperlink{struct_graph_a282c7e3b458f2375193126e06c415ed1}{head}})}
+\DoxyCodeLine{00290\ \ \ \ \ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Grafo\ vazio.\(\backslash\)n"{}});}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00293\ \ \ \ \ \}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ \mbox{\hyperlink{struct_vertex}{Vertex}}\ *start\ =\ graph-\/>\mbox{\hyperlink{struct_graph_a282c7e3b458f2375193126e06c415ed1}{head}};}
+\DoxyCodeLine{00296\ \ \ \ \ \mbox{\hyperlink{struct_vertex}{Vertex}}\ *end\ =\ graph-\/>\mbox{\hyperlink{struct_graph_a282c7e3b458f2375193126e06c415ed1}{head}};}
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keywordtype}{int}\ startIndex\ =\ 0,\ endIndex\ =\ 0;}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordtype}{bool}\ startFound\ =\ \textcolor{keyword}{false},\ endFound\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{comment}{//\ Procura\ os\ vértices\ correspondentes\ às\ coordenadas\ de\ início\ e\ fim}}
+\DoxyCodeLine{00301\ \ \ \ \ \mbox{\hyperlink{struct_vertex}{Vertex}}\ *current\ =\ graph-\/>\mbox{\hyperlink{struct_graph_a282c7e3b458f2375193126e06c415ed1}{head}};}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keywordtype}{int}\ index\ =\ 0;}
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keywordflow}{while}\ (current)}
+\DoxyCodeLine{00304\ \ \ \ \ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!startFound\ \&\&\ current-\/>\mbox{\hyperlink{struct_vertex_a6fff210f9cc8f68a34ef80280f725d0e}{coordinateX}}\ ==\ startX\ \&\&\ current-\/>\mbox{\hyperlink{struct_vertex_a2ca4dfed34d8fd709c9e6a19135afaaf}{coordinateY}}\ ==\ startY)}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ start\ =\ current;}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ startIndex\ =\ index;}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ startFound\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!endFound\ \&\&\ current-\/>\mbox{\hyperlink{struct_vertex_a6fff210f9cc8f68a34ef80280f725d0e}{coordinateX}}\ ==\ endX\ \&\&\ current-\/>\mbox{\hyperlink{struct_vertex_a2ca4dfed34d8fd709c9e6a19135afaaf}{coordinateY}}\ ==\ endY)}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ end\ =\ current;}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ endIndex\ =\ index;}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ endFound\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ current\ =\ current-\/>\mbox{\hyperlink{struct_vertex_a08612f92582322f8d07f61beece27362}{next}};}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ index++;}
+\DoxyCodeLine{00321\ \ \ \ \ \}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{comment}{//\ Verifica\ se\ ambos\ os\ vértices\ foram\ encontrados}}
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keywordflow}{if}\ (!startFound\ ||\ !endFound)}
+\DoxyCodeLine{00325\ \ \ \ \ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}Antenas\ inicial\ ou\ final\ não\ encontradas.\(\backslash\)n"{}});}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00328\ \ \ \ \ \}}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{comment}{//\ Verifica\ se\ ambos\ os\ vértices\ possuem\ a\ mesma\ frequência\ de\ ressonância}}
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keywordflow}{if}\ (start-\/>\mbox{\hyperlink{struct_vertex_a1e5301c9ec80b2a3c3ea6f29ee9c33d2}{resonanceFrequency}}\ !=\ end-\/>\mbox{\hyperlink{struct_vertex_a1e5301c9ec80b2a3c3ea6f29ee9c33d2}{resonanceFrequency}})}
+\DoxyCodeLine{00332\ \ \ \ \ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}As\ antenas\ não\ têm\ a\ mesma\ frequência.\(\backslash\)n"{}});}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00335\ \ \ \ \ \}}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{comment}{//\ Aloca\ memória\ para\ controlar\ os\ vértices\ visitados\ e\ o\ caminho\ atual}}
+\DoxyCodeLine{00338\ \ \ \ \ \textcolor{keywordtype}{bool}\ *visited\ =\ (\textcolor{keywordtype}{bool}\ *)calloc(graph-\/>\mbox{\hyperlink{struct_graph_a72bb0a04571b49a568e0eed371a35c33}{numVertices}},\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{bool}));}
+\DoxyCodeLine{00339\ \ \ \ \ \textcolor{keywordtype}{int}\ *path\ =\ (\textcolor{keywordtype}{int}\ *)malloc(graph-\/>\mbox{\hyperlink{struct_graph_a72bb0a04571b49a568e0eed371a35c33}{numVertices}}\ *\ \textcolor{keyword}{sizeof}(\textcolor{keywordtype}{int}));}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{comment}{//\ Mostra\ as\ informações\ de\ início\ e\ fim}}
+\DoxyCodeLine{00342\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Todos\ os\ caminhos\ de\ \%c(\%.0f,\%.0f)\ a\ \%c(\%.0f,\%.0f):\(\backslash\)n"{}},}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ start-\/>\mbox{\hyperlink{struct_vertex_a1e5301c9ec80b2a3c3ea6f29ee9c33d2}{resonanceFrequency}},\ startX,\ startY,}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ end-\/>\mbox{\hyperlink{struct_vertex_a1e5301c9ec80b2a3c3ea6f29ee9c33d2}{resonanceFrequency}},\ endX,\ endY);}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{comment}{//\ Inicia\ a\ procura\ pelos\ caminhos}}
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keywordtype}{int}\ totalPaths\ =\ \mbox{\hyperlink{graph_search_8c_af97dead2e4a8709bdc69016783e2b908}{FindAllPathsUtil}}(start,\ startIndex,\ endIndex,\ visited,\ path,\ 0,\ graph);}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{comment}{//\ Mostra\ o\ número\ total\ de\ caminhos\ encontrados}}
+\DoxyCodeLine{00350\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Total\ de\ caminhos\ encontrados:\ \%d\(\backslash\)n"{}},\ totalPaths);}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{comment}{//\ Liberta\ memória\ alocada}}
+\DoxyCodeLine{00353\ \ \ \ \ free(visited);}
+\DoxyCodeLine{00354\ \ \ \ \ free(path);}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keywordflow}{return}\ totalPaths;}
+\DoxyCodeLine{00356\ \}}
+
+\end{DoxyCode}
+\Hypertarget{graph_search_8c_af97dead2e4a8709bdc69016783e2b908}\label{graph_search_8c_af97dead2e4a8709bdc69016783e2b908} 
+\index{graphSearch.c@{graphSearch.c}!FindAllPathsUtil@{FindAllPathsUtil}}
+\index{FindAllPathsUtil@{FindAllPathsUtil}!graphSearch.c@{graphSearch.c}}
+\doxysubsubsection{\texorpdfstring{FindAllPathsUtil()}{FindAllPathsUtil()}}
+{\footnotesize\ttfamily int Find\+All\+Paths\+Util (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vertex}{Vertex}} \texorpdfstring{$\ast$}{*}}]{current,  }\item[{int}]{current\+Index,  }\item[{int}]{end\+Index,  }\item[{bool \texorpdfstring{$\ast$}{*}}]{visited,  }\item[{int \texorpdfstring{$\ast$}{*}}]{path,  }\item[{int}]{path\+Index,  }\item[{\mbox{\hyperlink{struct_graph}{Graph}} \texorpdfstring{$\ast$}{*}}]{graph }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00225\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordtype}{int}\ pathCount\ =\ 0;}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{comment}{//\ Marca\ o\ vértice\ atual\ como\ visitado}}
+\DoxyCodeLine{00229\ \ \ \ \ visited[currentIndex]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{comment}{//\ Adiciona\ o\ índice\ atual\ ao\ caminho}}
+\DoxyCodeLine{00232\ \ \ \ \ path[pathIndex]\ =\ currentIndex;}
+\DoxyCodeLine{00233\ \ \ \ \ pathIndex++;}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{comment}{//\ Se\ o\ vértice\ atual\ é\ o\ destino,\ mostra\ o\ caminho\ completo}}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{if}\ (currentIndex\ ==\ endIndex)}
+\DoxyCodeLine{00237\ \ \ \ \ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ pathCount++;}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ pathIndex;\ i++)}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Navega\ até\ o\ vértice\ correspondente\ ao\ índice\ armazenado}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_vertex}{Vertex}}\ *v\ =\ graph-\/>\mbox{\hyperlink{struct_graph_a282c7e3b458f2375193126e06c415ed1}{head}};}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ path[i];\ j++)}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ v\ =\ v-\/>\mbox{\hyperlink{struct_vertex_a08612f92582322f8d07f61beece27362}{next}};}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Mostra\ o\ vértice\ no\ formato:\ letra(frequência)(x,y)}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\%c(\%.0f,\%.0f)"{}},\ v-\/>\mbox{\hyperlink{struct_vertex_a1e5301c9ec80b2a3c3ea6f29ee9c33d2}{resonanceFrequency}},\ v-\/>\mbox{\hyperlink{struct_vertex_a6fff210f9cc8f68a34ef80280f725d0e}{coordinateX}},\ v-\/>\mbox{\hyperlink{struct_vertex_a2ca4dfed34d8fd709c9e6a19135afaaf}{coordinateY}});}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ <\ pathIndex\ -\/\ 1)}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\ -\/>\ "{}});}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ printf(\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00255\ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Percorre\ todas\ as\ adjacências\ do\ vértice\ atual}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_adjacency}{Adjacency}}\ *adj\ =\ current-\/>\mbox{\hyperlink{struct_vertex_a0d830afe3fd2fafcf2c861a61465cfd8}{adjacencies}};}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (adj)}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Se\ o\ vértice\ destino\ ainda\ não\ foi\ visitado}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!visited[adj-\/>\mbox{\hyperlink{struct_adjacency_af406f2bdf3ba27510be651a6ddf4417c}{destinationVertexIndex}}])}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Encontra\ o\ próximo\ vértice\ com\ base\ no\ índice\ de\ destino}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_vertex}{Vertex}}\ *next\ =\ graph-\/>\mbox{\hyperlink{struct_graph_a282c7e3b458f2375193126e06c415ed1}{head}};}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ adj-\/>\mbox{\hyperlink{struct_adjacency_af406f2bdf3ba27510be651a6ddf4417c}{destinationVertexIndex}};\ i++)}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ next\ =\ next-\/>\mbox{\hyperlink{struct_vertex_a08612f92582322f8d07f61beece27362}{next}};}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Só\ continua\ a\ procura\ se\ a\ frequência\ for\ a\ mesma}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (next\ \&\&\ next-\/>\mbox{\hyperlink{struct_vertex_a1e5301c9ec80b2a3c3ea6f29ee9c33d2}{resonanceFrequency}}\ ==\ current-\/>\mbox{\hyperlink{struct_vertex_a1e5301c9ec80b2a3c3ea6f29ee9c33d2}{resonanceFrequency}})}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Chamada\ recursiva\ para\ continuar\ a\ procura\ a\ partir\ do\ vértice\ adjacente}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pathCount\ +=\ \mbox{\hyperlink{graph_search_8c_af97dead2e4a8709bdc69016783e2b908}{FindAllPathsUtil}}(next,\ adj-\/>\mbox{\hyperlink{struct_adjacency_af406f2bdf3ba27510be651a6ddf4417c}{destinationVertexIndex}},\ endIndex,\ visited,\ path,\ pathIndex,\ graph);}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Avança\ para\ a\ próxima\ adjacência}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ adj\ =\ adj-\/>\mbox{\hyperlink{struct_adjacency_aa1de695ad362945c07784a107cdd2819}{next}};}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00278\ \ \ \ \ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{comment}{//\ Backtracking:\ desmarca\ o\ vértice\ como\ visitado\ e\ retrocede\ o\ caminho}}
+\DoxyCodeLine{00281\ \ \ \ \ visited[currentIndex]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00282\ \ \ \ \ pathIndex-\/-\/;}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordflow}{return}\ pathCount;}
+\DoxyCodeLine{00284\ \}}
+
+\end{DoxyCode}
+\Hypertarget{graph_search_8c_a9ffaa5df7a5503af370d511332979fbe}\label{graph_search_8c_a9ffaa5df7a5503af370d511332979fbe} 
+\index{graphSearch.c@{graphSearch.c}!IsQueueEmpty@{IsQueueEmpty}}
+\index{IsQueueEmpty@{IsQueueEmpty}!graphSearch.c@{graphSearch.c}}
+\doxysubsubsection{\texorpdfstring{IsQueueEmpty()}{IsQueueEmpty()}}
+{\footnotesize\ttfamily bool Is\+Queue\+Empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_queue}{Queue}} \texorpdfstring{$\ast$}{*}}]{q }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00143\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keywordflow}{return}\ q-\/>\mbox{\hyperlink{struct_queue_afe8bd8724fefb47966b59c25c77ee44e}{front}}\ ==\ NULL;}
+\DoxyCodeLine{00145\ \}}
+
+\end{DoxyCode}
+\Hypertarget{graph_search_8c_a7a02e2509a47f3adf8f7272ea53f50a6}\label{graph_search_8c_a7a02e2509a47f3adf8f7272ea53f50a6} 
+\index{graphSearch.c@{graphSearch.c}!visitDFT@{visitDFT}}
+\index{visitDFT@{visitDFT}!graphSearch.c@{graphSearch.c}}
+\doxysubsubsection{\texorpdfstring{visitDFT()}{visitDFT()}}
+{\footnotesize\ttfamily int visit\+DFT (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_vertex}{Vertex}} \texorpdfstring{$\ast$}{*}}]{v,  }\item[{bool \texorpdfstring{$\ast$}{*}}]{visited,  }\item[{\mbox{\hyperlink{struct_graph}{Graph}} \texorpdfstring{$\ast$}{*}}]{graph,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordflow}{if}\ (!v)}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 1;\ \textcolor{comment}{//\ Conta\ o\ vértice\ atual}}
+\DoxyCodeLine{00019\ \ \ \ \ visited[index]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00020\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Antena:\ \%c\ (\%.0f,\ \%.0f)\(\backslash\)n"{}},\ v-\/>\mbox{\hyperlink{struct_vertex_a1e5301c9ec80b2a3c3ea6f29ee9c33d2}{resonanceFrequency}},\ v-\/>\mbox{\hyperlink{struct_vertex_a6fff210f9cc8f68a34ef80280f725d0e}{coordinateX}},\ v-\/>\mbox{\hyperlink{struct_vertex_a2ca4dfed34d8fd709c9e6a19135afaaf}{coordinateY}});}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ Criar\ uma\ lista\ temporária\ de\ adjacências}}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{struct_adjacency}{Adjacency}}\ *adjList\ =\ NULL;}
+\DoxyCodeLine{00024\ \ \ \ \ \mbox{\hyperlink{struct_adjacency}{Adjacency}}\ *adj\ =\ v-\/>\mbox{\hyperlink{struct_vertex_a0d830afe3fd2fafcf2c861a61465cfd8}{adjacencies}};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{comment}{//\ Copiar\ as\ adjacências\ para\ uma\ lista\ temporária}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordflow}{while}\ (adj)}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_adjacency}{Adjacency}}\ *newAdj\ =\ \mbox{\hyperlink{graph_8c_a8ffefb5107e47d3912ed2aaf98cc1193}{CreateAdjacency}}(adj-\/>\mbox{\hyperlink{struct_adjacency_a605d08e56a792053d0f6f028d9450cb7}{distance}},\ adj-\/>\mbox{\hyperlink{struct_adjacency_ae273f8e50613cff5e883a667bd546b16}{resonanceFrequency}},\ adj-\/>\mbox{\hyperlink{struct_adjacency_af406f2bdf3ba27510be651a6ddf4417c}{destinationVertexIndex}});}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ newAdj-\/>\mbox{\hyperlink{struct_adjacency_aa1de695ad362945c07784a107cdd2819}{next}}\ =\ adjList;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ adjList\ =\ newAdj;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ adj\ =\ adj-\/>\mbox{\hyperlink{struct_adjacency_aa1de695ad362945c07784a107cdd2819}{next}};}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ Visitar\ cada\ adjacência}}
+\DoxyCodeLine{00036\ \ \ \ \ adj\ =\ adjList;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordflow}{while}\ (adj)}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!visited[adj-\/>\mbox{\hyperlink{struct_adjacency_af406f2bdf3ba27510be651a6ddf4417c}{destinationVertexIndex}}])}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_vertex}{Vertex}}\ *next\ =\ graph-\/>\mbox{\hyperlink{struct_graph_a282c7e3b458f2375193126e06c415ed1}{head}};}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ next\ \&\&\ i\ <\ adj-\/>\mbox{\hyperlink{struct_adjacency_af406f2bdf3ba27510be651a6ddf4417c}{destinationVertexIndex}};\ i++)}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ next\ =\ next-\/>\mbox{\hyperlink{struct_vertex_a08612f92582322f8d07f61beece27362}{next}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (next\ \&\&\ next-\/>\mbox{\hyperlink{struct_vertex_a1e5301c9ec80b2a3c3ea6f29ee9c33d2}{resonanceFrequency}}\ ==\ v-\/>\mbox{\hyperlink{struct_vertex_a1e5301c9ec80b2a3c3ea6f29ee9c33d2}{resonanceFrequency}})}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ count\ +=\ \mbox{\hyperlink{graph_search_8c_a7a02e2509a47f3adf8f7272ea53f50a6}{visitDFT}}(next,\ visited,\ graph,\ adj-\/>\mbox{\hyperlink{struct_adjacency_af406f2bdf3ba27510be651a6ddf4417c}{destinationVertexIndex}});}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ adj\ =\ adj-\/>\mbox{\hyperlink{struct_adjacency_aa1de695ad362945c07784a107cdd2819}{next}};}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ Libertar\ a\ lista\ temporária}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{while}\ (adjList)}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_adjacency}{Adjacency}}\ *temp\ =\ adjList;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ adjList\ =\ adjList-\/>\mbox{\hyperlink{struct_adjacency_aa1de695ad362945c07784a107cdd2819}{next}};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ free(temp);}
+\DoxyCodeLine{00057\ \ \ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordflow}{return}\ count;}
+\DoxyCodeLine{00060\ \}}
+
+\end{DoxyCode}

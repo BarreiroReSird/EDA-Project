@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['removeaerial_0',['removeAerial',['../aerial_8c.html#a3a817e307efda897e560ab98309bfbb6',1,'removeAerial(ED **list, int coordinateX, int coordinateY):&#160;aerial.c'],['../aerial_8h.html#a3a817e307efda897e560ab98309bfbb6',1,'removeAerial(ED **list, int coordinateX, int coordinateY):&#160;aerial.c']]]
+  ['enqueue_0',['Enqueue',['../graph_8h.html#a9226a57ccc9ebee82b2234981172e206',1,'Enqueue(Queue *q, int index):&#160;graphSearch.c'],['../graph_search_8c.html#a9226a57ccc9ebee82b2234981172e206',1,'Enqueue(Queue *q, int index):&#160;graphSearch.c']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['coordinatex_0',['coordinateX',['../struct_e_d.html#af16597a35e6726051afb504ca04dc723',1,'ED']]],
-  ['coordinatey_1',['coordinateY',['../struct_e_d.html#a9be5ccf528c7fff8348356c45328c0e6',1,'ED']]]
+  ['bft_5ffromcoordinates_0',['BFT_FromCoordinates',['../graph_8h.html#a8ecf184691efb9d1d955d7de817b7dc2',1,'BFT_FromCoordinates(float x, float y, Graph *graph):&#160;graphSearch.c'],['../graph_search_8c.html#a8ecf184691efb9d1d955d7de817b7dc2',1,'BFT_FromCoordinates(float x, float y, Graph *graph):&#160;graphSearch.c']]]
 ];

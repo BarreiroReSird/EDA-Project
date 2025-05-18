@@ -1,5 +1,5 @@
-\doxysection{Referência ao ficheiro EDA-\/\+Project/file\+Utils.c}
-\hypertarget{file_utils_8c}{}\label{file_utils_8c}\index{EDA-\/Project/fileUtils.c@{EDA-\/Project/fileUtils.c}}
+\doxysection{Referência ao ficheiro C\+:/\+Users/carlo/\+Desktop/\+EDA-\/\+Project/file\+Utils.c}
+\hypertarget{file_utils_8c}{}\label{file_utils_8c}\index{C:/Users/carlo/Desktop/EDA-\/Project/fileUtils.c@{C:/Users/carlo/Desktop/EDA-\/Project/fileUtils.c}}
 {\ttfamily \#include $<$stdio.\+h$>$}\newline
 {\ttfamily \#include $<$stdlib.\+h$>$}\newline
 {\ttfamily \#include \"{}file\+Utils.\+h\"{}}\newline
@@ -7,51 +7,49 @@
 \doxysubsubsection*{Funções}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{file_utils_8c_a5414681b8fc0a4155433de5d898aa5df}{load\+Aerials\+From\+File}} (\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}list, const char \texorpdfstring{$\ast$}{*}filename)
+\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{file_utils_8c_a295ed0e1c138f3fa0017018a5ca307fe}{load\+Aerials\+From\+File}} (\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}list, const char \texorpdfstring{$\ast$}{*}filename)
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Documentação das funções}
-\Hypertarget{file_utils_8c_a5414681b8fc0a4155433de5d898aa5df}\label{file_utils_8c_a5414681b8fc0a4155433de5d898aa5df} 
+\Hypertarget{file_utils_8c_a295ed0e1c138f3fa0017018a5ca307fe}\label{file_utils_8c_a295ed0e1c138f3fa0017018a5ca307fe} 
 \index{fileUtils.c@{fileUtils.c}!loadAerialsFromFile@{loadAerialsFromFile}}
 \index{loadAerialsFromFile@{loadAerialsFromFile}!fileUtils.c@{fileUtils.c}}
 \doxysubsubsection{\texorpdfstring{loadAerialsFromFile()}{loadAerialsFromFile()}}
-{\footnotesize\ttfamily void load\+Aerials\+From\+File (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{list,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*} load\+Aerials\+From\+File (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_e_d}{ED}} \texorpdfstring{$\ast$}{*}}]{list,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{filename }\end{DoxyParamCaption})}
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00014\ \{}
-\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{int}\ y\ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Para\ iniciar\ a\ coordenada\ Y}}
-\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{char}\ line[\mbox{\hyperlink{aerial_8h_af0f2173e3b202ddf5756531b4471dcb2}{MAX\_LINE\_LENGTH}}];\ \textcolor{comment}{//\ Tamanho\ máximo\ da\ linha\ do\ ficheiro}}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{int}\ y\ =\ 1;}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{char}\ line[\mbox{\hyperlink{aerial_8h_af0f2173e3b202ddf5756531b4471dcb2}{MAX\_LINE\_LENGTH}}];}
 \DoxyCodeLine{00017\ }
 \DoxyCodeLine{00018\ \ \ \ \ FILE\ *file\ =\ fopen(filename,\ \textcolor{stringliteral}{"{}r"{}});}
 \DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordflow}{if}\ (file\ ==\ NULL)}
 \DoxyCodeLine{00020\ \ \ \ \ \{}
-\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ list;}
 \DoxyCodeLine{00022\ \ \ \ \ \}}
 \DoxyCodeLine{00023\ }
-\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ Lê\ o\ ficheiro\ linha\ a\ linha}}
-\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordflow}{while}\ (fgets(line,\ \mbox{\hyperlink{aerial_8h_af0f2173e3b202ddf5756531b4471dcb2}{MAX\_LINE\_LENGTH}},\ file)\ !=\ NULL)}
-\DoxyCodeLine{00026\ \ \ \ \ \{}
-\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\ =\ 1;\ \textcolor{comment}{//\ Para\ iniciar\ a\ coordenada\ X}}
-\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Percorre\ a\ linha}}
-\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ line[i]\ !=\ \textcolor{charliteral}{'\(\backslash\)0'}\ \&\&\ line[i]\ !=\ \textcolor{charliteral}{'\(\backslash\)n'};\ i++)\ \textcolor{comment}{//\ Parar\ também\ no\ \(\backslash\)n}}
-\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line[i]\ !=\ \textcolor{charliteral}{'\ '}\ \&\&\ line[i]\ !=\ \textcolor{charliteral}{'.'})\ \textcolor{comment}{//\ Ignora\ espaços\ e\ pontos}}
-\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{aerial_8c_a3d3df9547d7b6a22110a11d9978decb4}{insertAerialEnd}}(list,\ line[i],\ x,\ y);}
-\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Incrementa\ X\ apenas\ para\ caracteres\ relevantes}}
-\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line[i]\ !=\ \textcolor{charliteral}{'\ '})\ \textcolor{comment}{//\ Espaços\ não\ contam\ como\ posições}}
-\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x++;}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
-\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ y++;\ \textcolor{comment}{//\ Incrementa\ a\ coordenada\ Y}}
-\DoxyCodeLine{00042\ \ \ \ \ \}}
-\DoxyCodeLine{00043\ }
-\DoxyCodeLine{00044\ \ \ \ \ fclose(file);}
-\DoxyCodeLine{00045\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Dados\ carregados\ do\ ficheiro\ \%s\ com\ sucesso!\(\backslash\)n"{}},\ filename);}
-\DoxyCodeLine{00046\ \}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{while}\ (fgets(line,\ \mbox{\hyperlink{aerial_8h_af0f2173e3b202ddf5756531b4471dcb2}{MAX\_LINE\_LENGTH}},\ file)\ !=\ NULL)}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ x\ =\ 1;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ line[i]\ !=\ \textcolor{charliteral}{'\(\backslash\)0'}\ \&\&\ line[i]\ !=\ \textcolor{charliteral}{'\(\backslash\)n'};\ i++)}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line[i]\ !=\ \textcolor{charliteral}{'\ '}\ \&\&\ line[i]\ !=\ \textcolor{charliteral}{'.'})}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list\ =\ \mbox{\hyperlink{aerial_8c_a80c5c32732caf86d2d4490b870385fec}{insertAerialEnd}}(list,\ line[i],\ x,\ y);}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line[i]\ !=\ \textcolor{charliteral}{'\ '})}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x++;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ y++;}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ fclose(file);}
+\DoxyCodeLine{00042\ \ \ \ \ printf(\textcolor{stringliteral}{"{}Dados\ carregados\ do\ ficheiro\ \%s\ com\ sucesso!\(\backslash\)n"{}},\ filename);}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordflow}{return}\ list;}
+\DoxyCodeLine{00044\ \}}
 
 \end{DoxyCode}
