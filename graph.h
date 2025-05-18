@@ -9,7 +9,7 @@
 
 #include <stdbool.h>
 
-#define M 40
+#define M 40 // Tamanho máximo do grid (40x40)
 
 typedef struct Vertex
 {
@@ -22,7 +22,7 @@ typedef struct Vertex
 typedef struct Adjacency
 {
     float distance;
-    int resonanceFrequency;
+    char resonanceFrequency;
     int destinationVertexIndex;
     struct Adjacency *next;
 } Adjacency;
@@ -53,27 +53,28 @@ typedef struct
 } Path;
 
 // Inicialização e gestão de gráficos
-Vertex *InitializeVertexList();
 Vertex *CreateVertex(char resonanceFrequency, float coordinateX, float coordinateY);
 Vertex *InsertVertex(Vertex *newVertex, Vertex *head, int *res);
 bool AdjacencyExists(Vertex *origin, int destinationIndex);
-Adjacency *CreateAdjacency(float distance, int resonanceFrequency, int destinationIndex);
+Adjacency *CreateAdjacency(float distance, char resonanceFrequency, int destinationIndex);
 Vertex *InsertAdjacency(Vertex *head, Adjacency *newAdj, int originIndex, int destinationIndex, int *res);
 bool LoadGraph(char *fileName, Graph *graph);
-void ShowGraph(Graph *graph);
-void ShowGraphAsGrid(Graph *graph);
-void findIntersections(Graph *graph, char freqA, char freqB);
+int ShowGraph(Graph *graph);
+int ShowGraphAsGrid(Graph *graph);
+int findIntersections(Graph *graph, char freqA, char freqB);
 
 // Algoritmos de procura
-void DFT_FromCoordinates(float x, float y, Graph *graph);
-void BFT_FromCoordinates(float x, float y, Graph *graph);
-void FindAllPaths(Graph *graph, float startX, float startY, float endX, float endY);
+int visitDFT(Vertex *v, bool *visited, Graph *graph, int index);
+int DFT_FromCoordinates(float x, float y, Graph *graph);
+int BFT_FromCoordinates(float x, float y, Graph *graph);
+int FindAllPathsUtil(Vertex *current, int currentIndex, int endIndex, bool *visited, int *path, int pathIndex, Graph *graph);
+int FindAllPaths(Graph *graph, float startX, float startY, float endX, float endY);
 
 // Funcões auxiliares
 float CalculateDistance(Vertex *a, Vertex *b);
 
 // BFT
-void Enqueue(Queue *q, int index);
+int Enqueue(Queue *q, int index);
 int Dequeue(Queue *q);
 bool IsQueueEmpty(Queue *q);
 

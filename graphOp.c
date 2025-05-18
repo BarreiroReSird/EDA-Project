@@ -7,17 +7,16 @@
 #include "graph.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
 #include <math.h>
-#include <string.h>
-#include <ctype.h>
+#include <stdbool.h>
 
-void findIntersections(Graph *graph, char freqA, char freqB)
+int findIntersections(Graph *graph, char freqA, char freqB)
 {
-    printf("\nProcurando intersecções entre %c e %c:\n", freqA, freqB);
+    printf("\nProcura de intersecções entre %c e %c:\n", freqA, freqB);
 
     Path pathsA[100], pathsB[100];
     int countA = 0, countB = 0;
+    int intersectionCount = 0;
 
     // Coletar caminhos de A (sem duplicados)
     Vertex *current = graph->head;
@@ -138,6 +137,7 @@ void findIntersections(Graph *graph, char freqA, char freqB)
                         printf("%c(%.0f,%.0f) -> %c(%.0f,%.0f)\n",
                                freqB, x3, y3, freqB, x4, y4);
                         found = true;
+                        intersectionCount++;
 
                         // Marcar como processado para evitar duplicados
                         pathsA[i].processed = true;
@@ -152,4 +152,6 @@ void findIntersections(Graph *graph, char freqA, char freqB)
     {
         printf("Nenhuma intersecção encontrada.\n");
     }
+
+    return intersectionCount;
 }

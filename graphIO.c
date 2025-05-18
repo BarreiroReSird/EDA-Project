@@ -6,18 +6,15 @@
 
 #include "graph.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <math.h>
-#include <string.h>
-#include <ctype.h>
+#include <stdlib.h> // Para malloc, free
+#include <ctype.h>  // Para isalpha
 
 bool LoadGraph(char *fileName, Graph *graph)
 {
     FILE *file = fopen(fileName, "r");
     if (!file)
     {
-        printf("Error opening file '%s'.\n", fileName);
+        printf("Erro a carregar o ficheiro '%s'.\n", fileName);
         return false;
     }
 
@@ -49,14 +46,15 @@ bool LoadGraph(char *fileName, Graph *graph)
     return true;
 }
 
-void ShowGraph(Graph *g)
+int ShowGraph(Graph *g)
 {
     if (!g || !g->head)
     {
-        printf("Empty graph.\n");
-        return;
+        printf("Grafo vazio.\n");
+        return 0;
     }
 
+    int count = 0;
     Vertex *v = g->head;
     int originIndex = 0;
     while (v)
@@ -78,15 +76,17 @@ void ShowGraph(Graph *g)
         printf("\n");
         v = v->next;
         originIndex++;
+        count++;
     }
+    return count;
 }
 
-void ShowGraphAsGrid(Graph *graph)
+int ShowGraphAsGrid(Graph *graph)
 {
     if (!graph || !graph->head)
     {
         printf("Grafo vazio.\n");
-        return;
+        return 0;
     }
 
     char grid[M][M];
@@ -95,6 +95,7 @@ void ShowGraphAsGrid(Graph *graph)
             grid[i][j] = '.';
 
     int maxX = 0, maxY = 0;
+    int count = 0;
 
     Vertex *v = graph->head;
     while (v)
@@ -109,6 +110,7 @@ void ShowGraphAsGrid(Graph *graph)
                 maxX = x;
             if (y > maxY)
                 maxY = y;
+            count++;
         }
 
         v = v->next;
@@ -116,7 +118,6 @@ void ShowGraphAsGrid(Graph *graph)
 
     printf("\n--- Grafo em grid ---\n");
 
-    // Imprimir de cima para baixo (Y crescente)
     for (int i = 0; i <= maxY; i++)
     {
         for (int j = 0; j <= maxX; j++)
@@ -125,4 +126,6 @@ void ShowGraphAsGrid(Graph *graph)
         }
         printf("\n");
     }
+
+    return count;
 }

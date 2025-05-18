@@ -14,7 +14,7 @@
 #include "graph.h"
 
 // Função para executar a Fase 1 ()
-void runPart1()
+int runPart1()
 {
     int choice, coordinateX, coordinateY;
     char resonanceFrequency, loadChoice, retryChoice;
@@ -96,16 +96,23 @@ void runPart1()
             break;
         }
     } while (choice != 0);
+    return 1;
 }
 
 // Função para executar a Fase 2 (Grafos)
-void runPart2()
+int runPart2()
 {
     Graph *graph = (Graph *)malloc(sizeof(Graph));
+    if (graph == NULL)
+    {
+        printf("Erro: Falha ao alocar memória para o grafo.\n");
+        return 0;
+    }
+
     graph->numVertices = 0;
     graph->head = NULL;
 
-    int choice;
+    int choice, result;
     char resonance;
     float x, y;
     char fileName[100];
@@ -115,11 +122,12 @@ void runPart2()
         printf("\n--- Menu ---\n");
         printf("1. Adicionar antena\n");
         printf("2. Mostrar o grafo\n");
-        printf("3. Carregar ficheiro\n");
-        printf("4. DFT\n");
-        printf("5. BFT\n");
-        printf("6. Mostrar todos os caminhos entre duas antenas\n");
-        printf("7. Mostrar grafo atraves de grid\n");
+        printf("3. Mostrar grafo atraves de grid\n");
+        printf("4. Carregar ficheiro\n");
+        printf("5. DFT\n");
+        printf("6. BFT\n");
+        printf("7. Mostrar todos os caminhos entre duas antenas\n");
+        printf("8. Mostrar interseções entre duas frequências\n");
         printf("0. Sair\n");
         printf("Escolha: ");
         scanf("%d", &choice);
@@ -151,10 +159,44 @@ void runPart2()
             break;
 
         case 2:
-            ShowGraph(graph);
+            if (graph == NULL)
+            {
+                printf("Erro: Grafo não inicializado.\n");
+            }
+            else
+            {
+                result = ShowGraph(graph);
+                if (result == 0)
+                {
+                    printf("Nenhum vértice foi mostrado (erro).\n");
+                }
+                else
+                {
+                    printf("Total de %d vértices mostrados.\n", result);
+                }
+            }
             break;
 
         case 3:
+            if (graph == NULL)
+            {
+                printf("Erro: Grafo não inicializado.\n");
+            }
+            else
+            {
+                result = ShowGraphAsGrid(graph);
+                if (result == 0)
+                {
+                    printf("Nenhum vértice foi mostrado no grid (erro).\n");
+                }
+                else
+                {
+                    printf("Grid mostrado com %d vértices.\n", result);
+                }
+            }
+            break;
+
+        case 4:
             printf("Nome do ficheiro e formato: ");
             scanf("%s", fileName);
             if (LoadGraph(fileName, graph))
@@ -167,7 +209,7 @@ void runPart2()
             }
             break;
 
-        case 4:
+        case 5:
             printf("Coordenada X: ");
             scanf("%f", &x);
             printf("Coordenada Y: ");
@@ -175,7 +217,7 @@ void runPart2()
             DFT_FromCoordinates(x, y, graph);
             break;
 
-        case 5:
+        case 6:
             printf("Coordenada X: ");
             scanf("%f", &x);
             printf("Coordenada Y: ");
@@ -183,7 +225,7 @@ void runPart2()
             BFT_FromCoordinates(x, y, graph);
             break;
 
-        case 6:
+        case 7:
             printf("Coordenada X da antena inicial: ");
             scanf("%f", &x);
             printf("Coordenada Y da antena inicial: ");
@@ -197,10 +239,6 @@ void runPart2()
             FindAllPaths(graph, startX, startY, x, y);
             break;
 
-        case 7:
-            ShowGraphAsGrid(graph);
-            break;
-
         case 8:
         {
             char freqA, freqB;
@@ -208,7 +246,8 @@ void runPart2()
             scanf(" %c", &freqA);
             printf("Segunda frequência: ");
             scanf(" %c", &freqB);
-            findIntersections(graph, freqA, freqB);
+            int result = findIntersections(graph, freqA, freqB);
+            printf("Total de %d interseções encontradas.\n", result);
             break;
         }
 
@@ -221,6 +260,8 @@ void runPart2()
             break;
         }
     } while (choice != 0);
+    FreeGraph(graph); // Liberta toda a memória alocada
+    return 1;
 }
 
 int main()

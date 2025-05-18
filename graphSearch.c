@@ -6,22 +6,19 @@
 
 #include "graph.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <math.h>
-#include <string.h>
-#include <ctype.h>
+#include <stdlib.h> // Para malloc, free
 
 // DFT
-void visitDFT(Vertex *v, bool *visited, Graph *graph, int index)
+int visitDFT(Vertex *v, bool *visited, Graph *graph, int index)
 {
     if (!v)
-        return;
+        return 0;
 
+    int count = 1; // Conta o vértice atual
     visited[index] = true;
-    printf("Antenna reached: %c (%.0f, %.0f)\n", v->resonanceFrequency, v->coordinateX, v->coordinateY);
+    printf("Antena: %c (%.0f, %.0f)\n", v->resonanceFrequency, v->coordinateX, v->coordinateY);
 
-    // Criar uma lista temporária de adjacências para poder ordenar/controlar a ordem de visita
+    // Criar uma lista temporária de adjacências
     Adjacency *adjList = NULL;
     Adjacency *adj = v->adjacencies;
 
@@ -34,7 +31,7 @@ void visitDFT(Vertex *v, bool *visited, Graph *graph, int index)
         adj = adj->next;
     }
 
-    // Visitar cada adjacência na ordem em que foram encontradas (primeiro -> último)
+    // Visitar cada adjacência
     adj = adjList;
     while (adj)
     {
@@ -45,7 +42,7 @@ void visitDFT(Vertex *v, bool *visited, Graph *graph, int index)
                 next = next->next;
 
             if (next && next->resonanceFrequency == v->resonanceFrequency)
-                visitDFT(next, visited, graph, adj->destinationVertexIndex);
+                count += visitDFT(next, visited, graph, adj->destinationVertexIndex);
         }
         adj = adj->next;
     }
@@ -57,14 +54,16 @@ void visitDFT(Vertex *v, bool *visited, Graph *graph, int index)
         adjList = adjList->next;
         free(temp);
     }
+
+    return count;
 }
 
-void DFT_FromCoordinates(float x, float y, Graph *graph)
+int DFT_FromCoordinates(float x, float y, Graph *graph)
 {
     if (!graph || !graph->head)
     {
-        printf("Empty graph.\n");
-        return;
+        printf("Grafo vazio.\n");
+        return 0;
     }
 
     Vertex *v = graph->head;
@@ -77,33 +76,49 @@ void DFT_FromCoordinates(float x, float y, Graph *graph)
 
     if (!v)
     {
-        printf("Antenna not found at coordinates (%.0f, %.0f)\n", x, y);
-        return;
+        printf("Antena não encontrada nas coordenadas (%.0f, %.0f)\n", x, y);
+        return 0;
     }
 
     bool *visited = (bool *)calloc(graph->numVertices, sizeof(bool));
     if (!visited)
     {
-        printf("Memory error.\n");
-        return;
+        printf("Erro de memória.\n");
+        return 0;
     }
 
-    printf("DFT starting from antenna %c (%.0f, %.0f):\n", v->resonanceFrequency, x, y);
-    visitDFT(v, visited, graph, index);
+    printf("DFT a partir da antena %c (%.0f, %.0f):\n", v->resonanceFrequency, x, y);
+    int verticesVisited = visitDFT(v, visited, graph, index);
     free(visited);
+
+    printf("Total de vértices visitados: %d\n", verticesVisited);
+    return verticesVisited;
 }
 
 // BFT
-void Enqueue(Queue *q, int index)
+int Enqueue(Queue *q, int index)
 {
-    QueueNode *node = (QueueNode *)malloc(sizeof(QueueNode));
-    node->index = index;
-    node->next = NULL;
-    if (q->rear)
-        q->rear->next = node;
+    if (q == NULL)
+        return 0;
+
+    QueueNode *newNode = (QueueNode *)malloc(sizeof(QueueNode));
+    if (newNode == NULL)
+        return 0;
+
+    newNode->index = index;
+    newNode->next = NULL;
+
+    if (q->rear == NULL)
+    {
+        q->front = q->rear = newNode;
+    }
     else
-        q->front = node;
-    q->rear = node;
+    {
+        q->rear->next = newNode;
+        q->rear = newNode;
+    }
+
+    return 1;
 }
 
 int Dequeue(Queue *q)
@@ -124,12 +139,12 @@ bool IsQueueEmpty(Queue *q)
     return q->front == NULL;
 }
 
-void BFT_FromCoordinates(float x, float y, Graph *graph)
+int BFT_FromCoordinates(float x, float y, Graph *graph)
 {
     if (!graph || !graph->head)
     {
-        printf("Empty graph.\n");
-        return;
+        printf("Grafo vazio.\n");
+        return 0;
     }
 
     Vertex *v = graph->head;
@@ -142,23 +157,24 @@ void BFT_FromCoordinates(float x, float y, Graph *graph)
 
     if (!v)
     {
-        printf("Antenna not found at coordinates (%.0f, %.0f)\n", x, y);
-        return;
+        printf("Antena não encontrada nas coordenadas (%.0f, %.0f)\n", x, y);
+        return 0;
     }
 
     char targetResonance = v->resonanceFrequency;
     bool *visited = (bool *)calloc(graph->numVertices, sizeof(bool));
     if (!visited)
     {
-        printf("Memory error.\n");
-        return;
+        printf("Erro de memória.\n");
+        return 0;
     }
 
     Queue q = {NULL, NULL};
     Enqueue(&q, index);
     visited[index] = true;
 
-    printf("BFT starting from antenna %c (%.0f, %.0f):\n", v->resonanceFrequency, x, y);
+    printf("BFT a partir da antena %c (%.0f, %.0f):\n", v->resonanceFrequency, x, y);
+    int verticesVisited = 0;
 
     while (!IsQueueEmpty(&q))
     {
@@ -169,7 +185,8 @@ void BFT_FromCoordinates(float x, float y, Graph *graph)
 
         if (curr)
         {
-            printf("Antenna reached: %c (%.0f, %.0f)\n", curr->resonanceFrequency, curr->coordinateX, curr->coordinateY);
+            verticesVisited++;
+            printf("Antena: %c (%.0f, %.0f)\n", curr->resonanceFrequency, curr->coordinateX, curr->coordinateY);
 
             Adjacency *adj = curr->adjacencies;
             while (adj)
@@ -192,18 +209,21 @@ void BFT_FromCoordinates(float x, float y, Graph *graph)
     }
 
     free(visited);
+    printf("Total de vértices visitados: %d\n", verticesVisited);
+    return verticesVisited;
 }
 
 // Caminhos
-void FindAllPathsUtil(Vertex *current, int currentIndex, int endIndex, bool *visited, int *path, int pathIndex, Graph *graph)
+int FindAllPathsUtil(Vertex *current, int currentIndex, int endIndex, bool *visited, int *path, int pathIndex, Graph *graph)
 {
+    int pathCount = 0;
     visited[currentIndex] = true;
     path[pathIndex] = currentIndex;
     pathIndex++;
 
     if (currentIndex == endIndex)
     {
-        // Caminho encontrado - imprimir
+        pathCount++;
         for (int i = 0; i < pathIndex; i++)
         {
             Vertex *v = graph->head;
@@ -228,7 +248,7 @@ void FindAllPathsUtil(Vertex *current, int currentIndex, int endIndex, bool *vis
 
                 if (next && next->resonanceFrequency == current->resonanceFrequency)
                 {
-                    FindAllPathsUtil(next, adj->destinationVertexIndex, endIndex, visited, path, pathIndex, graph);
+                    pathCount += FindAllPathsUtil(next, adj->destinationVertexIndex, endIndex, visited, path, pathIndex, graph);
                 }
             }
             adj = adj->next;
@@ -238,14 +258,15 @@ void FindAllPathsUtil(Vertex *current, int currentIndex, int endIndex, bool *vis
     // Backtrack
     visited[currentIndex] = false;
     pathIndex--;
+    return pathCount;
 }
 
-void FindAllPaths(Graph *graph, float startX, float startY, float endX, float endY)
+int FindAllPaths(Graph *graph, float startX, float startY, float endX, float endY)
 {
     if (!graph || !graph->head)
     {
         printf("Grafo vazio.\n");
-        return;
+        return 0;
     }
 
     Vertex *start = graph->head;
@@ -279,13 +300,13 @@ void FindAllPaths(Graph *graph, float startX, float startY, float endX, float en
     if (!startFound || !endFound)
     {
         printf("Antenas inicial ou final não encontradas.\n");
-        return;
+        return 0;
     }
 
     if (start->resonanceFrequency != end->resonanceFrequency)
     {
         printf("As antenas não tem a mesma frequência.\n");
-        return;
+        return 0;
     }
 
     bool *visited = (bool *)calloc(graph->numVertices, sizeof(bool));
@@ -295,8 +316,10 @@ void FindAllPaths(Graph *graph, float startX, float startY, float endX, float en
            start->resonanceFrequency, startX, startY,
            end->resonanceFrequency, endX, endY);
 
-    FindAllPathsUtil(start, startIndex, endIndex, visited, path, 0, graph);
+    int totalPaths = FindAllPathsUtil(start, startIndex, endIndex, visited, path, 0, graph);
+    printf("Total de caminhos encontrados: %d\n", totalPaths);
 
     free(visited);
     free(path);
+    return totalPaths;
 }

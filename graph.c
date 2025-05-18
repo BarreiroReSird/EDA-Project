@@ -5,12 +5,8 @@
 // Date: 2025/05
 
 #include "graph.h"
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include <math.h>
-#include <string.h>
-#include <ctype.h>
+#include <stdlib.h> // Para malloc, free
+#include <math.h>   // Para sqrtf, powf
 
 Vertex *CreateVertex(char resonanceFrequency, float coordinateX, float coordinateY)
 {
@@ -38,13 +34,13 @@ bool AdjacencyExists(Vertex *origin, int destinationIndex)
     return false;
 }
 
-Adjacency *CreateAdjacency(float distance, int resonanceFrequency, int destinationIndex)
+Adjacency *CreateAdjacency(float distance, char resonanceFrequency, int destinationIndex)
 {
     Adjacency *adj = (Adjacency *)malloc(sizeof(Adjacency));
     if (adj)
     {
         adj->distance = distance;
-        adj->resonanceFrequency = resonanceFrequency;
+        adj->resonanceFrequency = resonanceFrequency; // Agora é char
         adj->destinationVertexIndex = destinationIndex;
         adj->next = NULL;
     }
@@ -131,4 +127,32 @@ Vertex *InsertVertex(Vertex *newVertex, Vertex *head, int *res)
 float CalculateDistance(Vertex *a, Vertex *b)
 {
     return sqrtf(powf(a->coordinateX - b->coordinateX, 2) + powf(a->coordinateY - b->coordinateY, 2));
+}
+
+// Liberta a lista de adjacências
+void FreeAdjacencies(Adjacency *adj)
+{
+    while (adj != NULL)
+    {
+        Adjacency *temp = adj;
+        adj = adj->next;
+        free(temp);
+    }
+}
+
+// Liberta o grafo e todos os vértices
+void FreeGraph(Graph *graph)
+{
+    if (graph == NULL)
+        return;
+
+    Vertex *current = graph->head;
+    while (current != NULL)
+    {
+        Vertex *temp = current;
+        current = current->next;
+        FreeAdjacencies(temp->adjacencies); // Liberta adjacências do vértice
+        free(temp);
+    }
+    free(graph); // Liberta a estrutura do grafo
 }
